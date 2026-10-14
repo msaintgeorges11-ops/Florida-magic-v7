@@ -314,6 +314,20 @@ setInterval(actualizarFloridaReal,5*60*1000);
 render();
 actualizarFloridaReal();
 if(!esVip())document.querySelectorAll('.adsbygoogle').forEach(()=>{try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}});
+async function chargerResultatsLive() {
+  try {
+    const r = await fetch('/api/florida?t=' + Date.now());
+    const j = await r.json();
+    if(j.success) {
+      document.getElementById('live-status').innerHTML = '✅ Dènye mizajou: ' + new Date().toLocaleTimeString();
+      // Isit la ou mete kòd pou mete tablo a ajou
+      location.reload(); // rafrechi senp pou kounya
+    }
+  } catch(e) {}
+}
+// Tcheke chak 60 segond
+setInterval(chargerResultatsLive, 60000);
+chargerResultatsLive();
 </script>
 </body>
 </html>
