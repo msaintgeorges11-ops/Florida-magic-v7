@@ -277,7 +277,7 @@ async function loadVip(){
     if(!Array.isArray(vipRows))vipRows=[];
   }catch(e){vipRows=[]}
   try{const n=await fetch('vip-note.txt?'+Date.now(),{cache:'no-store'});vipNote=n.ok?(await n.text()).trim():null}catch(e){vipNote=null}
-  try{if(!esVip())throw 0;const v=await fetch('vip-today.txt?'+Date.now(),{cache:'no-store'});vipToday=v.ok?(await v.text()).trim()||null:null}catch(e){vipToday=null}
+  try{if(!esVip())throw 0;const d=await vipCheck(load('vipCode')||'');vipToday=d&&d.ok&&d.today?String(d.today):null}catch(e){vipToday=null}
   renderVipRes();
 }
 
