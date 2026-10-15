@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
-Sitemap: https://TU-DOMINIO.com/sitemap.xml
+Sitemap: https://florida-magic-v7.vercel.app/sitemap.xml
