@@ -336,6 +336,7 @@ function renderReal(){
   box.innerHTML='';
   if(!real){
     const p=document.createElement('p');p.className='small';p.textContent=t.noReal;box.appendChild(p);
+    if(realDiag){const q=document.createElement('p');q.className='small';q.style.fontSize='10px';q.textContent=realDiag;box.appendChild(q)}
     const a=document.createElement('a');a.className='official';a.href='https://www.flalottery.com/winningNumbers';a.target='_blank';a.rel='noopener';a.textContent=t.oficial;box.appendChild(a);
   }else{
     box.innerHTML='<p>🔆 Pick 3 '+t.mid+'</p><span class="num">'+real.mid+'</span><p style="margin-top:8px">🌙 Pick 3 '+t.eve+'</p><span class="num">'+real.eve+'</span><p class="small">'+t.fuente+': '+real.src+' — '+real.hora+'</p>';
@@ -344,14 +345,15 @@ function renderReal(){
 }
 
 const RES=[[13,'268','808','9504','4248'],[12,'508','598','1184','2441'],[11,'516','648','5329','7797'],[10,'744','152','3547','3753'],[9,'174','097','2033','1197'],[8,'489','515','1963','2884'],[7,'046','330','0560','9397'],[6,'238','595','8722','7117'],[5,'654','898','1465','9517'],[4,'124','902','7811','7283']];
-let realRows=null,realSrc='lotteryusa.com';
+let realRows=null,realSrc='lotteryusa.com',realDiag='';
 async function loadResults(){
-  let rows=null;
+  let rows=null;realDiag='';
   try{
     const r=await fetch('/api/results?'+Date.now(),{cache:'no-store'});
-    const d=r.ok?await r.json():null;
+    let d=null;try{d=await r.json()}catch(e){}
     if(d&&Array.isArray(d.rows)&&d.rows.length){rows=d.rows;realSrc=d.src||realSrc}
-  }catch(e){}
+    else realDiag='API /api/results: HTTP '+r.status+(d&&d.errors&&d.errors.length?' — '+d.errors.join(' | '):(r.status===404?' (fichye api/results.js pa jwenn)':''));
+  }catch(e){realDiag='API /api/results: '+e.message}
   if(!rows){
     try{
       const r=await fetch('results.json?'+Date.now(),{cache:'no-store'});
