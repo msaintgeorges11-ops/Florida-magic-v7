@@ -38,8 +38,10 @@ module.exports = async (req, res) => {
   const keys = Object.keys(SOURCES);
   const got = await Promise.allSettled(keys.map(k => grab(SOURCES[k])));
   const byDate = {};
+  const errors = [];
   got.forEach((g, i) => {
-    if (g.status !== 'fulfilled') return;
+    if (g.status !== 'fulfilled') { errors.push(keys[i] + ': ' + (g.reason && g.reason.message)); return; }
+    if (!Object.keys(g.value).length) errors.push(keys[i] + ': 0 rezilta li');
     Object.entries(g.value).forEach(([date, num]) => {
       (byDate[date] = byDate[date] || { date })[keys[i]] = num;
     });
@@ -47,6 +49,6 @@ module.exports = async (req, res) => {
   const rows = Object.values(byDate).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 12);
   res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
-  res.status(rows.length ? 200 : 502).send(JSON.stringify({ rows, src: 'lotteryusa.com', updated: new Date().toISOString() }));
+  res.status(rows.length ? 200 : 502).send(JSON.stringify({ rows, errors, src: 'lotteryusa.com', updated: new Date().toISOString() }));
 };
 module.exports.parse = parse;
