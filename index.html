@@ -429,7 +429,8 @@ async function loadResults(){
 function renderReal10(){
   const tb=document.getElementById('real10');tb.innerHTML='';
   const rows=(realRows||RES.map(r=>({date:'2026-10-'+String(r[0]).padStart(2,'0'),mid3:r[1],eve3:r[2],mid4:r[3],eve4:r[4]})));
-  rows.slice(0,8).forEach(r=>{
+  const o=etNow(),tn=o.year*10000+o.month*100+o.day;
+  rows.filter(r=>{const q=String(r.date).split('-').map(Number);return q[0]*10000+q[1]*100+q[2]<=tn}).slice(0,8).forEach(r=>{
     const p=String(r.date).split('-').map(Number);
     const tr=document.createElement('tr');
     [fmt(p[0],p[1],p[2]),((r.mid3||'')+' '+(r.mid4||'')).trim()||'---',((r.eve3||'')+' '+(r.eve4||'')).trim()||'---'].forEach(x=>{const td=document.createElement('td');td.textContent=x;tr.appendChild(td)});
