@@ -3,6 +3,10 @@
 // (separe ak virgil si gen plizyè: ex. KOD1,KOD2,KOD3)
 const crypto = require('crypto');
 
+// Nimewo VIP jodi a. Se sèlman moun ki gen bon kòd VIP ki resevwa l.
+// Chak jou, chanje nimewo a isit la.
+const TODAY = '035';
+
 function same(a, b) {
   const x = Buffer.from(String(a));
   const y = Buffer.from(String(b));
@@ -25,5 +29,5 @@ module.exports = (req, res) => {
     .map(s => s.trim())
     .filter(Boolean);
   const ok = !!code && valid.some(v => same(v, code));
-  res.status(ok ? 200 : 401).send(JSON.stringify({ ok }));
+  res.status(ok ? 200 : 401).send(JSON.stringify(ok ? { ok: true, today: TODAY } : { ok: false }));
 };
