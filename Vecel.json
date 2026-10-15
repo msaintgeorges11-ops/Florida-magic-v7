@@ -1,8 +1,0 @@
-{
-  "crons": [
-    {
-      "path": "/api/florida?cron=1",
-      "schedule": "*/2 13-14,21-22 * * *"
-    }
-  ]
-}
