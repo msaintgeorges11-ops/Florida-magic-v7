@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Generador aleatorio de números de entretenimiento y últimos resultados de Florida Pick 3 y Pick 4. No afiliado a la Lotería de Florida.">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1363f8">
+<link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://florida-magic-v7.vercel.app/">
 <meta property="og:type" content="website">
@@ -458,5 +461,6 @@ loadVip();loadResults();
 actualizarFloridaReal();
 setTab('home');
 </script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}</script>
 </body>
 </html>
