@@ -199,6 +199,7 @@ header h1{color:#000}
     <p class="small" id="astHint"></p>
     <label class="adate"><span id="astBorn"></span> <input type="date" id="astDate"></label>
     <div class="sgrid" id="astList"></div>
+    <select id="astVoice" aria-label="Voz / Voix / Voice" style="display:none;width:100%;margin:8px 0 0;padding:10px;border-radius:8px;border:1px solid var(--line);font-size:14px;background:#fff;color:#000"></select>
     <button class="abtn alt" id="astListenAll" type="button"></button>
     <div class="aread" id="astRead" style="display:none"></div>
     <p class="small" id="astNote" style="display:none"></p>
@@ -716,11 +717,19 @@ function score(v){
   if(/google/i.test(n))x+=3;
   if(/denise|audrey|amelie|amélie|aurelie|aurélie|julie|hortense|paulina|mónica|monica|helena|lucia|lucía|elena|sabina|samantha|ava|allison|jenny|aria|zira|karen|serena|marie|female|femme/i.test(n))x+=2;
   if(/compact|espeak/i.test(n))x-=3;
+  if(/network|online/i.test(n))x+=6;
+  if(/-local\b/i.test(n))x-=1;
   if(v.localService===false)x+=1;
   return x;
 }
+function langVoices(){
+  const pre=({fr:'fr',es:'es',en:'en'})[al];
+  return (speechSynthesis.getVoices()||[]).filter(v=>v.lang&&v.lang.replace('_','-').toLowerCase().startsWith(pre)).sort((p,q)=>score(q)-score(p));
+}
 function pickVoice(codes,fb){
   const vs=(speechSynthesis.getVoices()||[]).filter(v=>v.lang);
+  const sv=load('astVoice_'+al);
+  if(sv){const m=vs.find(v=>v.name===sv);if(m)return{v:m,lang:m.lang,fell:false}}
   const norm=v=>v.lang.replace('_','-').toLowerCase();
   const best=a=>a.sort((p,q)=>score(q)-score(p))[0];
   for(const c of codes){const a=vs.filter(v=>norm(v).startsWith(c.toLowerCase()));if(a.length){const v=best(a);return{v,lang:v.lang,fell:false}}}
@@ -753,9 +762,22 @@ function speak(btn,text){
 }
 
 // ---- render ----
+function renderVoiceSel(){
+  const sel=$('astVoice');if(!sel)return;
+  if(!hasTTS){sel.style.display='none';return}
+  const vs=langVoices();
+  if(vs.length<2){sel.style.display='none';return}
+  const lab=({fr:'🔈 Voix',es:'🔈 Voz',en:'🔈 Voice'})[al],cur=load('astVoice_'+al)||'';
+  sel.innerHTML='';
+  const o0=document.createElement('option');o0.value='';o0.textContent=lab+' : auto';sel.appendChild(o0);
+  vs.forEach(v=>{const o=document.createElement('option');o.value=v.name;o.textContent=lab+' : '+v.name+' ('+v.lang+')';sel.appendChild(o)});
+  sel.value=vs.some(v=>v.name===cur)?cur:'';
+  sel.style.display='block';
+}
 function renderAst(){
   const d=D[al],T=d.T;
   stopAudio();
+  renderVoiceSel();
   $('astTitle').textContent=T.title;
   {const o=etNow(),wd=new Date(Date.UTC(o.year,o.month-1,o.day,12)).getUTCDay(),dn=d.days[wd],mn=d.months[o.month-1];
    $('astDay').textContent='📅 '+(al==='en'?dn+', '+mn+' '+o.day+', '+o.year:al==='es'?dn+' '+o.day+' de '+mn+' de '+o.year:dn+' '+o.day+' '+mn+' '+o.year)}
@@ -802,7 +824,8 @@ $('astDate').onchange=function(){
   sel=signFor(p[1],p[2]);store('astSign',String(sel));renderAst();
 };
 document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.go!=='astral')stopAudio()}));
-if(hasTTS&&speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=()=>{};
+if(hasTTS&&speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=()=>{renderVoiceSel()};
+$('astVoice').onchange=function(){store('astVoice_'+al,this.value);stopAudio()};
 renderAst();
 loadAstralJson();
 let lastDay=ETK();
