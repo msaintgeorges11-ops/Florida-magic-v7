@@ -788,7 +788,7 @@ function renderAst(){
   add('','✨ <b>'+esc(r.bye)+'</b>');
   if(hasTTS){
     const b=document.createElement('button');b.type='button';b.className='abtn';b.textContent=T.mine;
-    b.onclick=()=>speak(b,[SW[al].mineIntro(greet(),r.name),r.yours,T.lucky+' '+r.num+'.',T.color+' '+r.color+'.',T.day+'. '+r.dayTxt,T.love+'. '+r.loveTxt,SW[al].mineOutro].join(' '));
+    b.onclick=()=>speak(b,[SW[al].mineIntro(greet(),r.name),r.yours,T.lucky+' '+r.num+'.',T.color+' '+r.color+'.',T.day+'. '+r.dayTxt,T.love+'. '+r.loveTxt,r.bye].join(' '));
     box.appendChild(b);
   }
 }
