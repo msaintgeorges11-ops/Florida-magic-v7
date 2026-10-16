@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florida Lotería Hoy – Números de la suerte Pick 3 | FLORIDA MAGIC</title>
+<meta name="description" content="Florida Lotería hoy: 2 números de la suerte para el sorteo de mediodía y noche, iguales para todos. Solo entretenimiento, no predicen ningún sorteo.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://TU-DOMINIO.com/loteria-hoy.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Florida Lotería Hoy – Números de la suerte Pick 3 | FLORIDA MAGIC">
+<meta property="og:description" content="Florida Lotería hoy: 2 números de la suerte para el sorteo de mediodía y noche, iguales para todos. Solo entretenimiento, no predicen ningún sorteo.">
+<meta property="og:url" content="https://TU-DOMINIO.com/loteria-hoy.html">
+<meta property="og:locale" content="es_DO">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7893807516191350" crossorigin="anonymous"></script>
+<style>
+:root{color-scheme:light;--b:#1363f8;--line:#d9d9d9;--muted:#444}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--b)}
+body{color:#000;font-family:Arial,Helvetica,sans-serif;display:flex;justify-content:center}
+.wrap{width:100%;max-width:500px;padding:10px 10px 40px}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+nav a{flex:1 1 45%;text-align:center;text-decoration:none;padding:10px 4px;border:1px solid #fff;border-radius:8px;background:var(--b);color:#fff;font-weight:bold;font-size:12px}
+nav a.on{background:#fff;color:var(--b)}
+header,.card{background:#fff;border-radius:20px;padding:16px;margin-top:12px;text-align:center}
+header{margin-top:0}
+h1{font-size:20px;color:#000}
+h2{font-size:15px;color:var(--b);margin-bottom:8px}
+p{font-size:13px;line-height:1.5;margin-top:8px}
+.small{font-size:12px;color:var(--muted)}
+.nums{display:flex;gap:10px;justify-content:center;margin:8px 0}
+.num{font-size:22px;font-weight:bold;min-width:70px;height:56px;border:1px solid var(--b);border-radius:28px;display:inline-flex;align-items:center;justify-content:center}
+table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
+th,td{padding:6px 4px;border-bottom:1px solid var(--line)}
+th{color:var(--b)}
+a.btn{display:inline-block;margin-top:10px;background:var(--b);color:#fff;padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:bold;font-size:13px}
+.disc{font-size:11px;color:#fff;text-align:center;line-height:1.6;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="index.html">Inicio</a><a href="loteria-hoy.html" class=on>Lotería hoy</a><a href="numeros-vip.html">Números VIP</a><a href="resultado-florida.html">Resultados</a></nav>
+  <header>
+    <h1>Florida Lotería Hoy</h1>
+    <p>📅 <b class="fd"></b></p>
+    <p class="small">Números de la suerte para los sorteos de mediodía y noche (hora de Florida).</p>
+  </header>
+  <div class="card">
+    <h2>🔆 Mediodía – 1:30 PM</h2>
+    <div class="nums"><span class="num" id="m1">---</span><span class="num" id="m2">---</span></div>
+  </div>
+  <div class="card">
+    <h2>🌙 Noche – 9:45 PM</h2>
+    <div class="nums"><span class="num" id="e1">---</span><span class="num" id="e2">---</span></div>
+    <p class="small">Calculados con la fecha: son los mismos para todos. Solo diversión.</p>
+  </div>
+  <ins class="adsbygoogle" style="display:block;margin-top:12px" data-ad-client="ca-pub-7893807516191350" data-ad-slot="7343398778" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <div class="card">
+    <h2>¿Qué es Florida Magic?</h2>
+    <p>Un generador de números para entretenimiento. Cada día muestra 2 números de la suerte por sorteo. Para ver los resultados oficiales de Pick 3 y Pick 4 entra a la página de resultados.</p>
+    <a class="btn" href="resultado-florida.html">Ver resultados de Florida</a>
+  </div>
+  <p class="disc">FLORIDA MAGIC no está afiliado a la Lotería de Florida ni a ninguna lotería. Los números generados son aleatorios, solo de entretenimiento: no predicen resultados, no aumentan tus probabilidades y no garantizan ningún premio. Juega con responsabilidad. Solo mayores de 18 años.</p>
+</div>
+<script>
+function etNow(){const o={};new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date()).forEach(p=>o[p.type]=+p.value);if(o.hour===24)o.hour=0;return o}
+function fmt(y,m,d){return new Date(Date.UTC(y,m-1,d,12)).toLocaleDateString('es-DO',{day:'2-digit',month:'long',year:'numeric',timeZone:'UTC'}).toUpperCase()}
+const o=etNow();document.querySelectorAll('.fd').forEach(e=>e.textContent=fmt(o.year,o.month,o.day));
+function textToSeed(t){let s=0;for(let i=0;i<t.length;i++)s+=t.charCodeAt(i)*(i+1)*9301;return s}
+function sr(s){const x=Math.sin(s)*10000;return x-Math.floor(x)}
+function gn(fk,ses,pos){const seed=textToSeed(fk+"_"+ses+"_"+pos);let n=Math.floor(sr(seed)*10)*100+Math.floor(sr(seed+12345)*10)*10+Math.floor(sr(seed+67890)*10);if(n<100)n+=100;return n}
+function pair(fk,ses){const a=gn(fk,ses,1);let b=gn(fk,ses,2);if(a===b){b=(b+1)%1000;if(b<100)b+=100}return [a,b]}
+const fk=o.year+"-"+o.month+"-"+o.day;
+const m=pair(fk,"MIDDAY"),e=pair(fk,"EVENING");
+document.getElementById('m1').textContent=m[0];document.getElementById('m2').textContent=m[1];
+document.getElementById('e1').textContent=e[0];document.getElementById('e2').textContent=e[1];
+try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resultado Florida Midday / Evening – Pick 3 y Pick 4 | FLORIDA MAGIC</title>
+<meta name="description" content="Últimos resultados de Florida Pick 3 y Pick 4, sorteo de mediodía (Midday) y noche (Evening). Verifica siempre en la fuente oficial.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://TU-DOMINIO.com/resultado-florida.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Resultado Florida Midday / Evening – Pick 3 y Pick 4 | FLORIDA MAGIC">
+<meta property="og:description" content="Últimos resultados de Florida Pick 3 y Pick 4, sorteo de mediodía (Midday) y noche (Evening). Verifica siempre en la fuente oficial.">
+<meta property="og:url" content="https://TU-DOMINIO.com/resultado-florida.html">
+<meta property="og:locale" content="es_DO">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7893807516191350" crossorigin="anonymous"></script>
+<style>
+:root{color-scheme:light;--b:#1363f8;--line:#d9d9d9;--muted:#444}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--b)}
+body{color:#000;font-family:Arial,Helvetica,sans-serif;display:flex;justify-content:center}
+.wrap{width:100%;max-width:500px;padding:10px 10px 40px}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+nav a{flex:1 1 45%;text-align:center;text-decoration:none;padding:10px 4px;border:1px solid #fff;border-radius:8px;background:var(--b);color:#fff;font-weight:bold;font-size:12px}
+nav a.on{background:#fff;color:var(--b)}
+header,.card{background:#fff;border-radius:20px;padding:16px;margin-top:12px;text-align:center}
+header{margin-top:0}
+h1{font-size:20px;color:#000}
+h2{font-size:15px;color:var(--b);margin-bottom:8px}
+p{font-size:13px;line-height:1.5;margin-top:8px}
+.small{font-size:12px;color:var(--muted)}
+.nums{display:flex;gap:10px;justify-content:center;margin:8px 0}
+.num{font-size:22px;font-weight:bold;min-width:70px;height:56px;border:1px solid var(--b);border-radius:28px;display:inline-flex;align-items:center;justify-content:center}
+table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
+th,td{padding:6px 4px;border-bottom:1px solid var(--line)}
+th{color:var(--b)}
+a.btn{display:inline-block;margin-top:10px;background:var(--b);color:#fff;padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:bold;font-size:13px}
+.disc{font-size:11px;color:#fff;text-align:center;line-height:1.6;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="index.html">Inicio</a><a href="loteria-hoy.html">Lotería hoy</a><a href="numeros-vip.html">Números VIP</a><a href="resultado-florida.html" class=on>Resultados</a></nav>
+  <header>
+    <h1>Resultado Florida Midday / Evening</h1>
+    <p>📅 <b class="fd"></b></p>
+  </header>
+  <div class="card">
+    <h2>🎯 Pick 3 + Pick 4 – últimos resultados</h2>
+    <table>
+      <thead><tr><th>FECHA</th><th>MEDIODÍA</th><th>NOCHE</th></tr></thead>
+      <tbody id="res"><tr><td colspan="3">Cargando...</td></tr></tbody>
+    </table>
+    <p class="small">Verifica siempre en la fuente oficial.</p>
+    <a class="btn" href="https://www.flalottery.com/winningNumbers" target="_blank" rel="noopener">Resultados oficiales</a>
+  </div>
+  <ins class="adsbygoogle" style="display:block;margin-top:12px" data-ad-client="ca-pub-7893807516191350" data-ad-slot="7343398778" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <p class="disc">FLORIDA MAGIC no está afiliado a la Lotería de Florida ni a ninguna lotería. Los números generados son aleatorios, solo de entretenimiento: no predicen resultados, no aumentan tus probabilidades y no garantizan ningún premio. Juega con responsabilidad. Solo mayores de 18 años.</p>
+</div>
+<script>
+function etNow(){const o={};new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date()).forEach(p=>o[p.type]=+p.value);if(o.hour===24)o.hour=0;return o}
+function fmt(y,m,d){return new Date(Date.UTC(y,m-1,d,12)).toLocaleDateString('es-DO',{day:'2-digit',month:'long',year:'numeric',timeZone:'UTC'}).toUpperCase()}
+const o=etNow();document.querySelectorAll('.fd').forEach(e=>e.textContent=fmt(o.year,o.month,o.day));
+fetch('resultados.json?'+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():[]).catch(()=>[]).then(rows=>{
+  const tb=document.getElementById('res');tb.innerHTML='';
+  if(!Array.isArray(rows)||!rows.length){tb.innerHTML='<tr><td colspan="3">Consulta la fuente oficial.</td></tr>';return}
+  rows.slice().sort((a,b)=>String(b.d).localeCompare(String(a.d))).slice(0,10).forEach(x=>{
+    const dt=new Date(x.d+'T12:00:00');const f=isNaN(dt)?x.d:dt.toLocaleDateString('es-DO',{day:'2-digit',month:'short',year:'numeric'}).toUpperCase();
+    const tr=document.createElement('tr');[f,(x.m3||'—')+' '+(x.m4||''),(x.e3||'—')+' '+(x.e4||'')].forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});tb.appendChild(tr);
+  });
+});
+try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}
+</script>
+</body>
+</html>
