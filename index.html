@@ -343,8 +343,8 @@ function render(){
   document.querySelectorAll('.fd').forEach(e=>e.textContent=fechaDisplay());
   try{
     const sx=lang==='fr'?'-fr':lang==='en'?'-en':'';
-    const slug={es:['pick3','pick4','straight-box','probabilidades','resultados'],fr:['pick3-fr','pick4-fr','straight-box-fr','probabilites-fr','resultats-fr'],en:['pick3-en','pick4-en','straight-box-en','odds-en','results-en']}[lang];
-    const ttl={es:['¿Cómo funciona Pick 3?','¿Cómo funciona Pick 4?','Straight o Box: diferencias','Las probabilidades reales','Cómo leer los resultados'],fr:['Comment fonctionne Pick 3 ?','Comment fonctionne Pick 4 ?','Straight ou Box : différences','Les probabilités réelles','Comment lire les résultats'],en:['How does Pick 3 work?','How does Pick 4 work?','Straight vs Box: differences','The real odds','How to read the results']}[lang];
+    const slug={es:['pick3','pick4','straight-box','probabilidades','resultados','mitos','juego-responsable'],fr:['pick3-fr','pick4-fr','straight-box-fr','probabilites-fr','resultats-fr','mythes-fr','jeu-responsable-fr'],en:['pick3-en','pick4-en','straight-box-en','odds-en','results-en','myths-en','responsible-play-en']}[lang];
+    const ttl={es:['¿Cómo funciona Pick 3?','¿Cómo funciona Pick 4?','Straight o Box: diferencias','Las probabilidades reales','Cómo leer los resultados','Mitos sobre la lotería','Juego responsable'],fr:['Comment fonctionne Pick 3 ?','Comment fonctionne Pick 4 ?','Straight ou Box : différences','Les probabilités réelles','Comment lire les résultats','Les mythes sur la loterie','Jeu responsable'],en:['How does Pick 3 work?','How does Pick 4 work?','Straight vs Box: differences','The real odds','How to read the results','Lottery myths','Responsible play']}[lang];
     const box=document.getElementById('artLinks');
     if(box)box.innerHTML=slug.map((u,i)=>'📖 <a href="/'+u+'.html" style="color:#1363f8;font-weight:bold">'+ttl[i]+'</a>').join('<br>');
     const f3=document.getElementById('fP3'),f4=document.getElementById('fP4');
