@@ -80,6 +80,12 @@ tr.today td{background:var(--b);color:#fff;font-weight:bold}
 .disc{margin-top:12px}
 footer{margin:16px 0 30px}
 footer a{color:#fff}
+.blk{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:20px}
+.blk div{background:#fff;border-radius:20px;padding:24px 20px;max-width:340px;width:100%;text-align:center;border:3px solid var(--b)}
+.blk i{display:block;font-style:normal;font-size:56px;line-height:1.1}
+.blk b{display:block;font-size:18px;margin:10px 0 6px}
+.blk p{font-size:14px;line-height:1.5;margin:6px 0 14px}
+.blk button{padding:11px 28px;border:none;border-radius:999px;background:var(--b);color:#fff;font-weight:bold;font-size:15px;cursor:pointer}
 .confetti{position:fixed;top:-10px;width:10px;height:14px;z-index:99;animation:fall 2.5s linear forwards}
 @keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.8}}
 header h1{color:#000}
@@ -182,11 +188,13 @@ header h1{color:#000}
     <p data-t="v1">✅ Giros ilimitados</p><p data-t="v2">✅ Sin anuncios</p><p data-t="v3">✅ Soporte directo por WhatsApp</p>
     <p style="font-size:18px;font-weight:bold" data-t="price">💎 Inscripción VIP Premium / mes</p>
     <a id="vipPay" href="https://ko-fi.com/s/7cc11b5c31" target="_blank" rel="noopener" data-t="card">💳 PAGAR $20 CON TARJETA</a><br>
-    <a id="vipWa" href="#" target="_blank" rel="noopener" data-t="wa">💬 WHATSAPP VIP - 8498697028</a>
     <p style="font-size:11px" data-t="pay">💳 Pago solo con tarjeta de crédito/débito</p>
-    <input type="password" id="vipCode" placeholder="Código VIP"> <button class="act" onclick="activarVip()" data-t="activar">Activar</button>
+    <input type="email" id="vipEmail" data-ph="emailPh" placeholder="Email" autocomplete="email" style="width:230px"><br>
+    <input type="password" id="vipCode" data-ph="code" placeholder="Código VIP"> <button class="act" onclick="activarVip()" data-t="activar">Activar</button><br>
+    <button class="act" onclick="restaurarVip()" data-t="restaurar" style="margin-top:8px"></button>
     <p id="vipMsg"></p>
     <p style="font-size:12px;margin-top:10px;font-weight:bold" data-t="vipNote"></p>
+    <p style="margin-top:14px"><a id="vipWa" href="#" target="_blank" rel="noopener" data-t="wa" style="font-size:13px;font-weight:bold;padding:7px 14px;margin:0;background:#fff;color:#000;border:2px solid #000;border-radius:999px">💬 Soporte WhatsApp</a></p>
   </div>
 
   <section class="card" id="astralBox" data-tab="astral">
@@ -231,11 +239,18 @@ header h1{color:#000}
 
 <script>
 const L={
-es:{tHome:"Suerte",tRes:"Resultados",tVip:"VIP",tInfo:"Info",vipNote:"📸 Al terminar de pagar, no olvides hacer una captura de pantalla de la transacción y enviarla por WhatsApp para recibir tu código de validación VIP.",vtT:"💎 NÚMEROS VIP DE HOY",vtWho:"🔒 Solo los miembros inscritos en VIP reciben estos números antes del sorteo de las 9:00 AM, cada día.",vtJoin:"Inscripción VIP Premium / mes",vipResT:"💎 RESULTADOS VIP",vipLocked:"🔒 Disponible solo para miembros VIP.",vipResNote:"Estos son los números que dimos hoy en VIP.",cSes:"SORTEO",cNum:"NÚMEROS VIP",cOff:"OFICIAL",cSt:"ESTADO",stHit:"✅ SALIÓ",stMiss:"❌ NO SALIÓ",stPend:"⏳ PENDIENTE",vipEmpty:"Pronto habrá resultados VIP.",hoy:"HOY",badge:"🎲 Generador aleatorio de entretenimiento",vipBadge:"💎 VIP",chance:"2 NÚMEROS DE LA SUERTE",calc:"Cálculo de los números siguientes a partir del sorteo, el día y la fecha: iguales para todos. Una nueva selección para entretenerte cada día.",reelSub:"1 GIRO = 2 NÚMEROS DIFERENTES",girar:"🎰 GIRAR - 1 GIRO = 2 NÚMEROS",girando:"⏳ GIRANDO...",tienes:"✅ 2 NÚMEROS PARA",limite:"Límite hoy - VIP ilimitado 💎",mid:"MEDIODÍA 1:30 PM",eve:"NOCHE 9:45 PM",sm:"MEDIODÍA",se:"NOCHE",real:"🎯 RESULTADOS REALES OFICIALES FLORIDA",pend:"⏳ Pendiente",cargando:"⏳ Cargando resultados reales...",noReal:"No se pudieron cargar los resultados aquí. Míralos en la fuente oficial:",oficial:"Resultados oficiales →",act:"🔄 Actualizar ahora",fuente:"Fuente",vipT:"💎 VIP ILIMITADO 💎",v1:"✅ Giros ilimitados",v2:"✅ Sin anuncios",v3:"✅ Soporte directo por WhatsApp",price:"💎 Inscripción VIP Premium / mes",wa:"💬 WHATSAPP VIP - 8498697028",card:"💳 PAGAR VIP $20",pay:"💳 Pago directo con tarjeta bancaria o PayPal",code:"Código VIP",activar:"Activar",ok:"💎 VIP activado 30 días",bad:"Código incorrecto - contacta 8498697028",last:"8 ÚLTIMOS SORTEOS - NÚMEROS DE LA SUERTE",fecha:"FECHA",aviso:"FLORIDA MAGIC no está afiliado a la Lotería de Florida ni a ninguna lotería. Los números generados son aleatorios, no predicen resultados y no aumentan tus probabilidades. Juega con responsabilidad. Solo mayores de 18 años.",foot:"Lotería de Florida oficial",snap:"Pick 3 y Pick 4 · 8 últimos resultados, tomados de fuentes que publican los números oficiales. Verifica siempre en www.flalottery.com.",loc:"es-DO",aboutH:"Sobre FLORIDA MAGIC V7",aboutP:"FLORIDA MAGIC V7 es un generador aleatorio de números para entretenimiento. Cada día y cada sorteo (mediodía y noche, hora de Florida) muestra 2 números de la suerte iguales para todos, y una tabla con los últimos resultados de Pick 3 y Pick 4. Los números no predicen ningún sorteo."},
-fr:{tHome:"Chance",tRes:"Résultats",tVip:"VIP",tInfo:"Infos",vipNote:"📸 Une fois le paiement terminé, n'oublie pas de faire une capture d'écran de la transaction et de l'envoyer sur WhatsApp pour recevoir ton code de validation VIP.",vtT:"💎 NUMÉROS VIP DU JOUR",vtWho:"🔒 Seuls les membres inscrits en VIP reçoivent ces numéros avant le tirage de 9h00 AM, chaque jour.",vtJoin:"Inscription VIP Premium / mois",vipResT:"💎 RÉSULTATS VIP",vipLocked:"🔒 Réservé aux membres VIP.",vipResNote:"Voici les numéros que nous avons donnés aujourd'hui en VIP.",cSes:"TIRAGE",cNum:"NUMÉROS VIP",cOff:"OFFICIEL",cSt:"STATUT",stHit:"✅ SORTI",stMiss:"❌ PAS SORTI",stPend:"⏳ EN ATTENTE",vipEmpty:"Les résultats VIP arrivent bientôt.",hoy:"AUJOURD'HUI",badge:"🎲 Générateur aléatoire de divertissement",vipBadge:"💎 VIP",chance:"2 NUMÉROS CHANCE",calc:"Calcul des numéros suivants à partir du tirage, du jour et de la date : identiques pour tous. Une nouvelle sélection pour vous divertir chaque jour.",reelSub:"1 TOUR = 2 NUMÉROS DIFFÉRENTS",girar:"🎰 TOURNER - 1 TOUR = 2 NUMÉROS",girando:"⏳ ÇA TOURNE...",tienes:"✅ 2 NUMÉROS POUR",limite:"Limite aujourd'hui - VIP illimité 💎",mid:"MIDI 13h30",eve:"SOIR 21h45",sm:"MIDI",se:"SOIR",real:"🎯 RÉSULTATS RÉELS OFFICIELS FLORIDE",pend:"⏳ En attente",cargando:"⏳ Chargement des vrais résultats...",noReal:"Impossible de charger les résultats ici. Consulte la source officielle :",oficial:"Résultats officiels →",act:"🔄 Actualiser",fuente:"Source",vipT:"💎 VIP ILLIMITÉ 💎",v1:"✅ Tours illimités",v2:"✅ Sans pubs",v3:"✅ Support direct WhatsApp",price:"💎 Inscription VIP Premium / mois",wa:"💬 WHATSAPP VIP - 8498697028",card:"💳 PAYER VIP 20 $",pay:"💳 Paiement direct par carte bancaire ou PayPal",code:"Code VIP",activar:"Activer",ok:"💎 VIP activé 30 jours",bad:"Code incorrect - contacte 8498697028",last:"8 DERNIERS TIRAGES - NUMÉROS CHANCE",fecha:"DATE",aviso:"FLORIDA MAGIC n'est affilié ni à la Loterie de Floride ni à aucune loterie. Les numéros générés sont aléatoires, ne prédisent aucun résultat et n'augmentent pas tes chances. Joue de façon responsable. Réservé aux plus de 18 ans.",foot:"Loterie de Floride officielle",snap:"Pick 3 et Pick 4 · 8 derniers résultats, repris de sources qui publient les numéros officiels. Vérifie toujours sur www.flalottery.com.",loc:"fr-FR",aboutH:"À propos de FLORIDA MAGIC V7",aboutP:"FLORIDA MAGIC V7 est un générateur aléatoire de numéros de divertissement. Chaque jour et chaque tirage (midi et soir, heure de Floride), il affiche 2 numéros chance identiques pour tous, et un tableau des derniers résultats Pick 3 et Pick 4. Les numéros ne prédisent aucun tirage."},
-en:{tHome:"Luck",tRes:"Results",tVip:"VIP",tInfo:"Info",vipNote:"📸 After paying, don't forget to take a screenshot of the transaction and send it on WhatsApp to receive your VIP validation code.",vtT:"💎 TODAY'S VIP NUMBERS",vtWho:"🔒 Only members subscribed to VIP receive these numbers before the 9:00 AM draw, every day.",vtJoin:"VIP Premium Subscription / month",vipResT:"💎 VIP RESULTS",vipLocked:"🔒 Available to VIP members only.",vipResNote:"These are the numbers we gave today in VIP.",cSes:"DRAW",cNum:"VIP NUMBERS",cOff:"OFFICIAL",cSt:"STATUS",stHit:"✅ HIT",stMiss:"❌ MISS",stPend:"⏳ PENDING",vipEmpty:"VIP results coming soon.",hoy:"TODAY",badge:"🎲 Random entertainment generator",vipBadge:"💎 VIP",chance:"2 LUCKY NUMBERS",calc:"Numbers calculated from the draw, the day and the date: same for everyone. A new selection to entertain you every day.",reelSub:"1 SPIN = 2 DIFFERENT NUMBERS",girar:"🎰 SPIN - 1 SPIN = 2 NUMBERS",girando:"⏳ SPINNING...",tienes:"✅ 2 NUMBERS FOR",limite:"Limit today - Unlimited VIP 💎",mid:"MIDDAY 1:30 PM",eve:"EVENING 9:45 PM",sm:"MIDDAY",se:"EVENING",real:"🎯 OFFICIAL REAL RESULTS FLORIDA",pend:"⏳ Pending",cargando:"⏳ Loading real results...",noReal:"Results could not be loaded here. See the official source:",oficial:"Official results →",act:"🔄 Refresh now",fuente:"Source",vipT:"💎 UNLIMITED VIP 💎",v1:"✅ Unlimited spins",v2:"✅ No ads",v3:"✅ Direct WhatsApp support",price:"💎 VIP Premium Subscription / month",wa:"💬 WHATSAPP VIP - 8498697028",card:"💳 PAY VIP $20",pay:"💳 Direct payment by bank card or PayPal",code:"VIP code",activar:"Activate",ok:"💎 VIP activated for 30 days",bad:"Wrong code - contact 8498697028",last:"LAST 8 DRAWS - LUCKY NUMBERS",fecha:"DATE",aviso:"FLORIDA MAGIC is not affiliated with the Florida Lottery or any lottery. Generated numbers are random, do not predict results and do not improve your odds. Play responsibly. 18+ only.",foot:"Official Florida Lottery",snap:"Pick 3 and Pick 4 · last 8 results, taken from sources that publish the official numbers. Always verify at www.flalottery.com.",loc:"en-US",aboutH:"About FLORIDA MAGIC V7",aboutP:"FLORIDA MAGIC V7 is a random number generator for entertainment. Each day and each draw (midday and evening, Florida time) it shows 2 lucky numbers, the same for everyone, plus a table of the latest Pick 3 and Pick 4 results. The numbers do not predict any draw."}
+es:{tHome:"Suerte",tRes:"Resultados",tVip:"VIP",tInfo:"Info",vipNote:"🔑 Al terminar de pagar, encontrarás tu código VIP en el mensaje de la tienda y en tu email. Escribe tu email y el código aquí arriba y toca Activar.",vtT:"💎 NÚMEROS VIP DE HOY",vtWho:"🔒 Solo los miembros inscritos en VIP reciben estos números antes del sorteo de las 9:00 AM, cada día.",vtJoin:"Inscríbete para ver el número premium",vipResT:"💎 RESULTADOS VIP",vipLocked:"🔒 Disponible solo para miembros VIP.",vipResNote:"Estos son los números que dimos hoy en VIP.",cSes:"SORTEO",cNum:"NÚMEROS VIP",cOff:"OFICIAL",cSt:"ESTADO",stHit:"✅ SALIÓ",stMiss:"❌ NO SALIÓ",stPend:"⏳ PENDIENTE",vipEmpty:"Pronto habrá resultados VIP.",hoy:"HOY",badge:"🎲 Generador aleatorio de entretenimiento",vipBadge:"💎 VIP",chance:"2 NÚMEROS DE LA SUERTE",calc:"Cálculo de los números siguientes a partir del sorteo, el día y la fecha: iguales para todos. Una nueva selección para entretenerte cada día.",reelSub:"1 GIRO = 2 NÚMEROS DIFERENTES",girar:"🎰 GIRAR - 1 GIRO = 2 NÚMEROS",girando:"⏳ GIRANDO...",tienes:"✅ 2 NÚMEROS PARA",limite:"Límite hoy - VIP ilimitado 💎",mid:"MEDIODÍA 1:30 PM",eve:"NOCHE 9:45 PM",sm:"MEDIODÍA",se:"NOCHE",real:"🎯 RESULTADOS REALES OFICIALES FLORIDA",pend:"⏳ Pendiente",cargando:"⏳ Cargando resultados reales...",noReal:"No se pudieron cargar los resultados aquí. Míralos en la fuente oficial:",oficial:"Resultados oficiales →",act:"🔄 Actualizar ahora",fuente:"Fuente",vipT:"💎 VIP ILIMITADO 💎",v1:"✅ Giros ilimitados",v2:"✅ Sin anuncios",v3:"✅ Soporte directo por WhatsApp",price:"💎 Inscripción VIP Premium / mes",wa:"💬 Soporte WhatsApp",card:"💳 PAGAR VIP $20",pay:"💳 Pago directo con tarjeta bancaria o PayPal",code:"Código VIP",activar:"Activar",ok:"💎 VIP activado 30 días",bad:"Código incorrecto - contacta 8498697028",last:"8 ÚLTIMOS SORTEOS - NÚMEROS DE LA SUERTE",fecha:"FECHA",aviso:"FLORIDA MAGIC no está afiliado a la Lotería de Florida ni a ninguna lotería. Los números generados son aleatorios, no predicen resultados y no aumentan tus probabilidades. Juega con responsabilidad. Solo mayores de 18 años.",foot:"Lotería de Florida oficial",snap:"Pick 3 y Pick 4 · 8 últimos resultados, tomados de fuentes que publican los números oficiales. Verifica siempre en www.flalottery.com.",loc:"es-DO",aboutH:"Sobre FLORIDA MAGIC V7",aboutP:"FLORIDA MAGIC V7 es un generador aleatorio de números para entretenimiento. Cada día y cada sorteo (mediodía y noche, hora de Florida) muestra 2 números de la suerte iguales para todos, y una tabla con los últimos resultados de Pick 3 y Pick 4. Los números no predicen ningún sorteo."},
+fr:{tHome:"Chance",tRes:"Résultats",tVip:"VIP",tInfo:"Infos",vipNote:"🔑 Une fois le paiement terminé, tu trouveras ton code VIP dans le message de la boutique et dans ton email. Écris ton email et le code ci-dessus, puis touche Activer.",vtT:"💎 NUMÉROS VIP DU JOUR",vtWho:"🔒 Seuls les membres inscrits en VIP reçoivent ces numéros avant le tirage de 9h00 AM, chaque jour.",vtJoin:"Inscris-toi pour voir le numéro premium",vipResT:"💎 RÉSULTATS VIP",vipLocked:"🔒 Réservé aux membres VIP.",vipResNote:"Voici les numéros que nous avons donnés aujourd'hui en VIP.",cSes:"TIRAGE",cNum:"NUMÉROS VIP",cOff:"OFFICIEL",cSt:"STATUT",stHit:"✅ SORTI",stMiss:"❌ PAS SORTI",stPend:"⏳ EN ATTENTE",vipEmpty:"Les résultats VIP arrivent bientôt.",hoy:"AUJOURD'HUI",badge:"🎲 Générateur aléatoire de divertissement",vipBadge:"💎 VIP",chance:"2 NUMÉROS CHANCE",calc:"Calcul des numéros suivants à partir du tirage, du jour et de la date : identiques pour tous. Une nouvelle sélection pour vous divertir chaque jour.",reelSub:"1 TOUR = 2 NUMÉROS DIFFÉRENTS",girar:"🎰 TOURNER - 1 TOUR = 2 NUMÉROS",girando:"⏳ ÇA TOURNE...",tienes:"✅ 2 NUMÉROS POUR",limite:"Limite aujourd'hui - VIP illimité 💎",mid:"MIDI 13h30",eve:"SOIR 21h45",sm:"MIDI",se:"SOIR",real:"🎯 RÉSULTATS RÉELS OFFICIELS FLORIDE",pend:"⏳ En attente",cargando:"⏳ Chargement des vrais résultats...",noReal:"Impossible de charger les résultats ici. Consulte la source officielle :",oficial:"Résultats officiels →",act:"🔄 Actualiser",fuente:"Source",vipT:"💎 VIP ILLIMITÉ 💎",v1:"✅ Tours illimités",v2:"✅ Sans pubs",v3:"✅ Support direct WhatsApp",price:"💎 Inscription VIP Premium / mois",wa:"💬 Support WhatsApp",card:"💳 PAYER VIP 20 $",pay:"💳 Paiement direct par carte bancaire ou PayPal",code:"Code VIP",activar:"Activer",ok:"💎 VIP activé 30 jours",bad:"Code incorrect - contacte 8498697028",last:"8 DERNIERS TIRAGES - NUMÉROS CHANCE",fecha:"DATE",aviso:"FLORIDA MAGIC n'est affilié ni à la Loterie de Floride ni à aucune loterie. Les numéros générés sont aléatoires, ne prédisent aucun résultat et n'augmentent pas tes chances. Joue de façon responsable. Réservé aux plus de 18 ans.",foot:"Loterie de Floride officielle",snap:"Pick 3 et Pick 4 · 8 derniers résultats, repris de sources qui publient les numéros officiels. Vérifie toujours sur www.flalottery.com.",loc:"fr-FR",aboutH:"À propos de FLORIDA MAGIC V7",aboutP:"FLORIDA MAGIC V7 est un générateur aléatoire de numéros de divertissement. Chaque jour et chaque tirage (midi et soir, heure de Floride), il affiche 2 numéros chance identiques pour tous, et un tableau des derniers résultats Pick 3 et Pick 4. Les numéros ne prédisent aucun tirage."},
+en:{tHome:"Luck",tRes:"Results",tVip:"VIP",tInfo:"Info",vipNote:"🔑 After paying, you will find your VIP code in the shop message and in your email. Enter your email and the code above, then tap Activate.",vtT:"💎 TODAY'S VIP NUMBERS",vtWho:"🔒 Only members subscribed to VIP receive these numbers before the 9:00 AM draw, every day.",vtJoin:"Sign up to see the premium number",vipResT:"💎 VIP RESULTS",vipLocked:"🔒 Available to VIP members only.",vipResNote:"These are the numbers we gave today in VIP.",cSes:"DRAW",cNum:"VIP NUMBERS",cOff:"OFFICIAL",cSt:"STATUS",stHit:"✅ HIT",stMiss:"❌ MISS",stPend:"⏳ PENDING",vipEmpty:"VIP results coming soon.",hoy:"TODAY",badge:"🎲 Random entertainment generator",vipBadge:"💎 VIP",chance:"2 LUCKY NUMBERS",calc:"Numbers calculated from the draw, the day and the date: same for everyone. A new selection to entertain you every day.",reelSub:"1 SPIN = 2 DIFFERENT NUMBERS",girar:"🎰 SPIN - 1 SPIN = 2 NUMBERS",girando:"⏳ SPINNING...",tienes:"✅ 2 NUMBERS FOR",limite:"Limit today - Unlimited VIP 💎",mid:"MIDDAY 1:30 PM",eve:"EVENING 9:45 PM",sm:"MIDDAY",se:"EVENING",real:"🎯 OFFICIAL REAL RESULTS FLORIDA",pend:"⏳ Pending",cargando:"⏳ Loading real results...",noReal:"Results could not be loaded here. See the official source:",oficial:"Official results →",act:"🔄 Refresh now",fuente:"Source",vipT:"💎 UNLIMITED VIP 💎",v1:"✅ Unlimited spins",v2:"✅ No ads",v3:"✅ Direct WhatsApp support",price:"💎 VIP Premium Subscription / month",wa:"💬 WhatsApp support",card:"💳 PAY VIP $20",pay:"💳 Direct payment by bank card or PayPal",code:"VIP code",activar:"Activate",ok:"💎 VIP activated for 30 days",bad:"Wrong code - contact 8498697028",last:"LAST 8 DRAWS - LUCKY NUMBERS",fecha:"DATE",aviso:"FLORIDA MAGIC is not affiliated with the Florida Lottery or any lottery. Generated numbers are random, do not predict results and do not improve your odds. Play responsibly. 18+ only.",foot:"Official Florida Lottery",snap:"Pick 3 and Pick 4 · last 8 results, taken from sources that publish the official numbers. Always verify at www.flalottery.com.",loc:"en-US",aboutH:"About FLORIDA MAGIC V7",aboutP:"FLORIDA MAGIC V7 is a random number generator for entertainment. Each day and each draw (midday and evening, Florida time) it shows 2 lucky numbers, the same for everyone, plus a table of the latest Pick 3 and Pick 4 results. The numbers do not predict any draw."}
 };
 L.es.tAst='Astral';L.fr.tAst='Astral';L.en.tAst='Astral';
+L.es.emailPh='Tu email';L.fr.emailPh='Ton email';L.en.emailPh='Your email';
+L.es.restaurar='🔄 Recuperar mi VIP (ya pagué)';L.fr.restaurar='🔄 Récupérer mon VIP (déjà payé)';L.en.restaurar='🔄 Restore my VIP (already paid)';
+L.es.blocked='Demasiados intentos con este email. Bloqueado 4 horas - contacta 8498697028';L.fr.blocked='Trop d’essais avec cet email. Bloqué 4 heures - contacte 8498697028';L.en.blocked='Too many attempts with this email. Blocked for 4 hours - contact 8498697028';
+L.es.blockT='Bloqueado temporalmente';L.fr.blockT='Bloqué temporairement';L.en.blockT='Temporarily blocked';
+L.es.blockP='Demasiados intentos con este email. Intenta de nuevo en 4 horas o contacta 8498697028.';L.fr.blockP='Trop d’essais avec cet email. Réessaie dans 4 heures ou contacte 8498697028.';L.en.blockP='Too many attempts with this email. Try again in 4 hours or contact 8498697028.';
+L.es.needEmail='Escribe un email válido';L.fr.needEmail='Écris un email valide';L.en.needEmail='Enter a valid email';
+L.es.noVip='No encontramos un VIP activo con este email - contacta 8498697028';L.fr.noVip='Aucun VIP actif trouvé avec cet email - contacte 8498697028';L.en.noVip='No active VIP found for this email - contact 8498697028';
 L.es.goNums='🎰 Ver números de la suerte';L.fr.goNums='🎰 Voir les numéros chance';L.en.goNums='🎰 See lucky numbers';
 const MEM={};
 function store(k,v){MEM[k]=v;try{localStorage.setItem(k,v)}catch(e){}}
@@ -279,17 +294,54 @@ function esVip(){
   if(!v||!vd)return false;
   return (new Date()-new Date(vd))/86400000<=30;
 }
-async function vipCheck(c){
-  const r=await fetch('/api/vip',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:c})});
-  return r.ok?r.json():{ok:false};
+async function vipApi(b){
+  const r=await fetch('/api/vip',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});
+  let d=null;try{d=await r.json()}catch(e){}
+  return Object.assign({ok:false},d||{},{status:r.status});
+}
+async function vipCheck(c){return vipApi({code:c})}
+function vipSave(d,email){
+  const exp=d.exp||(Date.now()+30*864e5);
+  store('isVip','true');
+  store('vipDate',new Date(exp-30*864e5).toISOString());
+  store('vipEmail',email);
+}
+const MAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function showBlocked(){
+  const t=L[lang];
+  const old=document.getElementById('blkBox');if(old)old.remove();
+  const o=document.createElement('div');o.className='blk';o.id='blkBox';
+  const d=document.createElement('div');
+  const i=document.createElement('i');i.textContent='🔒';
+  const b=document.createElement('b');b.textContent=t.blockT;
+  const p=document.createElement('p');p.textContent=t.blockP;
+  const k=document.createElement('button');k.textContent='OK';k.onclick=()=>o.remove();
+  d.appendChild(i);d.appendChild(b);d.appendChild(p);d.appendChild(k);o.appendChild(d);
+  o.addEventListener('click',ev=>{if(ev.target===o)o.remove()});
+  document.body.appendChild(o);
 }
 async function activarVip(){
-  const c=document.getElementById('vipCode').value.trim(),m=document.getElementById('vipMsg');
+  const t=L[lang],m=document.getElementById('vipMsg');
+  const c=document.getElementById('vipCode').value.trim(),e=document.getElementById('vipEmail').value.trim().toLowerCase();
+  if(!MAIL_RE.test(e)){m.textContent=t.needEmail;return}
+  if(!c){m.textContent=t.bad;return}
   try{
-    const d=await vipCheck(c);
-    if(d.ok){store('isVip','true');store('vipDate',new Date().toDateString());store('vipCode',c);m.textContent=L[lang].ok;setTimeout(()=>location.reload(),1200)}
-    else m.textContent=L[lang].bad;
-  }catch(e){m.textContent=L[lang].bad}
+    const d=await vipApi({action:'activate',code:c,email:e});
+    if(d.ok){vipSave(d,e);m.textContent=t.ok;setTimeout(()=>location.reload(),1200)}
+    else if(d.status===429){m.textContent=t.blocked;showBlocked()}
+    else m.textContent=t.bad;
+  }catch(x){m.textContent=t.bad}
+}
+async function restaurarVip(){
+  const t=L[lang],m=document.getElementById('vipMsg');
+  const e=document.getElementById('vipEmail').value.trim().toLowerCase();
+  if(!MAIL_RE.test(e)){m.textContent=t.needEmail;return}
+  try{
+    const d=await vipApi({action:'restore',email:e});
+    if(d.ok){vipSave(d,e);m.textContent=t.ok;setTimeout(()=>location.reload(),1200)}
+    else if(d.status===429){m.textContent=t.blocked;showBlocked()}
+    else m.textContent=t.noVip;
+  }catch(x){m.textContent=t.noVip}
 }
 let vipToday=null;
 function renderVipToday(){
@@ -324,7 +376,16 @@ async function loadVip(){
     if(!Array.isArray(vipRows))vipRows=[];
   }catch(e){vipRows=[]}
   try{const n=await fetch('vip-note.txt?'+Date.now(),{cache:'no-store'});vipNote=n.ok?(await n.text()).trim():null}catch(e){vipNote=null}
-  try{if(!esVip())throw 0;const d=await vipCheck(load('vipCode')||'');vipToday=d&&d.ok&&d.today?String(d.today):null}catch(e){vipToday=null}
+  try{
+    if(!esVip())throw 0;
+    const em=load('vipEmail');let d;
+    if(em){
+      d=await vipApi({action:'restore',email:em});
+      if(d.status===401){store('isVip','false');render();throw 0}
+      if(d.ok&&d.exp)store('vipDate',new Date(d.exp-30*864e5).toISOString());
+    }else d=await vipCheck(load('vipCode')||'');
+    vipToday=d&&d.ok&&d.today?String(d.today):null;
+  }catch(e){vipToday=null}
   renderVipRes();
 }
 
