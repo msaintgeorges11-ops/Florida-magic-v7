@@ -5,7 +5,7 @@ const crypto = require('crypto');
 
 // Nimewo VIP jodi a. Se sèlman moun ki gen bon kòd VIP ki resevwa l.
 // Chak jou, chanje nimewo a isit la.
-const TODAY = '354';
+const TODAY = '380';
 
 function same(a, b) {
   const x = Buffer.from(String(a));
