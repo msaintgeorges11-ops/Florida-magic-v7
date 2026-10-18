@@ -4,27 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Probabilidades reales en Pick 3 y Pick 4 – FLORIDA MAGIC V7</title>
-<meta name="description" content="Por qué ningún número es más probable que otro en Pick 3 y Pick 4, cómo se calculan las probabilidades y qué significan en la práctica.">
+<meta id="md" name="description" content="Por qué ningún número es más probable que otro en Pick 3 y Pick 4, cómo se calculan las probabilidades y qué significan en la práctica.">
 <link rel="canonical" href="https://florida-magic-v7.vercel.app/probabilidades.html">
-<link rel="alternate" hreflang="es" href="https://florida-magic-v7.vercel.app/probabilidades.html">
-<link rel="alternate" hreflang="fr" href="https://florida-magic-v7.vercel.app/probabilites-fr.html">
-<link rel="alternate" hreflang="en" href="https://florida-magic-v7.vercel.app/odds-en.html">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7893807516191350" crossorigin="anonymous"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
 body{background:#1363f8;font-family:Arial,Helvetica,sans-serif;color:#000;display:flex;justify-content:center}
 .wrap{width:100%;max-width:700px;padding:14px}
 .card{background:#fff;border-radius:20px;padding:20px;margin-top:12px;line-height:1.65;font-size:15px}
 h1{font-size:22px;margin-bottom:10px}
 h2{font-size:17px;color:#1363f8;margin:18px 0 6px}
 p{margin:8px 0}
-ul{margin:8px 0 8px 20px}
+ul,ol{margin:8px 0 8px 20px}
 li{margin:4px 0}
 a{color:#1363f8;font-weight:bold}
-nav{text-align:center;margin:14px 0;font-size:13px}
+nav{text-align:center;margin:14px 0 8px;font-size:13px}
 nav a{color:#fff;margin:0 8px}
-.lg{text-align:center;font-size:13px;color:#fff}
-.lg a{color:#fff;margin:0 6px}
+.lg{display:flex;gap:8px;justify-content:center;margin:6px 0 2px}
+.lg button{background:#fff;color:#1363f8;border:2px solid #fff;border-radius:12px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer}
+.lg button.on{background:#0b3fa8;color:#fff}
 table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
 th,td{padding:6px 4px;border-bottom:1px solid #d9d9d9;text-align:left}
 th{color:#1363f8}
@@ -33,9 +32,9 @@ th{color:#1363f8}
 </head>
 <body>
 <div class="wrap">
-<nav><a href="/">Inicio</a><a href="/about.html">Acerca de</a><a href="/contact.html">Contacto</a><a href="/privacy.html">Privacidad</a></nav>
-<div class="lg"><a href="/probabilidades.html">ES</a>·<a href="/probabilites-fr.html">FR</a>·<a href="/odds-en.html">EN</a></div>
-<article class="card">
+<nav data-l="es"><a href="/">Inicio</a><a href="/about.html">Acerca de</a><a href="/contact.html">Contacto</a><a href="/privacy.html">Privacidad</a></nav><nav data-l="fr" hidden><a href="/">Accueil</a><a href="/about.html">À propos</a><a href="/contact.html">Contact</a><a href="/privacy.html">Confidentialité</a></nav><nav data-l="en" hidden><a href="/">Home</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></nav>
+<div class="lg"><button type="button" data-b="es">ES</button><button type="button" data-b="fr">FR</button><button type="button" data-b="en">EN</button></div>
+<article class="card" data-l="es">
 <h1>Las probabilidades reales en Pick 3 y Pick 4</h1>
 <p>Mucha gente busca "números calientes", "números fríos" o "sistemas" para ganar la lotería. La realidad matemática es mucho más simple y, para algunos, decepcionante: en Pick 3 y Pick 4, <b>todas las combinaciones tienen exactamente la misma probabilidad</b>. Aquí te explicamos por qué.</p>
 
@@ -76,8 +75,104 @@ th{color:#1363f8}
 </ul>
 <p>Más información en <a href="https://www.flalottery.com" target="_blank" rel="noopener">www.flalottery.com</a>. FLORIDA MAGIC V7 no está afiliado a la Lotería de Florida. Lee también: <a href="/straight-box.html">Straight o Box</a> y <a href="/pick3.html">cómo funciona Pick 3</a>.</p>
 </article>
+<article class="card" data-l="fr" hidden>
+<h1>Les probabilités réelles à Pick 3 et Pick 4</h1>
+<p>Beaucoup de gens cherchent des « numéros chauds », des « numéros froids » ou des « systèmes » pour gagner à la loterie. La réalité mathématique est bien plus simple et, pour certains, décevante : à Pick 3 et Pick 4, <b>toutes les combinaisons ont exactement la même probabilité</b>. Voici pourquoi.</p>
+
+<h2>Comment on compte les combinaisons</h2>
+<p>À Pick 3, il y a trois positions et chacune peut prendre un chiffre de 0 à 9, soit 10 × 10 × 10 = 1 000 combinaisons. À Pick 4, il y a quatre positions : 10 × 10 × 10 × 10 = 10 000 combinaisons. Chacune a la même probabilité de sortir.</p>
+<table>
+<thead><tr><th>Jeu</th><th>Combinaisons</th><th>Probabilité d'un numéro exact</th></tr></thead>
+<tbody>
+<tr><td>Pick 3</td><td>1 000</td><td>0,1 % (1 sur 1 000)</td></tr>
+<tr><td>Pick 4</td><td>10 000</td><td>0,01 % (1 sur 10 000)</td></tr>
+</tbody>
+</table>
+
+<h2>777 a la même probabilité que 483</h2>
+<p>Beaucoup pensent qu'un numéro comme 777 ou 000 « ne peut pas sortir », alors que 483 le peut. Pourtant, chacun est une seule combinaison parmi 1 000. 483 ressemble simplement à « beaucoup de numéros ordinaires », ce qui nous paraît plus naturel. Mathématiquement, il n'y a aucune différence.</p>
+
+<h2>Les tirages n'ont pas de mémoire</h2>
+<p>Chaque tirage est indépendant. Si vous lancez une pièce et obtenez pile cinq fois de suite, la probabilité d'obtenir pile au sixième lancer reste de 50 %. Il en va de même pour les boules de loterie : un numéro absent depuis 300 tirages n'est pas « plus probable ». Cette idée fausse s'appelle le <b>sophisme du joueur</b>.</p>
+
+<h2>Et les statistiques de numéros fréquents ?</h2>
+<p>En regardant beaucoup de résultats passés, on voit que certains numéros sont sortis plus que d'autres. C'est normal : le hasard produit des séries et des déséquilibres à court terme. Avec un très grand nombre de tirages, ils tendent à s'équilibrer, mais cela ne dit pas ce qui sortira demain. Les statistiques décrivent le passé, elles ne prédisent pas l'avenir.</p>
+
+<h2>Quelle chance de gagner en jouant souvent</h2>
+<p>Jouer plus souvent augmente vos occasions, mais modestement. Par exemple, si vous jouez un numéro en Straight à Pick 3 pendant 100 tirages, la probabilité de gagner au moins une fois est d'environ 9,5 %. Même avec 100 mises, il est donc plus probable de ne gagner aucun Straight.</p>
+
+<h2>L'espérance de gain</h2>
+<p>Les gains de la loterie sont conçus pour que, en moyenne, les joueurs reçoivent moins que ce qu'ils dépensent. Certaines personnes gagnent, et c'est excitant, mais à long terme le résultat moyen est une perte. C'est pourquoi la loterie doit rester un divertissement, avec un budget fixe, et non un investissement.</p>
+
+<h2>Pourquoi nous croyons voir des schémas</h2>
+<p>Le cerveau humain est très doué pour trouver des schémas, même là où il n'y en a pas. Si un numéro sort deux jours de suite, on s'en souvient ; sinon, on l'oublie. Ce tri des souvenirs donne l'impression qu'« il y a quelque chose derrière ». Les machines de tirage, elles, ne connaissent ni le calendrier ni les résultats précédents.</p>
+
+<h2>Que faire de ces informations</h2>
+<ul>
+<li>Choisissez vos numéros pour le plaisir : dates, anniversaires ou au hasard, peu importe.</li>
+<li>Ne payez pas pour des « systèmes » ou des promesses de résultats.</li>
+<li>Fixez un budget et respectez-le.</li>
+<li>Rappel : réservé aux plus de 18 ans.</li>
+</ul>
+<p>Plus d'informations sur <a href="https://www.flalottery.com" target="_blank" rel="noopener">www.flalottery.com</a>. FLORIDA MAGIC V7 n'est pas affilié à la Loterie de Floride. À lire aussi : <a href="/straight-box.html">Straight ou Box</a> et <a href="/pick3.html">comment fonctionne Pick 3</a>.</p>
+</article>
+<article class="card" data-l="en" hidden>
+<h1>The Real Odds in Pick 3 and Pick 4</h1>
+<p>Many people look for "hot numbers", "cold numbers" or "systems" to win the lottery. The mathematical reality is much simpler and, for some, disappointing: in Pick 3 and Pick 4, <b>every combination has exactly the same probability</b>. Here is why.</p>
+
+<h2>How combinations are counted</h2>
+<p>In Pick 3 there are three positions and each can take a digit from 0 to 9. That gives 10 × 10 × 10 = 1,000 combinations. In Pick 4 there are four positions: 10 × 10 × 10 × 10 = 10,000 combinations. Each one has the same chance of coming out.</p>
+<table>
+<thead><tr><th>Game</th><th>Combinations</th><th>Chance of an exact number</th></tr></thead>
+<tbody>
+<tr><td>Pick 3</td><td>1,000</td><td>0.1% (1 in 1,000)</td></tr>
+<tr><td>Pick 4</td><td>10,000</td><td>0.01% (1 in 10,000)</td></tr>
+</tbody>
+</table>
+
+<h2>777 is as likely as 483</h2>
+<p>Many people feel that a number like 777 or 000 "cannot come out", while 483 can. But each is a single combination out of 1,000. 483 simply looks like "many ordinary numbers", which feels more natural to us. Mathematically, there is no difference.</p>
+
+<h2>Draws have no memory</h2>
+<p>Every draw is independent. If you flip a coin and get heads five times in a row, the chance of heads on the sixth flip is still 50%. Lottery balls work the same way: a number that has not come out in 300 draws is not "more likely". This mistaken idea is called the <b>gambler's fallacy</b>.</p>
+
+<h2>What about statistics on frequent numbers?</h2>
+<p>If you look at many past results, you will see that some numbers came out more than others. That is normal: chance produces streaks and imbalances in the short run. Over a very large number of draws they tend to even out, but that does not tell you what will come out tomorrow. Historical statistics describe the past; they do not predict the future.</p>
+
+<h2>How likely is it to win by playing many times</h2>
+<p>Playing more often increases your chances, but only modestly. For example, if you play one number as a Pick 3 Straight for 100 draws, the chance of winning at least once is about 9.5%. In other words, even with 100 plays, you will most likely not win a single Straight.</p>
+
+<h2>Expected value</h2>
+<p>Lottery prizes are designed so that, on average, players receive less than they spend. Some people win, and that is exciting, but in the long run the average result is a loss. That is why the lottery should be treated as entertainment, with a fixed budget, and not as an investment.</p>
+
+<h2>Why we think we see patterns</h2>
+<p>The human brain is very good at finding patterns, even where none exist. If a number comes out two days in a row we remember it; if it does not, we forget. That selection of memories makes it seem like "there is something behind it". The drawing machines, however, know nothing about the calendar or earlier results.</p>
+
+<h2>What to do with this information</h2>
+<ul>
+<li>Choose your numbers for fun: dates, anniversaries or at random, it makes no difference.</li>
+<li>Do not pay for "systems" or promises of results.</li>
+<li>Set a budget and stick to it.</li>
+<li>Remember that only people 18 or older may play.</li>
+</ul>
+<p>More information at <a href="https://www.flalottery.com" target="_blank" rel="noopener">www.flalottery.com</a>. FLORIDA MAGIC V7 is not affiliated with the Florida Lottery. Also read: <a href="/straight-box.html">Straight vs Box</a> and <a href="/pick3.html">how Pick 3 works</a>.</p>
+</article>
 <div class="ad"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="7343398778" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 </div>
-<script>try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}</script>
+<script>
+var T={"es": "Probabilidades reales en Pick 3 y Pick 4", "fr": "Les probabilités réelles à Pick 3 et Pick 4", "en": "The Real Odds in Pick 3 and Pick 4"},D={"es": "Por qué ningún número es más probable que otro en Pick 3 y Pick 4, cómo se calculan las probabilidades y qué significan en la práctica.", "fr": "Pourquoi aucun numéro n'est plus probable qu'un autre à Pick 3 et Pick 4, comment se calculent les probabilités et ce qu'elles signifient.", "en": "Why no number is more likely than another in Pick 3 and Pick 4, how the odds are calculated and what they mean in practice."};
+function setL(l){
+  document.documentElement.lang=l;
+  document.title=T[l]+' – FLORIDA MAGIC V7';
+  document.getElementById('md').setAttribute('content',D[l]);
+  document.querySelectorAll('[data-l]').forEach(function(e){e.hidden=e.getAttribute('data-l')!==l});
+  document.querySelectorAll('[data-b]').forEach(function(b){b.className=b.getAttribute('data-b')===l?'on':''});
+  try{localStorage.setItem('lang',l)}catch(e){}
+}
+document.querySelectorAll('[data-b]').forEach(function(b){b.addEventListener('click',function(){setL(b.getAttribute('data-b'));window.scrollTo(0,0)})});
+var cur='es';try{var v=localStorage.getItem('lang');if(v&&T[v])cur=v}catch(e){}
+setL(cur);
+try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}
+</script>
 </body>
 </html>

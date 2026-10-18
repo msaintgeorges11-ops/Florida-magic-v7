@@ -4,14 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cómo leer los resultados de Pick 3 y Pick 4 – FLORIDA MAGIC V7</title>
-<meta name="description" content="Aprende a leer los resultados oficiales de Pick 3 y Pick 4, comparar tu boleto, entender mediodía y noche, y dónde verificar los números.">
+<meta id="md" name="description" content="Aprende a leer los resultados oficiales de Pick 3 y Pick 4, comparar tu boleto, entender mediodía y noche, y dónde verificar los números.">
 <link rel="canonical" href="https://florida-magic-v7.vercel.app/resultados.html">
-<link rel="alternate" hreflang="es" href="https://florida-magic-v7.vercel.app/resultados.html">
-<link rel="alternate" hreflang="fr" href="https://florida-magic-v7.vercel.app/resultats-fr.html">
-<link rel="alternate" hreflang="en" href="https://florida-magic-v7.vercel.app/results-en.html">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7893807516191350" crossorigin="anonymous"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
 body{background:#1363f8;font-family:Arial,Helvetica,sans-serif;color:#000;display:flex;justify-content:center}
 .wrap{width:100%;max-width:700px;padding:14px}
 .card{background:#fff;border-radius:20px;padding:20px;margin-top:12px;line-height:1.65;font-size:15px}
@@ -21,10 +19,11 @@ p{margin:8px 0}
 ul,ol{margin:8px 0 8px 20px}
 li{margin:4px 0}
 a{color:#1363f8;font-weight:bold}
-nav{text-align:center;margin:14px 0;font-size:13px}
+nav{text-align:center;margin:14px 0 8px;font-size:13px}
 nav a{color:#fff;margin:0 8px}
-.lg{text-align:center;font-size:13px;color:#fff}
-.lg a{color:#fff;margin:0 6px}
+.lg{display:flex;gap:8px;justify-content:center;margin:6px 0 2px}
+.lg button{background:#fff;color:#1363f8;border:2px solid #fff;border-radius:12px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer}
+.lg button.on{background:#0b3fa8;color:#fff}
 table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
 th,td{padding:6px 4px;border-bottom:1px solid #d9d9d9;text-align:left}
 th{color:#1363f8}
@@ -33,9 +32,9 @@ th{color:#1363f8}
 </head>
 <body>
 <div class="wrap">
-<nav><a href="/">Inicio</a><a href="/about.html">Acerca de</a><a href="/contact.html">Contacto</a><a href="/privacy.html">Privacidad</a></nav>
-<div class="lg"><a href="/resultados.html">ES</a>·<a href="/resultats-fr.html">FR</a>·<a href="/results-en.html">EN</a></div>
-<article class="card">
+<nav data-l="es"><a href="/">Inicio</a><a href="/about.html">Acerca de</a><a href="/contact.html">Contacto</a><a href="/privacy.html">Privacidad</a></nav><nav data-l="fr" hidden><a href="/">Accueil</a><a href="/about.html">À propos</a><a href="/contact.html">Contact</a><a href="/privacy.html">Confidentialité</a></nav><nav data-l="en" hidden><a href="/">Home</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></nav>
+<div class="lg"><button type="button" data-b="es">ES</button><button type="button" data-b="fr">FR</button><button type="button" data-b="en">EN</button></div>
+<article class="card" data-l="es">
 <h1>Cómo leer los resultados de Pick 3 y Pick 4</h1>
 <p>Leer los resultados parece fácil, pero hay detalles que conviene conocer: el orden de los dígitos, la diferencia entre mediodía y noche, y cómo comparar tu boleto sin equivocarte. Esta guía te explica todo paso a paso.</p>
 
@@ -79,8 +78,110 @@ th{color:#1363f8}
 <p>En la <a href="/">página principal</a> mostramos un resumen de los últimos resultados tomados de fuentes que los publican. Es solo una referencia de consulta rápida. FLORIDA MAGIC V7 no está afiliado a la Lotería de Florida. Juega con responsabilidad y solo si tienes 18 años o más.</p>
 <p>Lee también: <a href="/pick3.html">cómo funciona Pick 3</a>, <a href="/pick4.html">cómo funciona Pick 4</a> y <a href="/probabilidades.html">las probabilidades reales</a>.</p>
 </article>
+<article class="card" data-l="fr" hidden>
+<h1>Comment lire les résultats de Pick 3 et Pick 4</h1>
+<p>Lire les résultats semble facile, mais certains détails méritent d'être connus : l'ordre des chiffres, la différence entre midi et soir, et la façon de comparer votre ticket sans vous tromper. Ce guide explique tout pas à pas.</p>
+
+<h2>Comment les numéros sont présentés</h2>
+<p>Les résultats de Pick 3 s'affichent en trois chiffres, par exemple <b>4-1-7</b>. Ceux de Pick 4 en quatre chiffres, par exemple <b>2-8-8-5</b>. L'ordre est important : le premier chiffre correspond à la première position, et ainsi de suite.</p>
+<table>
+<thead><tr><th>Jeu</th><th>Exemple</th><th>Chiffres</th></tr></thead>
+<tbody>
+<tr><td>Pick 3</td><td>4-1-7</td><td>3</td></tr>
+<tr><td>Pick 4</td><td>2-8-8-5</td><td>4</td></tr>
+</tbody>
+</table>
+
+<h2>Tirage de midi et du soir</h2>
+<p>La Floride organise deux tirages par jour pour chaque jeu : un à midi (vers 13h30, heure de l'Est) et un le soir (vers 21h45). Ce sont des tirages totalement séparés. Avant de comparer, vérifiez que vous regardez le tirage correspondant à votre ticket : date et moment de la journée.</p>
+
+<h2>Comment comparer votre ticket</h2>
+<ol>
+<li>Vérifiez que la date et le tirage (midi ou soir) du ticket correspondent au résultat consulté.</li>
+<li>Si vous avez joué <b>Straight</b>, comparez chaque chiffre dans le même ordre.</li>
+<li>Si vous avez joué <b>Box</b>, vérifiez que vos chiffres sont les mêmes que ceux du résultat, quel que soit l'ordre.</li>
+<li>Si vous avez joué <b>Straight/Box</b>, vérifiez les deux : d'abord l'ordre exact, puis n'importe quel ordre.</li>
+</ol>
+<p>Exemple : si votre ticket est 1-2-3 en Box et que le résultat est 3-1-2, vous avez les mêmes chiffres et remplissez la condition Box. En Straight, vous n'auriez pas gagné.</p>
+
+<h2>Options supplémentaires</h2>
+<p>Certains jeux proposent des options en plus (par exemple un numéro supplémentaire facultatif). Si vous les avez utilisées, consultez les règles officielles pour savoir comment elles se comparent et quels sont leurs gains.</p>
+
+<h2>Où vérifier les résultats</h2>
+<p>La seule source officielle est la Loterie de Floride. Consultez toujours <a href="https://www.flalottery.com" target="_blank" rel="noopener">www.flalottery.com</a>, son application officielle ou un point de vente agréé. Les sites et applications tiers, y compris celui-ci, peuvent avoir des retards ou des erreurs et ne doivent pas servir à décider si un ticket est gagnant.</p>
+
+<h2>Que faire si vous pensez avoir gagné</h2>
+<ul>
+<li>Signez le dos du ticket et rangez-le en lieu sûr.</li>
+<li>Confirmez le résultat sur le site officiel.</li>
+<li>Consultez les instructions et le délai pour réclamer un gain auprès de la Loterie de Floride.</li>
+<li>Ne partagez pas de photo de votre ticket non signé sur les réseaux sociaux.</li>
+</ul>
+
+<h2>À propos des résultats de ce site</h2>
+<p>Sur la <a href="/">page d'accueil</a>, nous affichons un résumé des derniers résultats repris de sources qui les publient. C'est seulement une référence de consultation rapide. FLORIDA MAGIC V7 n'est pas affilié à la Loterie de Floride. Jouez de façon responsable et seulement si vous avez 18 ans ou plus.</p>
+<p>À lire aussi : <a href="/pick3.html">comment fonctionne Pick 3</a>, <a href="/pick4.html">comment fonctionne Pick 4</a> et <a href="/probabilidades.html">les probabilités réelles</a>.</p>
+</article>
+<article class="card" data-l="en" hidden>
+<h1>How to Read Pick 3 and Pick 4 Results</h1>
+<p>Reading results looks easy, but there are details worth knowing: the order of the digits, the difference between midday and evening, and how to check your ticket without mistakes. This guide explains everything step by step.</p>
+
+<h2>How the numbers are shown</h2>
+<p>Pick 3 results are shown as three digits, for example <b>4-1-7</b>. Pick 4 results are shown as four digits, for example <b>2-8-8-5</b>. The order matters: the first digit corresponds to the first position, and so on.</p>
+<table>
+<thead><tr><th>Game</th><th>Example</th><th>Digits</th></tr></thead>
+<tbody>
+<tr><td>Pick 3</td><td>4-1-7</td><td>3</td></tr>
+<tr><td>Pick 4</td><td>2-8-8-5</td><td>4</td></tr>
+</tbody>
+</table>
+
+<h2>Midday and evening draws</h2>
+<p>Florida holds two draws a day for each game: one at midday (around 1:30 PM Eastern Time) and one in the evening (around 9:45 PM). They are completely separate draws. Before comparing, make sure you are looking at the draw that matches your ticket: date and time of day.</p>
+
+<h2>How to check your ticket</h2>
+<ol>
+<li>Confirm that the date and draw (midday or evening) on the ticket match the result you are looking at.</li>
+<li>If you played <b>Straight</b>, compare each digit in the same order.</li>
+<li>If you played <b>Box</b>, check whether your digits are the same as the result's, in any order.</li>
+<li>If you played <b>Straight/Box</b>, check both: first the exact order, then any order.</li>
+</ol>
+<p>Example: if your ticket is 1-2-3 in Box and the result is 3-1-2, you have the same digits and meet the Box condition. In Straight you would not have won.</p>
+
+<h2>Extra options</h2>
+<p>Some games offer extra options (for example, an optional additional number). If you used them, check the official rules to see how they are compared and what their prizes are.</p>
+
+<h2>Where to verify results</h2>
+<p>The only official source is the Florida Lottery. Always check <a href="https://www.flalottery.com" target="_blank" rel="noopener">www.flalottery.com</a>, its official app or an authorized retailer. Third-party sites and apps, including this one, may have delays or errors and should not be used to decide whether a ticket is a winner.</p>
+
+<h2>What to do if you think you won</h2>
+<ul>
+<li>Sign the back of the ticket and keep it somewhere safe.</li>
+<li>Confirm the result on the official site.</li>
+<li>Check the Florida Lottery's instructions and deadline for claiming prizes.</li>
+<li>Do not share photos of your unsigned ticket on social media.</li>
+</ul>
+
+<h2>About the results on this site</h2>
+<p>On the <a href="/">home page</a> we show a summary of the latest results taken from sources that publish them. It is only a quick-reference. FLORIDA MAGIC V7 is not affiliated with the Florida Lottery. Play responsibly and only if you are 18 or older.</p>
+<p>Also read: <a href="/pick3.html">how Pick 3 works</a>, <a href="/pick4.html">how Pick 4 works</a> and <a href="/probabilidades.html">the real odds</a>.</p>
+</article>
 <div class="ad"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="7343398778" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 </div>
-<script>try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}</script>
+<script>
+var T={"es": "Cómo leer los resultados de Pick 3 y Pick 4", "fr": "Comment lire les résultats de Pick 3 et Pick 4", "en": "How to Read Pick 3 and Pick 4 Results"},D={"es": "Aprende a leer los resultados oficiales de Pick 3 y Pick 4, comparar tu boleto, entender mediodía y noche, y dónde verificar los números.", "fr": "Apprenez à lire les résultats officiels de Pick 3 et Pick 4, comparer votre ticket, comprendre midi et soir, et où vérifier les numéros.", "en": "Learn how to read the official Pick 3 and Pick 4 results, check your ticket, understand midday and evening draws, and where to verify the numbers."};
+function setL(l){
+  document.documentElement.lang=l;
+  document.title=T[l]+' – FLORIDA MAGIC V7';
+  document.getElementById('md').setAttribute('content',D[l]);
+  document.querySelectorAll('[data-l]').forEach(function(e){e.hidden=e.getAttribute('data-l')!==l});
+  document.querySelectorAll('[data-b]').forEach(function(b){b.className=b.getAttribute('data-b')===l?'on':''});
+  try{localStorage.setItem('lang',l)}catch(e){}
+}
+document.querySelectorAll('[data-b]').forEach(function(b){b.addEventListener('click',function(){setL(b.getAttribute('data-b'));window.scrollTo(0,0)})});
+var cur='es';try{var v=localStorage.getItem('lang');if(v&&T[v])cur=v}catch(e){}
+setL(cur);
+try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}
+</script>
 </body>
 </html>
