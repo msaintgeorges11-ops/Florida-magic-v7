@@ -209,7 +209,7 @@ header h1{color:#000}
 
   <div class="ad" id="adAst" data-tab="astral"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="2091072091" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
-  <section class="card" data-tab="info"><h2 data-t="aboutH">Sobre FLORIDA MAGIC V7</h2><p class="small" style="font-size:13px;text-align:left" data-t="aboutP">FLORIDA MAGIC V7 es un generador aleatorio de números para entretenimiento. Cada día y cada sorteo (mediodía y noche, hora de Florida) muestra 2 números de la suerte iguales para todos, y una tabla con los últimos resultados de Pick 3 y Pick 4. Los números no predicen ningún sorteo.</p><p class="small" style="font-size:13px;text-align:left;margin-top:10px">📖 <a href="/pick3.html" style="color:#1363f8;font-weight:bold">¿Cómo funciona Pick 3?</a> · <a href="/pick4.html" style="color:#1363f8;font-weight:bold">¿Cómo funciona Pick 4?</a></p></section>
+  <section class="card" data-tab="info"><h2 data-t="aboutH">Sobre FLORIDA MAGIC V7</h2><p class="small" style="font-size:13px;text-align:left" data-t="aboutP">FLORIDA MAGIC V7 es un generador aleatorio de números para entretenimiento. Cada día y cada sorteo (mediodía y noche, hora de Florida) muestra 2 números de la suerte iguales para todos, y una tabla con los últimos resultados de Pick 3 y Pick 4. Los números no predicen ningún sorteo.</p><div id="artLinks" style="font-size:13px;text-align:left;margin-top:10px;line-height:1.9"></div></section>
 
   <div class="ad" id="adInfo" data-tab="info"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="7343398778" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
@@ -217,7 +217,7 @@ header h1{color:#000}
   <footer data-tab="info">
     © FLORIDA MAGIC V7 — <span class="fd"></span> — VIP WhatsApp <a id="fWa" href="https://wa.me/18498697028" target="_blank" rel="noopener">849-869-7028</a><br>
     <span data-t="foot">Lotería de Florida oficial</span> — <a href="https://www.flalottery.com" target="_blank" rel="noopener">www.flalottery.com</a><br>
-    <a href="/pick3.html">Pick 3</a> · <a href="/pick4.html">Pick 4</a> · <a href="/about.html">Acerca de / About</a> · <a href="/contact.html">Contacto / Contact</a> · <a href="/privacy.html">Privacidad / Privacy</a>
+    <a id="fP3" href="/pick3.html">Pick 3</a> · <a id="fP4" href="/pick4.html">Pick 4</a> · <a href="/about.html">Acerca de / About</a> · <a href="/contact.html">Contacto / Contact</a> · <a href="/privacy.html">Privacidad / Privacy</a>
   </footer>
 </div>
 
@@ -341,6 +341,15 @@ function render(){
   document.querySelectorAll('[data-ph]').forEach(e=>e.placeholder=t[e.dataset.ph]);
   ['fr','es','en'].forEach(l=>document.getElementById('b-'+l).classList.toggle('on',l===lang));
   document.querySelectorAll('.fd').forEach(e=>e.textContent=fechaDisplay());
+  try{
+    const sx=lang==='fr'?'-fr':lang==='en'?'-en':'';
+    const slug={es:['pick3','pick4','straight-box','probabilidades','resultados'],fr:['pick3-fr','pick4-fr','straight-box-fr','probabilites-fr','resultats-fr'],en:['pick3-en','pick4-en','straight-box-en','odds-en','results-en']}[lang];
+    const ttl={es:['¿Cómo funciona Pick 3?','¿Cómo funciona Pick 4?','Straight o Box: diferencias','Las probabilidades reales','Cómo leer los resultados'],fr:['Comment fonctionne Pick 3 ?','Comment fonctionne Pick 4 ?','Straight ou Box : différences','Les probabilités réelles','Comment lire les résultats'],en:['How does Pick 3 work?','How does Pick 4 work?','Straight vs Box: differences','The real odds','How to read the results']}[lang];
+    const box=document.getElementById('artLinks');
+    if(box)box.innerHTML=slug.map((u,i)=>'📖 <a href="/'+u+'.html" style="color:#1363f8;font-weight:bold">'+ttl[i]+'</a>').join('<br>');
+    const f3=document.getElementById('fP3'),f4=document.getElementById('fP4');
+    if(f3)f3.href='/pick3'+sx+'.html';if(f4)f4.href='/pick4'+sx+'.html';
+  }catch(e){}
   document.querySelectorAll('.ses').forEach(e=>e.textContent=sesName);
   document.getElementById('vipBadge').style.display=vip?'inline-block':'none';
   document.getElementById('adTop').style.display=document.getElementById('adBot').style.display=document.getElementById('adInfo').style.display=document.getElementById('adAst').style.display=vip?'none':'block';
