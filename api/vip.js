@@ -1,20 +1,20 @@
 // Vercel serverless function: POST /api/vip
 //
 // 3 fason pou itilize l:
-//  1) { action:'activate', code, email }  -> kòd jou a bon => imel la anrejistre pou 30 jou
+//  1) { action:'activate', code, email }  -> kòd bon => imel la anrejistre pou 30 jou
 //  2) { action:'restore',  email }        -> imel la deja VIP epi pa ekspire => VIP rekonèt ankò (telefòn pèdi/reyajiste)
 //  3) { code }                            -> ansyen fason (verifye kòd la sèlman), kenbe pou konpatibilite
 //
 // Kòd VIP yo rete nan Environment Variable VIP_CODES (separe ak virgil: KOD1,KOD2).
+// Nimewo VIP jodi a: Environment Variable VIP_TODAY (chanje l nan Vercel chak jou, pa bezwen redeplwaye kòd la).
 // Imel yo anrejistre nan Upstash Redis (Vercel -> Storage). Varyab yo mete otomatikman:
 //   KV_REST_API_URL + KV_REST_API_TOKEN   (oswa UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN)
 const crypto = require('crypto');
 
-// Nimewo VIP jodi a. Chak jou, chanje nimewo a isit la.
-const TODAY = '380';
 const DAYS = 30;
-const MAX_TRIES = 20; // maksimòm eseye pa IP chak 10 minit
-const MAX_FAILS = 3; // echèk ak menm imel anvan blokaj
+const MAX_TRIES = 20; // maksimòm demann pa IP chak 10 minit (tout fason)
+const MAX_IP_FAILS = 4; // kòd move pa IP anvan blokaj 4 èdtan (activate + ansyen fason)
+const MAX_FAILS = 3; // echèk 'restore' ak menm imel anvan blokaj
 const BLOCK_SECONDS = 4 * 3600; // blokaj 4 èdtan
 
 function same(a, b) {
@@ -69,36 +69,60 @@ module.exports = async (req, res) => {
   body = body || {};
   const action = String(body.action || '');
   const code = String(body.code || '').trim();
+  const TODAY = String(process.env.VIP_TODAY || '380');
 
   try {
-    if (action === 'activate' || action === 'restore') {
-      // limit eseye pa IP (anpeche moun devine imel yo)
-      const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'x';
-      const rk = 'rl:' + ip;
-      const n = Number(await redis(['INCR', rk]));
-      if (n === 1) await redis(['EXPIRE', rk, '600']);
-      if (n > MAX_TRIES) return send(429, { ok: false });
+    // Chemen rapid: yon VIP ki rekipere ak bon imel = 1 sèl kòmand Redis (pa konte nan limit yo).
+    // Se echèk yo sèlman ki konte nan limit IP ak blokaj imel.
+    if (action === 'restore') {
+      const em = cleanEmail(body.email);
+      if (em) {
+        const e0 = Number(await redis(['GET', keyOf(em)])) || 0;
+        if (e0 > Date.now()) return send(200, { ok: true, today: TODAY, exp: e0 });
+      }
+    }
 
+    // limit pa IP pou TOUT fason (anpeche moun devine kòd ak imel yo)
+    const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'x';
+    const rk = 'rl:' + ip;
+    const n = Number(await redis(['INCR', rk]));
+    if (n === 1) await redis(['EXPIRE', rk, '600']);
+    if (n > MAX_TRIES) return send(429, { ok: false });
+
+    // kòd move pa IP => bloke IP sa a 4 èdtan (sa pa touche imel yon lòt moun)
+    const ik = 'ipfail:' + ip;
+    const ipFails = Number(await redis(['GET', ik])) || 0;
+    if (ipFails >= MAX_IP_FAILS) return send(429, { ok: false, blocked: true });
+    const ipFail = async () => {
+      const f = Number(await redis(['INCR', ik]));
+      if (f === 1) await redis(['EXPIRE', ik, String(BLOCK_SECONDS)]);
+      return send(f >= MAX_IP_FAILS ? 429 : 401, { ok: false, blocked: f >= MAX_IP_FAILS });
+    };
+
+    if (action === 'activate' || action === 'restore') {
       const email = cleanEmail(body.email);
       if (!email) return send(401, { ok: false });
 
-      // 3 echèk ak menm imel => bloke 4 èdtan
+      if (action === 'activate') {
+        if (!codeOk(code)) return ipFail(); // pa konte kont imel la: yon moun pa ka bloke VIP yon lòt
+
+        // Yon kòd ka aktive PLIS imel (pa gen limit) toutan li nan VIP_CODES.
+        // Lè ou chanje kòd la nan Vercel, ansyen an pa mache ankò pou nouvo moun
+        // (men moun ki deja aktive yo rete VIP, yo rekipere ak imel yo).
+        const exp0 = Number(await redis(['GET', keyOf(email)])) || 0;
+        if (exp0 > Date.now()) {
+          // imel sa a deja VIP: li rekonèt san ajoute jou
+          return send(200, { ok: true, today: TODAY, exp: exp0 });
+        }
+        const exp = Date.now() + DAYS * 864e5;
+        await redis(['SET', keyOf(email), String(exp), 'EX', String(DAYS * 86400 + 86400)]);
+        return send(200, { ok: true, today: TODAY, exp });
+      }
+
+      // restore: 3 echèk ak menm imel => bloke 4 èdtan (sèlman imel ki pa VIP ka rive la)
       const fk = 'fail:' + keyOf(email);
       const fails = Number(await redis(['GET', fk])) || 0;
       if (fails >= MAX_FAILS) return send(429, { ok: false, blocked: true });
-      const fail = async () => {
-        const f = Number(await redis(['INCR', fk]));
-        await redis(['EXPIRE', fk, String(BLOCK_SECONDS)]);
-        return send(f >= MAX_FAILS ? 429 : 401, { ok: false, blocked: f >= MAX_FAILS });
-      };
-
-      if (action === 'activate') {
-        if (!codeOk(code)) return fail();
-        const exp = Date.now() + DAYS * 864e5;
-        await redis(['SET', keyOf(email), String(exp), 'EX', String(DAYS * 86400 + 86400)]);
-        await redis(['DEL', fk]);
-        return send(200, { ok: true, today: TODAY, exp });
-      }
 
       const v = await redis(['GET', keyOf(email)]);
       const exp = Number(v) || 0;
@@ -106,12 +130,14 @@ module.exports = async (req, res) => {
         await redis(['DEL', fk]);
         return send(200, { ok: true, today: TODAY, exp });
       }
-      return fail();
+      const f = Number(await redis(['INCR', fk]));
+      await redis(['EXPIRE', fk, String(BLOCK_SECONDS)]);
+      return send(f >= MAX_FAILS ? 429 : 401, { ok: false, blocked: f >= MAX_FAILS });
     }
 
-    // ansyen fason: kòd sèlman
-    const ok = codeOk(code);
-    return send(ok ? 200 : 401, ok ? { ok: true, today: TODAY } : { ok: false });
+    // ansyen fason: kòd sèlman (kounye a ak limit IP)
+    if (!codeOk(code)) return ipFail();
+    return send(200, { ok: true, today: TODAY });
   } catch (e) {
     return send(500, { ok: false, error: 'server' });
   }
