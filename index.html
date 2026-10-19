@@ -602,7 +602,7 @@ function setLang(l){lang=l;store('lang',l);render()}
 let lastKey=getSessionKey();
 setInterval(()=>{const k=getSessionKey();if(k!==lastKey){lastKey=k;render();actualizarFloridaReal()}},30000);
 setInterval(actualizarFloridaReal,5*60*1000);
-setInterval(loadVip,5*60*1000);setInterval(loadResults,5*60*1000);
+setInterval(()=>{if(!document.hidden)loadVip()},30*60*1000);setInterval(loadResults,5*60*1000);
 
 render();
 loadVip();loadResults();
@@ -937,7 +937,7 @@ $('astVoice').onchange=function(){store('astVoice_'+al,this.value);stopAudio()};
 renderAst();
 loadAstralJson();
 let lastDay=ETK();
-function chkDay(){const k=ETK();if(k!==lastDay){lastDay=k;if(!activeBtn)renderAst();loadAstralJson()}}
+function chkDay(){const k=ETK();if(k!==lastDay){lastDay=k;if(!activeBtn)renderAst();loadAstralJson();try{loadVip()}catch(e){}}}
 setInterval(chkDay,30000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){chkDay();try{render()}catch(e){}}});
 window.addEventListener('focus',chkDay);
