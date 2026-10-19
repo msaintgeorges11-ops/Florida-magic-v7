@@ -13,9 +13,6 @@ const crypto = require('crypto');
 
 const DAYS = 30;
 const MAX_TRIES = 20; // maksimòm demann pa IP chak 10 minit (tout fason)
-const MAX_IP_FAILS = 4; // kòd move pa IP anvan blokaj 4 èdtan (activate + ansyen fason)
-const MAX_FAILS = 3; // echèk 'restore' ak menm imel anvan blokaj
-const BLOCK_SECONDS = 4 * 3600; // blokaj 4 èdtan
 
 function same(a, b) {
   const x = Buffer.from(String(a));
@@ -82,22 +79,15 @@ module.exports = async (req, res) => {
       }
     }
 
-    // limit pa IP pou TOUT fason (anpeche moun devine kòd ak imel yo)
+    // limit dou pa IP (20 demann/10 min, li debloke poukont li): sèl pwoteksyon kont moun ki ap devine kòd
     const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'x';
     const rk = 'rl:' + ip;
     const n = Number(await redis(['INCR', rk]));
     if (n === 1) await redis(['EXPIRE', rk, '600']);
     if (n > MAX_TRIES) return send(429, { ok: false });
 
-    // kòd move pa IP => bloke IP sa a 4 èdtan (sa pa touche imel yon lòt moun)
-    const ik = 'ipfail:' + ip;
-    const ipFails = Number(await redis(['GET', ik])) || 0;
-    if (ipFails >= MAX_IP_FAILS) return send(429, { ok: false, blocked: true });
-    const ipFail = async () => {
-      const f = Number(await redis(['INCR', ik]));
-      if (f === 1) await redis(['EXPIRE', ik, String(BLOCK_SECONDS)]);
-      return send(f >= MAX_IP_FAILS ? 429 : 401, { ok: false, blocked: f >= MAX_IP_FAILS });
-    };
+    // kòd move => senpleman 401 (PA gen blokaj ankò)
+    const ipFail = async () => send(401, { ok: false });
 
     if (action === 'activate' || action === 'restore') {
       const email = cleanEmail(body.email);
@@ -119,20 +109,10 @@ module.exports = async (req, res) => {
         return send(200, { ok: true, today: TODAY, exp });
       }
 
-      // restore: 3 echèk ak menm imel => bloke 4 èdtan (sèlman imel ki pa VIP ka rive la)
-      const fk = 'fail:' + keyOf(email);
-      const fails = Number(await redis(['GET', fk])) || 0;
-      if (fails >= MAX_FAILS) return send(429, { ok: false, blocked: true });
-
-      const v = await redis(['GET', keyOf(email)]);
-      const exp = Number(v) || 0;
-      if (exp > Date.now()) {
-        await redis(['DEL', fk]);
-        return send(200, { ok: true, today: TODAY, exp });
-      }
-      const f = Number(await redis(['INCR', fk]));
-      await redis(['EXPIRE', fk, String(BLOCK_SECONDS)]);
-      return send(f >= MAX_FAILS ? 429 : 401, { ok: false, blocked: f >= MAX_FAILS });
+      // restore: imel la dwe VIP epi pa ekspire, sinon 401 (pa gen blokaj)
+      const exp = Number(await redis(['GET', keyOf(email)])) || 0;
+      if (exp > Date.now()) return send(200, { ok: true, today: TODAY, exp });
+      return send(401, { ok: false });
     }
 
     // ansyen fason: kòd sèlman (kounye a ak limit IP)
