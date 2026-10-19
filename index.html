@@ -280,9 +280,6 @@ en:{tHome:"Luck",tRes:"Results",tVip:"VIP",tInfo:"Info",vipNote:"🔑 After payi
 L.es.tAst='Astral';L.fr.tAst='Astral';L.en.tAst='Astral';
 L.es.emailPh='Tu email';L.fr.emailPh='Ton email';L.en.emailPh='Your email';
 L.es.restaurar='🔄 Recuperar mi VIP (ya pagué)';L.fr.restaurar='🔄 Récupérer mon VIP (déjà payé)';L.en.restaurar='🔄 Restore my VIP (already paid)';
-L.es.blocked='Demasiados intentos con este email. Bloqueado 4 horas - contacta 8498697028';L.fr.blocked='Trop d’essais avec cet email. Bloqué 4 heures - contacte 8498697028';L.en.blocked='Too many attempts with this email. Blocked for 4 hours - contact 8498697028';
-L.es.blockT='Bloqueado temporalmente';L.fr.blockT='Bloqué temporairement';L.en.blockT='Temporarily blocked';
-L.es.blockP='Demasiados intentos con este email. Intenta de nuevo en 4 horas o contacta 8498697028.';L.fr.blockP='Trop d’essais avec cet email. Réessaie dans 4 heures ou contacte 8498697028.';L.en.blockP='Too many attempts with this email. Try again in 4 hours or contact 8498697028.';
 L.es.needEmail='Escribe un email válido';L.fr.needEmail='Écris un email valide';L.en.needEmail='Enter a valid email';
 L.es.noVip='No encontramos un VIP activo con este email - contacta 8498697028';L.fr.noVip='Aucun VIP actif trouvé avec cet email - contacte 8498697028';L.en.noVip='No active VIP found for this email - contact 8498697028';
 L.es.goNums='🎰 Ver números de la suerte';L.fr.goNums='🎰 Voir les numéros chance';L.en.goNums='🎰 See lucky numbers';
@@ -341,19 +338,6 @@ function vipSave(d,email){
   store('vipEmail',email);
 }
 const MAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-function showBlocked(){
-  const t=L[lang];
-  const old=document.getElementById('blkBox');if(old)old.remove();
-  const o=document.createElement('div');o.className='blk';o.id='blkBox';
-  const d=document.createElement('div');
-  const i=document.createElement('i');i.textContent='🔒';
-  const b=document.createElement('b');b.textContent=t.blockT;
-  const p=document.createElement('p');p.textContent=t.blockP;
-  const k=document.createElement('button');k.textContent='OK';k.onclick=()=>o.remove();
-  d.appendChild(i);d.appendChild(b);d.appendChild(p);d.appendChild(k);o.appendChild(d);
-  o.addEventListener('click',ev=>{if(ev.target===o)o.remove()});
-  document.body.appendChild(o);
-}
 async function activarVip(){
   const t=L[lang],m=document.getElementById('vipMsg');
   const c=document.getElementById('vipCode').value.trim(),e=document.getElementById('vipEmail').value.trim().toLowerCase();
@@ -362,7 +346,6 @@ async function activarVip(){
   try{
     const d=await vipApi({action:'activate',code:c,email:e});
     if(d.ok){vipSave(d,e);m.textContent=t.ok;setTimeout(()=>location.reload(),1200)}
-    else if(d.status===429){m.textContent=t.blocked;showBlocked()}
     else m.textContent=t.bad;
   }catch(x){m.textContent=t.bad}
 }
@@ -373,7 +356,6 @@ async function restaurarVip(){
   try{
     const d=await vipApi({action:'restore',email:e});
     if(d.ok){vipSave(d,e);m.textContent=t.ok;setTimeout(()=>location.reload(),1200)}
-    else if(d.status===429){m.textContent=t.blocked;showBlocked()}
     else m.textContent=t.noVip;
   }catch(x){m.textContent=t.noVip}
 }
