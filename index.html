@@ -54,6 +54,7 @@ button.main:disabled{background:#e6e6e6;color:#888;cursor:not-allowed}
 .ad:has(ins[data-ad-status="unfilled"]){display:none!important}
 ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important}
 .vip{display:block;background:#fff;color:#000;border:1px solid #fff;border-radius:20px;padding:15px;margin-top:12px;text-align:center}
+.vwarn{display:none;font-size:13px;line-height:1.4;margin:12px 6px 0;padding:10px 12px;border-radius:12px;background:#fff8e1;color:#5d4037;border:1px solid #ffe082;text-align:center}
 .vip p{font-size:13px;margin:5px 0}
 .vip a{display:inline-block;background:var(--b);color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:12px;margin:6px 0}
 .vip input{padding:8px;border-radius:6px;border:1px solid var(--b);margin:6px;width:140px}
@@ -148,6 +149,26 @@ header h1{color:#000}
 .real .num.s{font-size:19px;padding:5px 8px;letter-spacing:1px}
 .rn{font-size:12px}
 .tg{font-size:11px}
+
+/* ===== 12 paj sign youn anba lòt (chak yon kart blan sou fon ble) ===== */
+#astRead .sp{background:#fff;border:1px solid #fff;border-radius:20px;padding:16px 16px 18px;margin-top:14px;text-align:left;font-size:16px;line-height:1.55;color:#000}
+#astRead .sp p{margin:9px 0}
+#astRead .sp .big{font-size:22px;font-weight:bold;color:var(--b);text-align:center}
+#astRead .sp .nm{display:inline-block;min-width:44px;text-align:center;background:var(--b);color:#fff;border-radius:999px;padding:2px 12px;font-weight:bold}
+#astRead .sp .sw{display:inline-block;width:14px;height:14px;border-radius:50%;border:1px solid #888;vertical-align:-2px;margin-right:4px}
+#astRead .sp .abtn{margin-top:14px}
+#astRead .sp .dsc{font-size:13px;color:var(--muted);text-align:center;border-top:1px solid var(--line);padding-top:10px;margin-top:14px}
+#astRead .up{display:block;width:100%;margin-top:12px;padding:10px;border:1px solid var(--b);border-radius:10px;background:#fff;color:var(--b);font-weight:bold;font-size:14px;cursor:pointer}
+/* ===== Chance: compte à rebours, ticket, tchala ===== */
+.cd{font-size:36px;font-weight:bold;letter-spacing:2px;color:var(--b);margin:6px 0}
+.inp{width:92%;padding:12px;font-size:18px;border:2px solid var(--b);border-radius:12px;text-align:center;margin-top:8px;background:#fff;color:#000}
+.stb{margin:10px 0}
+.pl{display:inline-block;min-width:34px;text-align:center;border:1px solid var(--b);border-radius:14px;padding:4px 10px;font-size:19px;font-weight:bold;margin:2px}
+.tkr{border:1px solid var(--line);border-radius:14px;padding:8px 10px;margin-top:8px;font-size:15px;text-align:left}
+.tcrow{text-align:left;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-top:8px}
+.tcrow b{font-size:17px;color:var(--b)}
+.tcrow p{font-size:15px;margin:4px 0;line-height:1.45}
+.np{display:inline-block;background:var(--b);color:#fff;border-radius:999px;padding:2px 12px;font-weight:bold;margin:2px 6px 0 0;font-size:15px}
 </style>
 </head>
 <body>
@@ -180,6 +201,34 @@ header h1{color:#000}
   </div>
 
   <div class="ad" id="adTop" data-tab="home"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="7343398778" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+  <div class="card" data-tab="home">
+    <h2 data-t="cdT"></h2>
+    <div class="cd" id="cdTime">--:--:--</div>
+    <p class="small" id="cdNext"></p>
+    <h2 style="margin-top:16px" data-t="stT"></h2>
+    <div id="stBox"></div>
+    <p class="small" data-t="stNote"></p>
+  </div>
+
+  <div class="card" data-tab="home">
+    <h2 data-t="tkT"></h2>
+    <p class="small" data-t="tkHint"></p>
+    <input class="inp" id="tkIn" type="text" inputmode="numeric" maxlength="4" autocomplete="off">
+    <div id="tkOut" style="margin-top:8px"></div>
+  </div>
+
+  <div class="ad" id="adH2" data-tab="home"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="7343398778" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+  <div class="card" data-tab="home">
+    <h2 data-t="tcT"></h2>
+    <p class="small" data-t="tcHint"></p>
+    <input class="inp" id="tcIn" type="search" autocomplete="off">
+    <div id="tcList" style="margin-top:6px"></div>
+    <div class="ad" id="adH3"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="2091072091" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+    <div id="tcList2"></div>
+    <p class="small" data-t="tcNote"></p>
+  </div>
 
   <div class="card" data-tab="results">
     <h2>📅 <span data-t="last">8 ÚLTIMOS SORTEOS - NÚMEROS DE LA SUERTE</span></h2>
@@ -215,6 +264,7 @@ header h1{color:#000}
     <div class="vdate" id="vtDate"></div>
     <div class="vglow" id="vtNums">🔒</div>
     <p class="vwho" data-t="vtWho"></p>
+    <p class="vwarn" data-t="vtWarn"></p>
   </div>
 
   <div class="vip" id="vipBox" data-tab="vip">
@@ -232,22 +282,20 @@ header h1{color:#000}
   </div>
 
   <section class="card" id="astralBox" data-tab="astral">
-    <button class="abtn alt" type="button" style="margin:0 0 10px" onclick="setTab('home')" data-t="goNums">🎰</button>
     <h2 id="astTitle"></h2>
     <p class="small" id="astDay" style="margin:0 0 6px;font-weight:bold"></p>
     <p class="small" id="astSky" style="margin:0 0 8px"></p>
-    <div class="alang" id="astLangBar">
-      <button data-al="fr">🇫🇷 FR</button><button data-al="es">🇪🇸 ES</button><button data-al="en">🇺🇸 EN</button>
-    </div>
-    <p class="small" id="astHint"></p>
-    <label class="adate"><span id="astBorn"></span> <input type="date" id="astDate"></label>
+    <p class="small" id="astHint" style="text-align:center;margin:8px 0 0;font-size:15px;font-weight:bold;color:#000"></p>
     <div class="sgrid" id="astList"></div>
+
     <select id="astVoice" aria-label="Voz / Voix / Voice" style="display:none;width:100%;margin:8px 0 0;padding:10px;border-radius:8px;border:1px solid var(--line);font-size:14px;background:#fff;color:#000"></select>
     <button class="abtn alt" id="astListenAll" type="button"></button>
-    <div class="aread" id="astRead" style="display:none"></div>
+    
     <p class="small" id="astNote" style="display:none"></p>
-    <p class="small" id="astDisc"></p>
+    
   </section>
+
+  <div id="astRead" data-tab="astral"></div>
 
   <div class="ad" id="adAst" data-tab="astral"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="2091072091" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
@@ -273,9 +321,9 @@ header h1{color:#000}
 
 <script>
 const L={
-es:{tHome:"Suerte",tRes:"Resultados",tVip:"VIP",tInfo:"Info",vipNote:"🔑 Al terminar de pagar, encontrarás tu código VIP en el mensaje de la tienda y en tu email. Escribe tu email y el código aquí arriba y toca Activar.",vtT:"💎 NÚMEROS VIP DE HOY",vtWho:"🔒 Solo los miembros inscritos en VIP reciben estos números antes del sorteo de las 9:00 AM, cada día.",vtJoin:"Inscríbete para ver el número premium",vipResT:"💎 RESULTADOS VIP",vipLocked:"🔒 Disponible solo para miembros VIP.",vipResNote:"Estos son los números que dimos hoy en VIP.",cSes:"SORTEO",cNum:"NÚMEROS VIP",cOff:"OFICIAL",cSt:"ESTADO",stHit:"✅ SALIÓ",stMiss:"❌ NO SALIÓ",stPend:"⏳ PENDIENTE",vipEmpty:"Pronto habrá resultados VIP.",hoy:"HOY",badge:"🎲 Generador aleatorio de entretenimiento",vipBadge:"💎 VIP",chance:"2 NÚMEROS DE LA SUERTE",calc:"Cálculo de los números siguientes a partir del sorteo, el día y la fecha: iguales para todos. Una nueva selección para entretenerte cada día.",reelSub:"1 GIRO = 2 NÚMEROS DIFERENTES",girar:"🎰 GIRAR - 1 GIRO = 2 NÚMEROS",girando:"⏳ GIRANDO...",tienes:"✅ 2 NÚMEROS PARA",limite:"Límite hoy - VIP ilimitado 💎",mid:"MEDIODÍA 1:30 PM",eve:"NOCHE 9:45 PM",sm:"MEDIODÍA",se:"NOCHE",real:"🎯 RESULTADOS REALES OFICIALES FLORIDA",pend:"⏳ Pendiente",cargando:"⏳ Cargando resultados reales...",noReal:"No se pudieron cargar los resultados aquí. Míralos en la fuente oficial:",oficial:"Resultados oficiales →",act:"🔄 Actualizar ahora",fuente:"Fuente",vipT:"💎 VIP ILIMITADO 💎",v1:"✅ Giros ilimitados",v2:"✅ Sin anuncios",v3:"✅ Soporte directo por WhatsApp",price:"💎 Inscripción VIP Premium / mes",wa:"💬 Soporte WhatsApp",card:"💳 PAGAR VIP $20",pay:"💳 Pago directo con tarjeta bancaria o PayPal",code:"Código VIP",activar:"Activar",ok:"💎 VIP activado 30 días",bad:"Código incorrecto - contacta 8498697028",last:"8 ÚLTIMOS SORTEOS - NÚMEROS DE LA SUERTE",fecha:"FECHA",aviso:"FLORIDA MAGIC no está afiliado a la Lotería de Florida ni a ninguna lotería. Los números generados son aleatorios, no predicen resultados y no aumentan tus probabilidades. Juega con responsabilidad. Solo mayores de 18 años.",foot:"Lotería de Florida oficial",snap:"Pick 3 y Pick 4 · 8 últimos resultados, tomados de fuentes que publican los números oficiales. Verifica siempre en www.flalottery.com.",loc:"es-DO",aboutH:"Sobre FLORIDA MAGIC V7",aboutP:"FLORIDA MAGIC V7 es un generador aleatorio de números para entretenimiento. Cada día y cada sorteo (mediodía y noche, hora de Florida) muestra 2 números de la suerte iguales para todos, y una tabla con los últimos resultados de Pick 3 y Pick 4. Los números no predicen ningún sorteo."},
-fr:{tHome:"Chance",tRes:"Résultats",tVip:"VIP",tInfo:"Infos",vipNote:"🔑 Une fois le paiement terminé, tu trouveras ton code VIP dans le message de la boutique et dans ton email. Écris ton email et le code ci-dessus, puis touche Activer.",vtT:"💎 NUMÉROS VIP DU JOUR",vtWho:"🔒 Seuls les membres inscrits en VIP reçoivent ces numéros avant le tirage de 9h00 AM, chaque jour.",vtJoin:"Inscris-toi pour voir le numéro premium",vipResT:"💎 RÉSULTATS VIP",vipLocked:"🔒 Réservé aux membres VIP.",vipResNote:"Voici les numéros que nous avons donnés aujourd'hui en VIP.",cSes:"TIRAGE",cNum:"NUMÉROS VIP",cOff:"OFFICIEL",cSt:"STATUT",stHit:"✅ SORTI",stMiss:"❌ PAS SORTI",stPend:"⏳ EN ATTENTE",vipEmpty:"Les résultats VIP arrivent bientôt.",hoy:"AUJOURD'HUI",badge:"🎲 Générateur aléatoire de divertissement",vipBadge:"💎 VIP",chance:"2 NUMÉROS CHANCE",calc:"Calcul des numéros suivants à partir du tirage, du jour et de la date : identiques pour tous. Une nouvelle sélection pour vous divertir chaque jour.",reelSub:"1 TOUR = 2 NUMÉROS DIFFÉRENTS",girar:"🎰 TOURNER - 1 TOUR = 2 NUMÉROS",girando:"⏳ ÇA TOURNE...",tienes:"✅ 2 NUMÉROS POUR",limite:"Limite aujourd'hui - VIP illimité 💎",mid:"MIDI 13h30",eve:"SOIR 21h45",sm:"MIDI",se:"SOIR",real:"🎯 RÉSULTATS RÉELS OFFICIELS FLORIDE",pend:"⏳ En attente",cargando:"⏳ Chargement des vrais résultats...",noReal:"Impossible de charger les résultats ici. Consulte la source officielle :",oficial:"Résultats officiels →",act:"🔄 Actualiser",fuente:"Source",vipT:"💎 VIP ILLIMITÉ 💎",v1:"✅ Tours illimités",v2:"✅ Sans pubs",v3:"✅ Support direct WhatsApp",price:"💎 Inscription VIP Premium / mois",wa:"💬 Support WhatsApp",card:"💳 PAYER VIP 20 $",pay:"💳 Paiement direct par carte bancaire ou PayPal",code:"Code VIP",activar:"Activer",ok:"💎 VIP activé 30 jours",bad:"Code incorrect - contacte 8498697028",last:"8 DERNIERS TIRAGES - NUMÉROS CHANCE",fecha:"DATE",aviso:"FLORIDA MAGIC n'est affilié ni à la Loterie de Floride ni à aucune loterie. Les numéros générés sont aléatoires, ne prédisent aucun résultat et n'augmentent pas tes chances. Joue de façon responsable. Réservé aux plus de 18 ans.",foot:"Loterie de Floride officielle",snap:"Pick 3 et Pick 4 · 8 derniers résultats, repris de sources qui publient les numéros officiels. Vérifie toujours sur www.flalottery.com.",loc:"fr-FR",aboutH:"À propos de FLORIDA MAGIC V7",aboutP:"FLORIDA MAGIC V7 est un générateur aléatoire de numéros de divertissement. Chaque jour et chaque tirage (midi et soir, heure de Floride), il affiche 2 numéros chance identiques pour tous, et un tableau des derniers résultats Pick 3 et Pick 4. Les numéros ne prédisent aucun tirage."},
-en:{tHome:"Luck",tRes:"Results",tVip:"VIP",tInfo:"Info",vipNote:"🔑 After paying, you will find your VIP code in the shop message and in your email. Enter your email and the code above, then tap Activate.",vtT:"💎 TODAY'S VIP NUMBERS",vtWho:"🔒 Only members subscribed to VIP receive these numbers before the 9:00 AM draw, every day.",vtJoin:"Sign up to see the premium number",vipResT:"💎 VIP RESULTS",vipLocked:"🔒 Available to VIP members only.",vipResNote:"These are the numbers we gave today in VIP.",cSes:"DRAW",cNum:"VIP NUMBERS",cOff:"OFFICIAL",cSt:"STATUS",stHit:"✅ HIT",stMiss:"❌ MISS",stPend:"⏳ PENDING",vipEmpty:"VIP results coming soon.",hoy:"TODAY",badge:"🎲 Random entertainment generator",vipBadge:"💎 VIP",chance:"2 LUCKY NUMBERS",calc:"Numbers calculated from the draw, the day and the date: same for everyone. A new selection to entertain you every day.",reelSub:"1 SPIN = 2 DIFFERENT NUMBERS",girar:"🎰 SPIN - 1 SPIN = 2 NUMBERS",girando:"⏳ SPINNING...",tienes:"✅ 2 NUMBERS FOR",limite:"Limit today - Unlimited VIP 💎",mid:"MIDDAY 1:30 PM",eve:"EVENING 9:45 PM",sm:"MIDDAY",se:"EVENING",real:"🎯 OFFICIAL REAL RESULTS FLORIDA",pend:"⏳ Pending",cargando:"⏳ Loading real results...",noReal:"Results could not be loaded here. See the official source:",oficial:"Official results →",act:"🔄 Refresh now",fuente:"Source",vipT:"💎 UNLIMITED VIP 💎",v1:"✅ Unlimited spins",v2:"✅ No ads",v3:"✅ Direct WhatsApp support",price:"💎 VIP Premium Subscription / month",wa:"💬 WhatsApp support",card:"💳 PAY VIP $20",pay:"💳 Direct payment by bank card or PayPal",code:"VIP code",activar:"Activate",ok:"💎 VIP activated for 30 days",bad:"Wrong code - contact 8498697028",last:"LAST 8 DRAWS - LUCKY NUMBERS",fecha:"DATE",aviso:"FLORIDA MAGIC is not affiliated with the Florida Lottery or any lottery. Generated numbers are random, do not predict results and do not improve your odds. Play responsibly. 18+ only.",foot:"Official Florida Lottery",snap:"Pick 3 and Pick 4 · last 8 results, taken from sources that publish the official numbers. Always verify at www.flalottery.com.",loc:"en-US",aboutH:"About FLORIDA MAGIC V7",aboutP:"FLORIDA MAGIC V7 is a random number generator for entertainment. Each day and each draw (midday and evening, Florida time) it shows 2 lucky numbers, the same for everyone, plus a table of the latest Pick 3 and Pick 4 results. The numbers do not predict any draw."}
+es:{vtWarn:"⚠️ Importante: ningún número está garantizado al 100 %. La lotería es un juego de azar: estos números son una sugerencia de entretenimiento, nunca una promesa de ganar. Juega con moderación y solo el dinero que puedas permitirte perder. 18+.",tHome:"Suerte",tRes:"Resultados",tVip:"VIP",tInfo:"Info",vipNote:"🔑 Al terminar de pagar, encontrarás tu código VIP en el mensaje de la tienda y en tu email. Escribe tu email y el código aquí arriba y toca Activar.",vtT:"💎 NÚMEROS VIP DE HOY",vtWho:"🔒 Solo los miembros inscritos en VIP reciben estos números antes del sorteo de las 9:00 AM, cada día.",vtJoin:"Inscríbete para ver el número premium",vipResT:"💎 RESULTADOS VIP",vipLocked:"🔒 Disponible solo para miembros VIP.",vipResNote:"Estos son los números que dimos hoy en VIP.",cSes:"SORTEO",cNum:"NÚMEROS VIP",cOff:"OFICIAL",cSt:"ESTADO",stHit:"✅ SALIÓ",stMiss:"❌ NO SALIÓ",stPend:"⏳ PENDIENTE",vipEmpty:"Pronto habrá resultados VIP.",hoy:"HOY",badge:"🎲 Generador aleatorio de entretenimiento",vipBadge:"💎 VIP",chance:"2 NÚMEROS DE LA SUERTE",calc:"Cálculo de los números siguientes a partir del sorteo, el día y la fecha: iguales para todos. Una nueva selección para entretenerte cada día.",reelSub:"1 GIRO = 2 NÚMEROS DIFERENTES",girar:"🎰 GIRAR - 1 GIRO = 2 NÚMEROS",girando:"⏳ GIRANDO...",tienes:"✅ 2 NÚMEROS PARA",limite:"Límite hoy - VIP ilimitado 💎",mid:"MEDIODÍA 1:30 PM",eve:"NOCHE 9:45 PM",sm:"MEDIODÍA",se:"NOCHE",real:"🎯 RESULTADOS REALES OFICIALES FLORIDA",pend:"⏳ Pendiente",cargando:"⏳ Cargando resultados reales...",noReal:"No se pudieron cargar los resultados aquí. Míralos en la fuente oficial:",oficial:"Resultados oficiales →",act:"🔄 Actualizar ahora",fuente:"Fuente",vipT:"💎 VIP ILIMITADO 💎",v1:"✅ Giros ilimitados",v2:"✅ Sin anuncios",v3:"✅ Soporte directo por WhatsApp",price:"💎 Inscripción VIP Premium / mes",wa:"💬 Soporte WhatsApp",card:"💳 PAGAR VIP $20",pay:"💳 Pago directo con tarjeta bancaria o PayPal",code:"Código VIP",activar:"Activar",ok:"💎 VIP activado 30 días",bad:"Código incorrecto - contacta 8498697028",last:"8 ÚLTIMOS SORTEOS - NÚMEROS DE LA SUERTE",fecha:"FECHA",aviso:"FLORIDA MAGIC no está afiliado a la Lotería de Florida ni a ninguna lotería. Los números generados son aleatorios, no predicen resultados y no aumentan tus probabilidades. Juega con responsabilidad. Solo mayores de 18 años.",foot:"Lotería de Florida oficial",snap:"Pick 3 y Pick 4 · 8 últimos resultados, tomados de fuentes que publican los números oficiales. Verifica siempre en www.flalottery.com.",loc:"es-DO",aboutH:"Sobre FLORIDA MAGIC V7",aboutP:"FLORIDA MAGIC V7 es un generador aleatorio de números para entretenimiento. Cada día y cada sorteo (mediodía y noche, hora de Florida) muestra 2 números de la suerte iguales para todos, y una tabla con los últimos resultados de Pick 3 y Pick 4. Los números no predicen ningún sorteo."},
+fr:{vtWarn:"⚠️ Important : aucun numéro n'est garanti à 100 %. La loterie est un jeu de hasard : ces numéros sont une suggestion de divertissement, jamais une promesse de gain. Joue avec modération et uniquement l'argent que tu peux te permettre de perdre. 18+.",tHome:"Chance",tRes:"Résultats",tVip:"VIP",tInfo:"Infos",vipNote:"🔑 Une fois le paiement terminé, tu trouveras ton code VIP dans le message de la boutique et dans ton email. Écris ton email et le code ci-dessus, puis touche Activer.",vtT:"💎 NUMÉROS VIP DU JOUR",vtWho:"🔒 Seuls les membres inscrits en VIP reçoivent ces numéros avant le tirage de 9h00 AM, chaque jour.",vtJoin:"Inscris-toi pour voir le numéro premium",vipResT:"💎 RÉSULTATS VIP",vipLocked:"🔒 Réservé aux membres VIP.",vipResNote:"Voici les numéros que nous avons donnés aujourd'hui en VIP.",cSes:"TIRAGE",cNum:"NUMÉROS VIP",cOff:"OFFICIEL",cSt:"STATUT",stHit:"✅ SORTI",stMiss:"❌ PAS SORTI",stPend:"⏳ EN ATTENTE",vipEmpty:"Les résultats VIP arrivent bientôt.",hoy:"AUJOURD'HUI",badge:"🎲 Générateur aléatoire de divertissement",vipBadge:"💎 VIP",chance:"2 NUMÉROS CHANCE",calc:"Calcul des numéros suivants à partir du tirage, du jour et de la date : identiques pour tous. Une nouvelle sélection pour vous divertir chaque jour.",reelSub:"1 TOUR = 2 NUMÉROS DIFFÉRENTS",girar:"🎰 TOURNER - 1 TOUR = 2 NUMÉROS",girando:"⏳ ÇA TOURNE...",tienes:"✅ 2 NUMÉROS POUR",limite:"Limite aujourd'hui - VIP illimité 💎",mid:"MIDI 13h30",eve:"SOIR 21h45",sm:"MIDI",se:"SOIR",real:"🎯 RÉSULTATS RÉELS OFFICIELS FLORIDE",pend:"⏳ En attente",cargando:"⏳ Chargement des vrais résultats...",noReal:"Impossible de charger les résultats ici. Consulte la source officielle :",oficial:"Résultats officiels →",act:"🔄 Actualiser",fuente:"Source",vipT:"💎 VIP ILLIMITÉ 💎",v1:"✅ Tours illimités",v2:"✅ Sans pubs",v3:"✅ Support direct WhatsApp",price:"💎 Inscription VIP Premium / mois",wa:"💬 Support WhatsApp",card:"💳 PAYER VIP 20 $",pay:"💳 Paiement direct par carte bancaire ou PayPal",code:"Code VIP",activar:"Activer",ok:"💎 VIP activé 30 jours",bad:"Code incorrect - contacte 8498697028",last:"8 DERNIERS TIRAGES - NUMÉROS CHANCE",fecha:"DATE",aviso:"FLORIDA MAGIC n'est affilié ni à la Loterie de Floride ni à aucune loterie. Les numéros générés sont aléatoires, ne prédisent aucun résultat et n'augmentent pas tes chances. Joue de façon responsable. Réservé aux plus de 18 ans.",foot:"Loterie de Floride officielle",snap:"Pick 3 et Pick 4 · 8 derniers résultats, repris de sources qui publient les numéros officiels. Vérifie toujours sur www.flalottery.com.",loc:"fr-FR",aboutH:"À propos de FLORIDA MAGIC V7",aboutP:"FLORIDA MAGIC V7 est un générateur aléatoire de numéros de divertissement. Chaque jour et chaque tirage (midi et soir, heure de Floride), il affiche 2 numéros chance identiques pour tous, et un tableau des derniers résultats Pick 3 et Pick 4. Les numéros ne prédisent aucun tirage."},
+en:{vtWarn:"⚠️ Important: no number is 100% guaranteed. The lottery is a game of chance: these numbers are an entertainment suggestion, never a promise of winning. Play responsibly and only with money you can afford to lose. 18+.",tHome:"Luck",tRes:"Results",tVip:"VIP",tInfo:"Info",vipNote:"🔑 After paying, you will find your VIP code in the shop message and in your email. Enter your email and the code above, then tap Activate.",vtT:"💎 TODAY'S VIP NUMBERS",vtWho:"🔒 Only members subscribed to VIP receive these numbers before the 9:00 AM draw, every day.",vtJoin:"Sign up to see the premium number",vipResT:"💎 VIP RESULTS",vipLocked:"🔒 Available to VIP members only.",vipResNote:"These are the numbers we gave today in VIP.",cSes:"DRAW",cNum:"VIP NUMBERS",cOff:"OFFICIAL",cSt:"STATUS",stHit:"✅ HIT",stMiss:"❌ MISS",stPend:"⏳ PENDING",vipEmpty:"VIP results coming soon.",hoy:"TODAY",badge:"🎲 Random entertainment generator",vipBadge:"💎 VIP",chance:"2 LUCKY NUMBERS",calc:"Numbers calculated from the draw, the day and the date: same for everyone. A new selection to entertain you every day.",reelSub:"1 SPIN = 2 DIFFERENT NUMBERS",girar:"🎰 SPIN - 1 SPIN = 2 NUMBERS",girando:"⏳ SPINNING...",tienes:"✅ 2 NUMBERS FOR",limite:"Limit today - Unlimited VIP 💎",mid:"MIDDAY 1:30 PM",eve:"EVENING 9:45 PM",sm:"MIDDAY",se:"EVENING",real:"🎯 OFFICIAL REAL RESULTS FLORIDA",pend:"⏳ Pending",cargando:"⏳ Loading real results...",noReal:"Results could not be loaded here. See the official source:",oficial:"Official results →",act:"🔄 Refresh now",fuente:"Source",vipT:"💎 UNLIMITED VIP 💎",v1:"✅ Unlimited spins",v2:"✅ No ads",v3:"✅ Direct WhatsApp support",price:"💎 VIP Premium Subscription / month",wa:"💬 WhatsApp support",card:"💳 PAY VIP $20",pay:"💳 Direct payment by bank card or PayPal",code:"VIP code",activar:"Activate",ok:"💎 VIP activated for 30 days",bad:"Wrong code - contact 8498697028",last:"LAST 8 DRAWS - LUCKY NUMBERS",fecha:"DATE",aviso:"FLORIDA MAGIC is not affiliated with the Florida Lottery or any lottery. Generated numbers are random, do not predict results and do not improve your odds. Play responsibly. 18+ only.",foot:"Official Florida Lottery",snap:"Pick 3 and Pick 4 · last 8 results, taken from sources that publish the official numbers. Always verify at www.flalottery.com.",loc:"en-US",aboutH:"About FLORIDA MAGIC V7",aboutP:"FLORIDA MAGIC V7 is a random number generator for entertainment. Each day and each draw (midday and evening, Florida time) it shows 2 lucky numbers, the same for everyone, plus a table of the latest Pick 3 and Pick 4 results. The numbers do not predict any draw."}
 };
 L.es.tAst='Astral';L.fr.tAst='Astral';L.en.tAst='Astral';
 L.es.emailPh='Tu email';L.fr.emailPh='Ton email';L.en.emailPh='Your email';
@@ -283,6 +331,10 @@ L.es.restaurar='🔄 Recuperar mi VIP (ya pagué)';L.fr.restaurar='🔄 Récupé
 L.es.needEmail='Escribe un email válido';L.fr.needEmail='Écris un email valide';L.en.needEmail='Enter a valid email';
 L.es.noVip='No encontramos un VIP activo con este email - contacta 8498697028';L.fr.noVip='Aucun VIP actif trouvé avec cet email - contacte 8498697028';L.en.noVip='No active VIP found for this email - contact 8498697028';
 L.es.goNums='🎰 Ver números de la suerte';L.fr.goNums='🎰 Voir les numéros chance';L.en.goNums='🎰 See lucky numbers';
+Object.assign(L.fr,{cdT:'⏱️ PROCHAIN TIRAGE FLORIDE',cdMid:'Midi 13h30',cdEve:'Soir 21h45',cdNext:'Prochain tirage : ',cdET:' (heure de Floride)',stT:'📊 CHIFFRES LES PLUS ET MOINS SORTIS',stHot:'Les plus sortis',stCold:'Les moins sortis',stNote:'Statistiques des derniers résultats officiels (Pick 3 et Pick 4). Pour information seulement : le passé ne prédit pas le futur.',stNone:'Chargement des résultats...',tkT:'🎟️ VÉRIFIE TON TICKET',tkHint:'Entre 3 chiffres (Pick 3) ou 4 chiffres (Pick 4) pour voir s’ils sont sortis dans les derniers tirages.',tkPh:'Ex. 482 ou 4821',tkNone:'Pas sorti dans les derniers tirages.',tkChecked:'tirages vérifiés',tkStraight:'Exact (Straight)',tkBox:'Dans le désordre (Box)',tkWait:'Chargement des résultats...',tkNeed:'Entre 3 ou 4 chiffres.',tcT:'🌙 TCHALA : LE SENS DE TES RÊVES',tcHint:'Tape ce que tu as rêvé (eau, serpent, argent…) pour voir sa signification et les numéros associés.',tcPh:'Cherche un rêve…',tcNone:'Aucun rêve trouvé.',tcNote:'Interprétations traditionnelles pour le divertissement. Elles ne prédisent aucun tirage.',tcNums:'Numéros :'});
+Object.assign(L.es,{cdT:'⏱️ PRÓXIMO SORTEO DE FLORIDA',cdMid:'Mediodía 1:30 PM',cdEve:'Noche 9:45 PM',cdNext:'Próximo sorteo: ',cdET:' (hora de Florida)',stT:'📊 DÍGITOS MÁS Y MENOS SALIDOS',stHot:'Los más salidos',stCold:'Los menos salidos',stNote:'Estadísticas de los últimos resultados oficiales (Pick 3 y Pick 4). Solo informativo: el pasado no predice el futuro.',stNone:'Cargando resultados...',tkT:'🎟️ REVISA TU TICKET',tkHint:'Escribe 3 dígitos (Pick 3) o 4 dígitos (Pick 4) para ver si salieron en los últimos sorteos.',tkPh:'Ej. 482 o 4821',tkNone:'No salió en los últimos sorteos.',tkChecked:'sorteos revisados',tkStraight:'Exacto (Straight)',tkBox:'En desorden (Box)',tkWait:'Cargando resultados...',tkNeed:'Escribe 3 o 4 dígitos.',tcT:'🌙 TCHALA: EL SIGNIFICADO DE TUS SUEÑOS',tcHint:'Escribe lo que soñaste (agua, serpiente, dinero…) para ver su significado y los números asociados.',tcPh:'Busca un sueño…',tcNone:'No se encontró ningún sueño.',tcNote:'Interpretaciones tradicionales para entretenimiento. No predicen ningún sorteo.',tcNums:'Números:'});
+Object.assign(L.en,{cdT:'⏱️ NEXT FLORIDA DRAW',cdMid:'Midday 1:30 PM',cdEve:'Evening 9:45 PM',cdNext:'Next draw: ',cdET:' (Florida time)',stT:'📊 MOST AND LEAST DRAWN DIGITS',stHot:'Most drawn',stCold:'Least drawn',stNote:'Statistics from the latest official results (Pick 3 and Pick 4). For information only: the past does not predict the future.',stNone:'Loading results...',tkT:'🎟️ CHECK YOUR TICKET',tkHint:'Enter 3 digits (Pick 3) or 4 digits (Pick 4) to see if they came out in the latest draws.',tkPh:'E.g. 482 or 4821',tkNone:'Did not come out in the latest draws.',tkChecked:'draws checked',tkStraight:'Exact (Straight)',tkBox:'Any order (Box)',tkWait:'Loading results...',tkNeed:'Enter 3 or 4 digits.',tcT:'🌙 TCHALA: WHAT YOUR DREAMS MEAN',tcHint:'Type what you dreamed about (water, snake, money…) to see its meaning and the matching numbers.',tcPh:'Search a dream…',tcNone:'No dream found.',tcNote:'Traditional interpretations for entertainment. They do not predict any draw.',tcNums:'Numbers:'});
+
 const MEM={};
 function store(k,v){MEM[k]=v;try{localStorage.setItem(k,v)}catch(e){}}
 function load(k){try{const v=localStorage.getItem(k);if(v!==null)return v}catch(e){}return k in MEM?MEM[k]:null}
@@ -368,6 +420,8 @@ function renderVipToday(){
     if(vipToday){n.textContent=vipToday;n.classList.remove('lock')}
     else{n.textContent='⏳';n.classList.add('lock')}
   }else{n.textContent='🔒 '+t.vtJoin;n.classList.add('lock')}
+  const w=document.querySelector('.vwarn');
+  if(w)w.style.display=(esVip()&&vipToday)?'block':'none';
 }
 let vipRows=null,vipNote=null;
 function renderVipRes(){
@@ -447,6 +501,7 @@ function render(){
   }
   renderHist();renderVipRes();
   renderReal();renderReal10();
+  if(window.renderExtras)renderExtras();
 }
 
 function renderHist(){
@@ -579,7 +634,7 @@ function setTab(t){
   window.scrollTo(0,0);pushAds();
 }
 document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.go)));
-function setLang(l){lang=l;store('lang',l);render()}
+function setLang(l){lang=l;store('lang',l);render();if(window.astSync)astSync()}
 
 let lastKey=getSessionKey();
 setInterval(()=>{const k=getSessionKey();if(k!==lastKey){lastKey=k;render();actualizarFloridaReal()}},30000);
@@ -590,6 +645,345 @@ render();
 loadVip();loadResults();
 actualizarFloridaReal();
 setTab('astral');
+</script>
+<script>
+// ===== CHANCE: compte à rebours, stats, ticket, tchala =====
+(function(){
+const $=id=>document.getElementById(id);
+const T=()=>L[lang];
+function parts(){const o={};new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',second:'numeric',hour12:false}).formatToParts(new Date()).forEach(p=>o[p.type]=+p.value);if(o.hour===24)o.hour=0;return o}
+function countdown(){
+  const el=$('cdTime');if(!el)return;
+  const o=parts(),now=o.hour*3600+o.minute*60+o.second,A=13*3600+1800,B=21*3600+45*60;
+  let tgt,mid;if(now<A){tgt=A;mid=true}else if(now<B){tgt=B;mid=false}else{tgt=A+86400;mid=true}
+  const d=tgt-now,pad=n=>String(n).padStart(2,'0');
+  el.textContent=pad(Math.floor(d/3600))+':'+pad(Math.floor(d%3600/60))+':'+pad(d%60);
+  const t=T();$('cdNext').textContent=t.cdNext+(mid?t.cdMid:t.cdEve)+t.cdET;
+}
+function rows(){
+  if(typeof realRows==='undefined'||!realRows||!realRows.length)return null;
+  const o=etNow(),tn=o.year*10000+o.month*100+o.day;
+  return realRows.filter(r=>{const q=String(r.date).split('-').map(Number);return q[0]*10000+q[1]*100+q[2]<=tn}).slice(0,8);
+}
+function stats(){
+  const box=$('stBox');if(!box)return;const t=T();box.innerHTML='';
+  const rs=rows();if(!rs||!rs.length){box.textContent=t.stNone;return}
+  const c=Array(10).fill(0);
+  rs.forEach(r=>[r.mid3,r.eve3,r.mid4,r.eve4].forEach(v=>{if(v&&/^\d+$/.test(v))v.split('').forEach(d=>c[+d]++)}));
+  const ord=c.map((n,d)=>({d,n}));
+  const hot=ord.slice().sort((a,b)=>b.n-a.n||a.d-b.d).slice(0,3),cold=ord.slice().sort((a,b)=>a.n-b.n||a.d-b.d).slice(0,3);
+  const mk=(lab,arr)=>{
+    const w=document.createElement('div');w.className='stb';
+    const h=document.createElement('div');h.className='rh';h.textContent=lab;w.appendChild(h);
+    const r=document.createElement('div');
+    arr.forEach(x=>{const s=document.createElement('span');s.className='pl';s.textContent=x.d;const k=document.createElement('span');k.className='tg';k.textContent='×'+x.n+' ';r.appendChild(s);r.appendChild(k)});
+    w.appendChild(r);return w;
+  };
+  box.appendChild(mk(t.stHot,hot));box.appendChild(mk(t.stCold,cold));
+}
+function ticket(){
+  const inp=$('tkIn'),out=$('tkOut');if(!inp)return;const t=T();
+  const v=inp.value.replace(/\D/g,'');if(inp.value!==v)inp.value=v;
+  out.innerHTML='';
+  if(v.length<3){out.textContent=v.length?t.tkNeed:'';return}
+  const rs=rows();if(!rs){out.textContent=t.tkWait;return}
+  const key=x=>x.split('').sort().join(''),hits=[];
+  rs.forEach(r=>[['m',r.mid3,r.mid4],['e',r.eve3,r.eve4]].forEach(x=>{
+    const val=v.length===3?x[1]:x[2];if(!val||val.length!==v.length)return;
+    if(val===v)hits.push([r.date,x[0],'S',val]);else if(key(val)===key(v))hits.push([r.date,x[0],'B',val]);
+  }));
+  if(!hits.length){const p=document.createElement('div');p.className='tkr';p.textContent=t.tkNone;out.appendChild(p)}
+  hits.forEach(h=>{
+    const q=String(h[0]).split('-').map(Number),p=document.createElement('div');p.className='tkr';
+    p.textContent='✅ '+fmt(q[0],q[1],q[2])+' · '+(h[1]==='m'?t.sm:t.se)+' · '+h[3]+' · '+(h[2]==='S'?t.tkStraight:t.tkBox);
+    out.appendChild(p);
+  });
+  const n=document.createElement('p');n.className='small';n.textContent=rs.length*2+' '+t.tkChecked;out.appendChild(n);
+}
+const DATA=`Serpent|Serpiente|Snake|Trahison cachée ou grand changement à venir.|Traición oculta o un gran cambio que viene.|Hidden betrayal or a big change coming.|12,47
+Eau|Agua|Water|Émotions fortes et purification.|Emociones fuertes y purificación.|Strong emotions and cleansing.|05,36
+Mort|Muerto|Dead person|Fin d'un cycle, un changement important.|Fin de un ciclo, un cambio importante.|End of a cycle, an important change.|09,90
+Argent|Dinero|Money|Préoccupation, ou bonne nouvelle financière.|Preocupación, o buena noticia económica.|Worry, or good financial news.|28,66
+Bébé|Bebé|Baby|Nouveau départ, nouvelle responsabilité.|Nuevo comienzo, nueva responsabilidad.|New beginning, new responsibility.|01,14
+Feu|Fuego|Fire|Passion, colère ou grande énergie.|Pasión, enojo o mucha energía.|Passion, anger or great energy.|33,71
+Chien|Perro|Dog|Un ami fidèle, loyauté.|Un amigo fiel, lealtad.|A faithful friend, loyalty.|22,54
+Chat|Gato|Cat|Intuition et indépendance.|Intuición e independencia.|Intuition and independence.|19,63
+Poisson|Pez|Fish|Chance et abondance.|Suerte y abundancia.|Luck and abundance.|07,42
+Dent qui tombe|Diente que se cae|Falling tooth|Inquiétude ou changement dans la famille.|Preocupación o cambio en la familia.|Worry or a change in the family.|32,85
+Voler dans les airs|Volar|Flying|Liberté et grandes ambitions.|Libertad y grandes ambiciones.|Freedom and big ambitions.|18,76
+Tomber|Caer|Falling|Peur de perdre le contrôle.|Miedo a perder el control.|Fear of losing control.|26,59
+Maison|Casa|House|Foyer, stabilité et sécurité.|Hogar, estabilidad y seguridad.|Home, stability and security.|11,40
+Voiture|Carro|Car|La direction que prend ta vie.|El rumbo que toma tu vida.|The direction your life is taking.|24,68
+Mariage|Boda|Wedding|Union, engagement important.|Unión, un compromiso importante.|Union, an important commitment.|03,30
+Grossesse|Embarazo|Pregnancy|Un projet qui grandit.|Un proyecto que crece.|A project that is growing.|15,51
+Cheval|Caballo|Horse|Force, liberté et élan.|Fuerza, libertad e impulso.|Strength, freedom and drive.|08,45
+Mer|Mar|Sea|Grands changements, émotions profondes.|Grandes cambios, emociones profundas.|Big changes, deep emotions.|21,79
+Pluie|Lluvia|Rain|Renouveau après une tristesse passagère.|Renovación tras una tristeza pasajera.|Renewal after passing sadness.|04,37
+Or|Oro|Gold|Valeur, réussite et reconnaissance.|Valor, éxito y reconocimiento.|Value, success and recognition.|88,17
+Sang|Sangre|Blood|Énergie vitale, lien de famille.|Energía vital, lazos de familia.|Life energy, family ties.|13,57
+Enfant|Niño|Child|Innocence et joie.|Inocencia y alegría.|Innocence and joy.|02,29
+Mère|Madre|Mother|Protection et amour.|Protección y amor.|Protection and love.|10,67
+Père|Padre|Father|Autorité, un conseil à écouter.|Autoridad, un consejo que escuchar.|Authority, advice worth hearing.|20,74
+Ami|Amigo|Friend|Soutien et bonne compagnie.|Apoyo y buena compañía.|Support and good company.|16,38
+Ennemi|Enemigo|Enemy|Un conflit intérieur à résoudre.|Un conflicto interior por resolver.|An inner conflict to resolve.|44,92
+Voleur|Ladrón|Thief|Peur de perdre quelque chose.|Miedo a perder algo.|Fear of losing something.|35,81
+Police|Policía|Police|Règles, culpabilité ou besoin de protection.|Reglas, culpa o necesidad de protección.|Rules, guilt or a need for protection.|23,69
+Église|Iglesia|Church|Paix et foi.|Paz y fe.|Peace and faith.|06,55
+Cimetière|Cementerio|Cemetery|Un passé à laisser derrière toi.|Un pasado que dejar atrás.|A past to leave behind.|99,48
+Avion|Avión|Plane|Voyage ou grand projet.|Viaje o gran proyecto.|Travel or a big project.|27,64
+Train|Tren|Train|Un parcours qui avance.|Un camino que avanza.|A path moving forward.|31,72
+Lune|Luna|Moon|Intuition et cycles.|Intuición y ciclos.|Intuition and cycles.|41,82
+Soleil|Sol|Sun|Succès et joie.|Éxito y alegría.|Success and joy.|25,60
+Étoiles|Estrellas|Stars|Espoir et rêves à réaliser.|Esperanza y sueños por cumplir.|Hope and dreams to fulfil.|34,77
+Fleurs|Flores|Flowers|Beauté et amour.|Belleza y amor.|Beauty and love.|43,86
+Arbre|Árbol|Tree|Croissance et racines solides.|Crecimiento y raíces sólidas.|Growth and strong roots.|46,93
+Oiseau|Pájaro|Bird|Liberté, un message qui arrive.|Libertad, un mensaje que llega.|Freedom, a message on its way.|52,89
+Lion|León|Lion|Courage et force.|Valentía y fuerza.|Courage and strength.|56,94
+Araignée|Araña|Spider|Patience, ou un piège à éviter.|Paciencia, o una trampa que evitar.|Patience, or a trap to avoid.|61,83
+Rat|Rata|Rat|Un problème caché.|Un problema oculto.|A hidden problem.|65,96
+Nourriture|Comida|Food|Abondance et partage.|Abundancia y compartir.|Abundance and sharing.|58,75
+École|Escuela|School|Apprentissage et nouveau savoir.|Aprendizaje y nuevo conocimiento.|Learning and new knowledge.|62,97
+Hôpital|Hospital|Hospital|Repos et guérison.|Descanso y sanación.|Rest and healing.|49,87
+Clés|Llaves|Keys|Une solution ou une opportunité.|Una solución o una oportunidad.|A solution or an opportunity.|53,78
+Miroir|Espejo|Mirror|Ton image et ton regard sur toi.|Tu imagen y cómo te ves.|Your image and how you see yourself.|84,95
+Bateau|Barco|Boat|Un voyage de vie, de la patience.|Un viaje de vida, paciencia.|A life journey, patience.|70,91
+Chaussures|Zapatos|Shoes|Un nouveau chemin à prendre.|Un nuevo camino por tomar.|A new path to take.|73,80
+Téléphone|Teléfono|Phone|Une nouvelle qui arrive.|Una noticia que llega.|News on its way.|39,50
+Mangue|Mango|Mango|Douceur et plaisir qui arrivent.|Dulzura y placer que llegan.|Sweetness and pleasure on the way.|4,12
+Banane|Banano|Banana|Abondance et bonne santé.|Abundancia y buena salud.|Abundance and good health.|11,25
+Orange|Naranja|Orange|Énergie nouvelle et joie.|Energía nueva y alegría.|New energy and joy.|18,38
+Ananas|Piña|Pineapple|Réussite, accueil chaleureux.|Éxito y buena acogida.|Success and a warm welcome.|25,51
+Pastèque|Sandía|Watermelon|Moment de fête avec la famille.|Momento de fiesta en familia.|A festive moment with family.|32,64
+Avocat|Aguacate|Avocado|Prospérité qui grandit doucement.|Prosperidad que crece despacio.|Prosperity slowly growing.|39,77
+Noix de coco|Coco|Coconut|Protection, richesse cachée.|Protección y riqueza escondida.|Protection and hidden wealth.|46,90
+Raisin|Uva|Grapes|Union, chance en groupe.|Unión y suerte en grupo.|Unity, luck shared with others.|53,13
+Citron|Limón|Lemon|Une épreuve amère qui purifie.|Una prueba amarga que purifica.|A bitter test that cleanses.|60,26
+Pomme|Manzana|Apple|Tentation ou amour qui approche.|Tentación o amor que se acerca.|Temptation or love approaching.|67,39
+Papaye|Papaya|Papaya|Guérison et bien-être.|Sanación y bienestar.|Healing and well-being.|74,52
+Goyave|Guayaba|Guava|Petite chance inattendue.|Pequeña suerte inesperada.|A small unexpected luck.|81,65
+Tomate|Tomate|Tomato|Passion et énergie au foyer.|Pasión y energía en el hogar.|Passion and energy at home.|88,78
+Carotte|Zanahoria|Carrot|Patience récompensée.|Paciencia recompensada.|Patience rewarded.|5,1
+Oignon|Cebolla|Onion|Larmes qui précèdent une libération.|Lágrimas antes de una liberación.|Tears before a release.|12,14
+Piment|Ají picante|Hot pepper|Dispute ou passion vive.|Discusión o pasión intensa.|Quarrel or fiery passion.|19,27
+Igname|Ñame|Yam|Racines solides, stabilité.|Raíces firmes y estabilidad.|Strong roots, stability.|26,40
+Patate douce|Batata|Sweet potato|Douceur simple, bonheur modeste.|Dulzura simple y felicidad sencilla.|Simple sweetness, modest happiness.|33,53
+Maïs|Maíz|Corn|Récolte et bonne fortune.|Cosecha y buena fortuna.|Harvest and good fortune.|40,66
+Haricot|Frijol|Beans|Travail qui nourrit la famille.|Trabajo que alimenta a la familia.|Work that feeds the family.|47,79
+Moto|Motocicleta|Motorcycle|Liberté et rapidité, attention au risque.|Libertad y rapidez, cuidado con el riesgo.|Freedom and speed, mind the risk.|61,15
+Autobus|Autobús|Bus|Voyage partagé, aide de la communauté.|Viaje compartido, ayuda de la comunidad.|Shared journey, community help.|68,28
+Camion|Camión|Truck|Gros travail, gros gain.|Mucho trabajo, buena ganancia.|Big job, big reward.|75,41
+Vélo|Bicicleta|Bicycle|Effort régulier qui paie.|Esfuerzo constante que da frutos.|Steady effort that pays off.|6,80
+Hélicoptère|Helicóptero|Helicopter|Voir la situation de haut, aide rapide.|Ver la situación desde arriba, ayuda rápida.|Seeing it from above, quick help.|20,16
+Taxi|Taxi|Taxi|Quelqu’un te conduit vers une solution.|Alguien te lleva hacia una solución.|Someone guides you to a solution.|27,29
+Ambulance|Ambulancia|Ambulance|Besoin d’aide ou de repos.|Necesidad de ayuda o descanso.|Need for help or rest.|34,42
+Voiture de police|Patrulla|Police car|Règles à respecter, protection.|Reglas que cumplir, protección.|Rules to follow, protection.|41,55
+Tracteur|Tractor|Tractor|Travail lent mais sûr.|Trabajo lento pero seguro.|Slow but sure work.|48,68
+Pirogue|Piragua|Canoe|Petit pas, grand courage.|Pequeño paso, gran valor.|Small step, great courage.|55,81
+Trottinette|Patineta|Scooter|Petit plaisir, légèreté.|Pequeño placer, ligereza.|Small pleasure, lightness.|62,4
+Accident de voiture|Accidente de carro|Car crash|Avertissement : ralentis.|Aviso: reduce la velocidad.|Warning: slow down.|69,17
+Voiture neuve|Carro nuevo|New car|Nouveau départ, progrès.|Nuevo comienzo, progreso.|New beginning, progress.|76,30
+Panne|Avería|Breakdown|Pause forcée, repense ton plan.|Pausa forzada, repiensa tu plan.|Forced pause, rethink your plan.|83,43
+Pneu|Llanta|Tire|Petit obstacle sur la route.|Pequeño obstáculo en el camino.|A small bump on the road.|90,56
+Camion de pompiers|Camión de bomberos|Fire truck|Une crise va être maîtrisée.|Una crisis será controlada.|A crisis will be brought under control.|7,69
+Coq|Gallo|Rooster|Réveil, fierté, nouvelle du matin.|Despertar, orgullo, noticia de la mañana.|Awakening, pride, morning news.|42,44
+Vache|Vaca|Cow|Richesse tranquille.|Riqueza tranquila.|Quiet wealth.|63,83
+Cochon|Cerdo|Pig|Gain matériel, gourmandise.|Ganancia material, gula.|Material gain, indulgence.|70,6
+Chèvre|Cabra|Goat|Entêtement ou petit profit.|Terquedad o pequeña ganancia.|Stubbornness or small profit.|77,19
+Papillon|Mariposa|Butterfly|Transformation et légèreté.|Transformación y ligereza.|Transformation and lightness.|15,71
+Requin|Tiburón|Shark|Danger, concurrence forte.|Peligro, competencia fuerte.|Danger, strong competition.|22,84
+Tortue|Tortuga|Turtle|Lenteur qui mène au but.|Lentitud que lleva a la meta.|Slow pace that reaches the goal.|29,7
+Singe|Mono|Monkey|Plaisanterie, quelqu’un imite ou triche.|Broma, alguien imita o engaña.|Joking, someone copying or cheating.|36,20
+Aigle|Águila|Eagle|Vision claire, haut niveau.|Visión clara, alto nivel.|Clear vision, high level.|43,33
+Âne|Burro|Donkey|Travail dur, patience.|Trabajo duro, paciencia.|Hard work, patience.|50,46
+Abeille|Abeja|Bee|Effort collectif, douceur après le travail.|Esfuerzo colectivo, dulzura tras el trabajo.|Teamwork, sweetness after the work.|57,59
+Courir|Correr|Running|Pression ou hâte de réussir.|Presión o prisa por lograr algo.|Pressure or rush to succeed.|64,72
+Nager|Nadar|Swimming|Traverser les émotions avec succès.|Atravesar las emociones con éxito.|Getting through emotions well.|85,21
+Pleurer|Llorar|Crying|Soulagement, joie à venir.|Alivio, alegría por venir.|Relief, joy to come.|2,34
+Rire|Reír|Laughing|Bonne nouvelle, détente.|Buena noticia, relajación.|Good news, relaxation.|9,47
+Danser|Bailar|Dancing|Fête, bonheur partagé.|Fiesta, felicidad compartida.|Celebration, shared happiness.|16,60
+Se marier|Casarse|Getting married|Engagement, grande décision.|Compromiso, gran decisión.|Commitment, a big decision.|23,73
+Se battre|Pelear|Fighting|Conflit à résoudre.|Conflicto por resolver.|Conflict to resolve.|30,86
+Fuir|Huir|Fleeing|Tu évites un problème, affronte-le.|Evitas un problema, enfréntalo.|You avoid a problem, face it.|37,9
+Manger|Comer|Eating|Besoin satisfait, gain proche.|Necesidad satisfecha, ganancia cercana.|Need met, gain nearby.|44,22
+Dormir|Dormir|Sleeping|Besoin de repos, calme.|Necesidad de descanso, calma.|Need for rest, calm.|51,35
+Chanter|Cantar|Singing|Joie qui s’exprime.|Alegría que se expresa.|Joy being expressed.|58,48
+Prier|Rezar|Praying|Protection et paix intérieure.|Protección y paz interior.|Protection and inner peace.|65,61
+Voyager|Viajar|Traveling|Changement, nouvelles rencontres.|Cambio, nuevos encuentros.|Change, new meetings.|72,74
+Chercher|Buscar|Searching|Tu cherches une réponse, elle approche.|Buscas una respuesta, se acerca.|You seek an answer, it is near.|79,87
+Acheter|Comprar|Buying|Décision financière à bien peser.|Decisión financiera a pensar bien.|A money decision to weigh well.|86,10
+Crier|Gritar|Shouting|Parole retenue qui veut sortir.|Palabra contenida que quiere salir.|Held-back words wanting out.|3,23
+Construire|Construir|Building|Projet solide qui se met en place.|Proyecto sólido que toma forma.|A solid plan taking shape.|10,36
+Se perdre|Perderse|Getting lost|Besoin de direction, demande conseil.|Necesidad de rumbo, pide consejo.|Need for direction, ask for advice.|17,49
+Rose|Rosa|Rose|Amour et beauté.|Amor y belleza.|Love and beauty.|24,62
+Palmier|Palmera|Palm tree|Victoire, repos au soleil.|Victoria, descanso al sol.|Victory, rest in the sun.|31,75
+Herbe|Hierba|Grass|Vie simple, croissance.|Vida sencilla, crecimiento.|Simple life, growth.|45,11
+Tournesol|Girasol|Sunflower|Optimisme, suis la lumière.|Optimismo, sigue la luz.|Optimism, follow the light.|52,24
+Bambou|Bambú|Bamboo|Flexibilité qui sauve.|Flexibilidad que salva.|Flexibility that saves.|59,37
+Cactus|Cactus|Cactus|Protection, personne difficile.|Protección, persona difícil.|Protection, a prickly person.|66,50
+Jasmin|Jazmín|Jasmine|Douceur de la nuit, romance.|Dulzura de la noche, romance.|Night sweetness, romance.|73,63
+Lys|Lirio|Lily|Pureté, paix.|Pureza, paz.|Purity, peace.|80,76
+Orchidée|Orquídea|Orchid|Élégance, rareté, désir.|Elegancia, rareza, deseo.|Elegance, rarity, desire.|87,89
+Basilic|Albahaca|Basil|Protection spirituelle.|Protección espiritual.|Spiritual protection.|4,12
+Menthe|Menta|Mint|Fraîcheur, nouveau souffle.|Frescura, nuevo aliento.|Freshness, a new breath.|11,25
+Canne à sucre|Caña de azúcar|Sugarcane|Douceur gagnée par l’effort.|Dulzura ganada con esfuerzo.|Sweetness earned through effort.|18,38
+Bananier|Platanero|Banana plant|Foyer nourrissant, abondance.|Hogar que alimenta, abundancia.|A nourishing home, abundance.|25,51
+Manguier|Mango (árbol)|Mango tree|Générosité, fruits à partager.|Generosidad, frutos para compartir.|Generosity, fruit to share.|32,64
+Racine|Raíz|Root|Origines, base solide.|Orígenes, base sólida.|Origins, solid base.|39,77
+Feuille morte|Hoja seca|Dead leaf|Fin d’une période, laisse partir.|Fin de una etapa, deja ir.|End of a period, let go.|46,90
+Jardin|Jardín|Garden|Paix, soin porté à ta vie.|Paz, cuidado de tu vida.|Peace, caring for your life.|53,13
+Graine|Semilla|Seed|Début d’une idée qui va grandir.|Inicio de una idea que crecerá.|Start of an idea that will grow.|60,26
+Forêt|Bosque|Forest|Mystère, besoin de réflexion.|Misterio, necesidad de reflexión.|Mystery, need for reflection.|67,39
+Vent|Viento|Wind|Changement qui souffle.|Cambio que sopla.|Change in the air.|74,52
+Tempête|Tormenta|Storm|Période agitée avant le calme.|Etapa agitada antes de la calma.|Rough period before calm.|81,65
+Ouragan|Huracán|Hurricane|Grand bouleversement.|Gran trastorno.|Major upheaval.|88,78
+Éclair|Relámpago|Lightning|Idée ou nouvelle soudaine.|Idea o noticia repentina.|Sudden idea or news.|12,14
+Vague|Ola|Wave|Émotion qui monte puis passe.|Emoción que sube y pasa.|An emotion that rises and passes.|26,40
+Rivière|Río|River|Vie qui coule, argent qui circule.|Vida que fluye, dinero que circula.|Life flowing, money moving.|33,53
+Étoile|Estrella|Star|Espoir et guidance.|Esperanza y guía.|Hope and guidance.|54,2
+Nuage|Nube|Cloud|Doute passager.|Duda pasajera.|A passing doubt.|61,15
+Arc-en-ciel|Arcoíris|Rainbow|Fin des soucis, promesse.|Fin de preocupaciones, promesa.|End of worries, a promise.|68,28
+Montagne|Montaña|Mountain|Grand défi, grande victoire.|Gran desafío, gran victoria.|Big challenge, big victory.|75,41
+Tremblement de terre|Terremoto|Earthquake|Base qui bouge, reconstruction.|Base que se mueve, reconstrucción.|Shaken foundations, rebuilding.|82,54
+Neige|Nieve|Snow|Silence, pureté, pause.|Silencio, pureza, pausa.|Silence, purity, pause.|89,67
+Inondation|Inundación|Flood|Trop d’émotions ou de dépenses.|Demasiadas emociones o gastos.|Too many emotions or expenses.|6,80
+Plage|Playa|Beach|Repos bien mérité.|Descanso bien merecido.|Well-earned rest.|13,3
+Brouillard|Niebla|Fog|Manque de clarté, attends.|Falta de claridad, espera.|Lack of clarity, wait.|20,16
+Sécheresse|Sequía|Drought|Manque temporaire, sois économe.|Falta temporal, sé ahorrador.|Temporary shortage, be thrifty.|27,29
+Colombe|Paloma|Dove|Paix et message tendre.|Paz y mensaje tierno.|Peace and a gentle message.|34,42
+Perroquet|Loro|Parrot|Bavardage ou secret révélé.|Chisme o secreto revelado.|Gossip or a secret revealed.|48,68
+Hibou|Búho|Owl|Sagesse et avertissement nocturne.|Sabiduría y aviso nocturno.|Wisdom and a night warning.|55,81
+Corbeau|Cuervo|Raven|Mystère, changement proche.|Misterio y cambio cercano.|Mystery, change ahead.|62,4
+Colibri|Colibrí|Hummingbird|Joie légère et bonne nouvelle.|Alegría ligera y buena noticia.|Light joy and good news.|69,17
+Pigeon|Pichón|Pigeon|Nouvelle d’un proche.|Noticia de un allegado.|News from someone close.|76,30
+Poule|Gallina|Hen|Foyer et provisions assurés.|Hogar y sustento asegurado.|A secure home and provisions.|90,56
+Canard|Pato|Duck|Adaptation, vie tranquille.|Adaptación y vida tranquila.|Adaptability, a calm life.|7,69
+Cygne|Cisne|Swan|Élégance et amour fidèle.|Elegancia y amor fiel.|Grace and faithful love.|14,82
+Flamant rose|Flamenco|Flamingo|Équilibre et charme.|Equilibrio y encanto.|Balance and charm.|21,5
+Pélican|Pelícano|Pelican|Générosité et patience.|Generosidad y paciencia.|Generosity and patience.|28,18
+Mouette|Gaviota|Seagull|Liberté près de la mer.|Libertad cerca del mar.|Freedom by the sea.|35,31
+Faucon|Halcón|Falcon|Précision, objectif atteint.|Precisión y meta alcanzada.|Precision, a goal reached.|42,44
+Paon|Pavo real|Peacock|Fierté et beauté dévoilée.|Orgullo y belleza mostrada.|Pride and beauty revealed.|49,57
+Dindon|Pavo|Turkey|Table partagée, abondance.|Mesa compartida y abundancia.|A shared table, abundance.|56,70
+Moineau|Gorrión|Sparrow|Petite joie quotidienne.|Pequeña alegría diaria.|Small everyday joy.|63,83
+Hirondelle|Golondrina|Swallow|Retour et renouveau.|Regreso y renovación.|Return and renewal.|70,6
+Perdrix|Perdiz|Partridge|Chance discrète qui approche.|Suerte discreta que se acerca.|Quiet luck approaching.|77,19
+Fourmi|Hormiga|Ant|Effort collectif et économie.|Esfuerzo colectivo y ahorro.|Teamwork and saving.|8,58
+Moustique|Mosquito|Mosquito|Petit ennui qui dérange.|Pequeña molestia.|A small nuisance.|22,84
+Mouche|Mosca|Fly|Irritation passagère.|Irritación pasajera.|Passing irritation.|29,7
+Coccinelle|Mariquita|Ladybug|Chance et protection.|Suerte y protección.|Luck and protection.|36,20
+Libellule|Libélula|Dragonfly|Légèreté, esprit libre.|Ligereza y espíritu libre.|Lightness, a free spirit.|43,33
+Luciole|Luciérnaga|Firefly|Petite lumière d’espoir.|Pequeña luz de esperanza.|A small light of hope.|50,46
+Cigale|Cigarra|Cicada|Joie d’été, insouciance.|Alegría de verano y despreocupación.|Summer joy, carefree days.|57,59
+Grillon|Grillo|Cricket|Bonne fortune au foyer.|Buena fortuna en el hogar.|Good fortune at home.|64,72
+Sauterelle|Saltamontes|Grasshopper|Saut en avant, nouvelle étape.|Salto adelante, nueva etapa.|A leap forward, new stage.|71,85
+Scarabée|Escarabajo|Beetle|Persévérance et renaissance.|Perseverancia y renacimiento.|Perseverance and rebirth.|78,8
+Ver de terre|Lombriz|Earthworm|Renouveau lent mais sûr.|Renovación lenta pero segura.|Slow but sure renewal.|85,21
+Chenille|Oruga|Caterpillar|Changement en préparation.|Cambio en preparación.|Change in the making.|2,34
+Escargot|Caracol|Snail|Avancer lentement, protéger sa maison.|Avanzar despacio, proteger el hogar.|Moving slowly, guarding home.|9,47
+Guêpe|Avispa|Wasp|Conflit ou jalousie piquante.|Conflicto o celos punzantes.|Conflict or stinging jealousy.|16,60
+Termite|Termita|Termite|Inquiétude cachée à vérifier.|Inquietud oculta por revisar.|A hidden worry to check.|23,73
+Cafard|Cucaracha|Cockroach|Résistance face à l’adversité.|Resistencia ante la adversidad.|Resilience in hard times.|30,86
+Scorpion|Escorpión|Scorpion|Méfiance, trahison possible.|Cautela y posible traición.|Caution, possible betrayal.|37,9
+Dauphin|Delfín|Dolphin|Amitié, intelligence, joie.|Amistad, inteligencia y alegría.|Friendship, intelligence, joy.|58,48
+Baleine|Ballena|Whale|Grande émotion, grande chance.|Gran emoción, gran suerte.|Deep emotion, great fortune.|65,61
+Tortue de mer|Tortuga marina|Sea turtle|Longue vie et sagesse.|Larga vida y sabiduría.|Long life and wisdom.|72,74
+Crabe|Cangrejo|Crab|Avancer de côté, prudence.|Avanzar de lado, prudencia.|Moving sideways, caution.|79,87
+Homard|Langosta|Lobster|Prospérité et festin.|Prosperidad y banquete.|Prosperity and a feast.|86,10
+Crevette|Camarón|Shrimp|Petit gain qui s’accumule.|Pequeña ganancia que se acumula.|Small gains adding up.|3,23
+Poulpe|Pulpo|Octopus|Intelligence, plusieurs tâches.|Inteligencia y varias tareas.|Intelligence, many tasks.|10,36
+Méduse|Medusa|Jellyfish|Douleur douce, il faut s’éloigner.|Dolor suave, conviene alejarse.|Mild pain, keep your distance.|17,49
+Étoile de mer|Estrella de mar|Starfish|Guérison et nouveau départ.|Sanación y nuevo comienzo.|Healing and a fresh start.|24,62
+Hippocampe|Caballito de mar|Seahorse|Patience et amour tendre.|Paciencia y amor tierno.|Patience and tender love.|31,75
+Anguille|Anguila|Eel|Situation glissante à surveiller.|Situación resbaladiza por vigilar.|A slippery situation to watch.|38,88
+Raie|Raya|Ray|Calme apparent, prudence.|Calma aparente y prudencia.|Apparent calm, caution.|45,11
+Thon|Atún|Tuna|Force et voyage lointain.|Fuerza y viaje lejano.|Strength and a far journey.|52,24
+Sardine|Sardina|Sardine|Union et petits profits.|Unión y pequeñas ganancias.|Unity and small profits.|59,37
+Huître|Ostra|Oyster|Trésor caché à découvrir.|Tesoro oculto por descubrir.|A hidden treasure to find.|66,50
+Corail|Coral|Coral|Beauté fragile à protéger.|Belleza frágil por proteger.|Fragile beauty to protect.|73,63
+Grenouille|Rana|Frog|Chance de printemps et changement.|Suerte de primavera y cambio.|Spring luck and change.|80,76
+Crocodile|Cocodrilo|Crocodile|Ennemi caché, avidité.|Enemigo oculto y codicia.|A hidden enemy, greed.|87,89
+Chêne|Roble|Oak|Force et solidité.|Fuerza y solidez.|Strength and solidity.|11,25
+Pin|Pino|Pine|Longévité et calme.|Longevidad y calma.|Longevity and calm.|18,38
+Cocotier|Cocotero|Coconut palm|Abondance près de la mer.|Abundancia cerca del mar.|Abundance by the sea.|25,51
+Baobab|Baobab|Baobab|Ancêtres et grande mémoire.|Ancestros y gran memoria.|Ancestors and deep memory.|53,13
+Cèdre|Cedro|Cedar|Protection et noblesse.|Protección y nobleza.|Protection and nobility.|60,26
+Acajou|Caoba|Mahogany|Valeur durable, héritage.|Valor duradero y herencia.|Lasting value, legacy.|67,39
+Saule|Sauce|Willow|Tristesse qui s’apaise.|Tristeza que se calma.|Sadness easing.|74,52
+Olivier|Olivo|Olive tree|Paix et réconciliation.|Paz y reconciliación.|Peace and reconciliation.|81,65
+Figuier|Higuera|Fig tree|Fertilité et fruits à venir.|Fertilidad y frutos por venir.|Fertility and fruit to come.|88,78
+Ceiba|Ceiba|Ceiba|Arbre sacré, ancêtres.|Árbol sagrado y ancestros.|A sacred tree, ancestors.|5,1
+Mangrove|Mangle|Mangrove|Protection entre deux mondes.|Protección entre dos mundos.|Protection between two worlds.|19,27
+Feuille|Hoja|Leaf|Changement doux de saison.|Cambio suave de estación.|A gentle change of season.|33,53
+Branche|Rama|Branch|Nouvelle option ou famille.|Nueva opción o familia.|A new option or family.|40,66
+Rosée|Rocío|Dew|Début frais et délicat.|Comienzo fresco y delicado.|A fresh, delicate start.|34,42
+Aurore|Aurora|Dawn|Nouveau commencement.|Nuevo comienzo.|A new beginning.|48,68
+Crépuscule|Crepúsculo|Dusk|Fin de cycle, repos.|Fin de ciclo y descanso.|End of a cycle, rest.|55,81
+Comète|Cometa|Comet|Événement rare et passager.|Evento raro y pasajero.|A rare, fleeting event.|62,4
+Ciel bleu|Cielo azul|Blue sky|Sérénité et liberté.|Serenidad y libertad.|Serenity and freedom.|69,17
+Grêle|Granizo|Hail|Contrariété soudaine.|Contratiempo repentino.|A sudden setback.|76,30
+Chaleur|Calor|Heat|Passion et fatigue.|Pasión y cansancio.|Passion and fatigue.|83,43
+Fraîcheur|Frescura|Coolness|Détente et apaisement.|Alivio y calma.|Relief and ease.|90,56
+Tonnerre|Trueno|Thunder|Avertissement fort.|Aviso fuerte.|A loud warning.|7,69
+Lac|Lago|Lake|Calme intérieur.|Calma interior.|Inner calm.|28,18
+Cascade|Cascada|Waterfall|Libération d’émotions.|Liberación de emociones.|Release of emotions.|35,31
+Île|Isla|Island|Solitude choisie, refuge.|Soledad elegida y refugio.|Chosen solitude, refuge.|49,57
+Volcan|Volcán|Volcano|Colère ou énergie réprimée.|Ira o energía reprimida.|Anger or pent-up energy.|56,70
+Désert|Desierto|Desert|Épreuve et recherche de sens.|Prueba y búsqueda de sentido.|A trial, a search for meaning.|63,83
+Grotte|Cueva|Cave|Secret et retour à soi.|Secreto y regreso a uno mismo.|A secret, returning to oneself.|70,6
+Colline|Colina|Hill|Petite montée vers le succès.|Pequeña subida hacia el éxito.|A small climb to success.|77,19
+Vallée|Valle|Valley|Repos après l’effort.|Descanso tras el esfuerzo.|Rest after effort.|84,32
+Champ|Campo|Field|Terre fertile, projets.|Tierra fértil y proyectos.|Fertile ground, projects.|1,45
+Sable|Arena|Sand|Temps qui passe.|Tiempo que pasa.|Time passing.|15,71
+Pierre|Piedra|Stone|Fermeté et obstacle.|Firmeza y obstáculo.|Firmness and an obstacle.|22,84
+Boue|Barro|Mud|Situation confuse à nettoyer.|Situación confusa por limpiar.|A messy situation to clean up.|29,7
+Source|Manantial|Spring|Origine pure, renouveau.|Origen puro y renovación.|A pure source, renewal.|36,20
+Sentier|Sendero|Trail|Chemin personnel.|Camino personal.|A personal path.|43,33
+Falaise|Acantilado|Cliff|Limite à ne pas franchir.|Límite que no se debe cruzar.|A limit not to cross.|50,46
+Marais|Pantano|Swamp|Stagnation, il faut avancer.|Estancamiento: hay que avanzar.|Stagnation, time to move on.|57,59`.trim().split('\n').map(l=>l.split('|'));
+const IDX={fr:0,es:1,en:2};
+function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+function tchala(){
+  const inp=$('tcIn'),list1=$('tcList'),list2=$('tcList2');if(!inp)return;
+  const t=T(),q=norm(inp.value.trim()),i=IDX[lang]||0;list1.innerHTML='';list2.innerHTML='';let n=0,list=list1;
+  DATA.forEach(e=>{
+    if(q&&!(norm(e[0]).includes(q)||norm(e[1]).includes(q)||norm(e[2]).includes(q)))return;
+    list=n<12?list1:list2;n++;
+    const d=document.createElement('div');d.className='tcrow';
+    const b=document.createElement('b');b.textContent=e[i];d.appendChild(b);
+    const p=document.createElement('p');p.textContent=e[3+i];d.appendChild(p);
+    const w=document.createElement('div');
+    const l=document.createElement('span');l.className='tg';l.textContent=t.tcNums+' ';w.appendChild(l);
+    e[6].split(',').forEach(x=>{const s=document.createElement('span');s.className='np';s.textContent=x;w.appendChild(s)});
+    d.appendChild(w);list.appendChild(d);
+  });
+  if(!n){const p=document.createElement('p');p.className='small';p.textContent=t.tcNone;list1.appendChild(p)}
+}
+window.__tcAdd=function(rows){
+  const nn=s=>norm(String(s)).replace(/[^a-z0-9]/g,'');
+  const have=new Set();DATA.forEach(e=>{have.add(nn(e[0]));have.add(nn(e[1]))});
+  let added=0;
+  rows.forEach(r=>{
+    if(!r||r.length<6)return;
+    if(have.has(nn(r[0]))||have.has(nn(r[1])))return;
+    const idx=DATA.length,n1=(idx*7+3)%90+1;let n2=(idx*13+11)%90+1;if(n2===n1)n2=n2%90+1;
+    DATA.push([r[0],r[1],r[2],r[3],r[4],r[5],n1+','+n2]);have.add(nn(r[0]));have.add(nn(r[1]));added++;
+  });
+  try{tchala()}catch(e){}
+  return added;
+};
+window.renderExtras=function(){
+  const t=T();
+  $('tkIn').placeholder=t.tkPh;$('tcIn').placeholder=t.tcPh;
+  $('adH2').style.display=$('adH3').style.display=esVip()?'none':'block';
+  countdown();stats();ticket();tchala();
+};
+$('tkIn').addEventListener('input',ticket);
+$('tcIn').addEventListener('input',tchala);
+const _rr=renderReal10;
+renderReal10=function(){_rr();stats();ticket()};
+setInterval(countdown,1000);
+renderExtras();
+})();
 </script>
 <script>
 // ===== ASTRAL / 12 SIN · HT FR ES EN + audio =====
@@ -610,7 +1004,7 @@ fr:{code:['fr-FR','fr'],fb:'fr-FR',to:'au',
  dayLine:(d,p)=>`Ce ${d}, ${p} veille sur toi.`,
  dayMsg:["Tu vas recevoir une bonne nouvelle au travail aujourd'hui.", "Un vieil ami va t'appeler, réponds-lui.", "Aujourd'hui est un bon jour pour commencer un projet que tu repoussais.", "Reste calme, un problème va se régler sans que tu aies à te fatiguer.", "Une petite surprise agréable va venir à toi.", "Prends un moment pour te reposer, ton corps en a besoin.", "Un mot gentil d'un proche va améliorer ton humeur.", "Ta patience sera remarquée et appréciée aujourd'hui.", "Une porte que tu croyais fermée va s'entrouvrir.", "Quelqu'un va te remercier pour quelque chose que tu as fait il y a un moment.", "Ton intuition est vive aujourd'hui, fais confiance à ta première impression.", "Un petit pas aujourd'hui t'emmènera plus loin que tu ne le crois.", "Tu trouveras un moment de paix au milieu d'une journée chargée.", "Une conversation agréable va te donner une nouvelle idée.", "Souris d'abord, et la journée te sourira en retour.", "Une invitation inattendue peut illuminer ton après-midi.", "Aujourd'hui est idéal pour mettre de l'ordre, dans la maison comme dans ta tête.", "Un message que tu attendais est en route.", "Ta bonne énergie va inspirer quelqu'un autour de toi.", "Lâche une petite inquiétude, elle est plus légère qu'elle n'en a l'air.", "Quelqu'un va te surprendre en te tendant la main.", "Aujourd'hui, écoute plus que tu ne parles, tu apprendras quelque chose de précieux.", "Un joyeux souvenir va te rendre visite et te réchauffer le cœur.", "Les gens autour de toi voient tes efforts et les respectent.", "Prends ton temps pour décider, la bonne réponse viendra clairement avant ce soir.", "Un bon fou rire avec quelqu'un que tu aimes arrive.", "Ta gentillesse va te revenir aujourd'hui.", "Sois fier ou fière du chemin parcouru, continue.", "Un nouveau départ frappe doucement à la porte, ouvre-lui avec calme.", "Ce soir, tu t'endormiras le cœur léger."],
  loveMsg:["Une petite dispute finira par un gros baiser.", "Si tu es célibataire, quelqu'un va t'écrire ce soir.", "Un mot doux va te réchauffer le cœur aujourd'hui.", "Prends le temps d'écouter ta moitié, cela vous rapprochera.", "Un ancien sentiment revient dans tes pensées, garde le cœur tranquille.", "Une rencontre inattendue peut allumer une étincelle.", "Dis « je t'aime » à quelqu'un aujourd'hui, il ou elle a besoin de l'entendre.", "Un câlin dira plus qu'un long discours.", "Un dîner simple à deux fera revenir la magie.", "Ton sourire va attirer le regard de quelqu'un de spécial.", "Quelqu'un pense à toi en ce moment, avec le cœur chaud.", "Pardonne une petite erreur, l'amour est plus fort que l'orgueil.", "Un message surprise va faire battre ton cœur plus vite.", "Si tu es célibataire, une amitié pourrait devenir quelque chose de plus.", "Remercie ton partenaire, un simple merci fait fondre les cœurs.", "Un tendre souvenir va te rapprocher de la personne que tu aimes.", "L'amour grandit quand on prend du temps l'un pour l'autre, prends ce temps aujourd'hui.", "Un compliment va illuminer ta soirée.", "Ouvre ton cœur sans peur, la bonne personne verra sa beauté.", "Un petit geste d'attention signifiera beaucoup pour quelqu'un.", "Dansez, chantez ou riez ensemble, la joie est le plus beau langage de l'amour.", "Quelqu'un de ton passé peut te dire bonjour, écoute avec un cœur calme.", "Parle doucement aujourd'hui, tes mots iront droit au cœur.", "Un moment seul à seul avec la personne que tu aimes va te redonner de l'énergie.", "Ta loyauté est remarquée et chérie par quelqu'un de proche.", "Si ton cœur est lourd, une bonne discussion avec un proche l'allégera.", "L'amour surprend quand on s'y attend le moins, reste ouvert ou ouverte.", "Aime-toi aujourd'hui, tu mérites la même tendresse que tu donnes.", "Une chanson romantique va te rappeler quelqu'un de spécial.", "Ce soir, un mot doux avant de dormir rendra ton amour plus beau."],
- T:{title:'✨ LES 12 SIGNES ASTRAUX',hint:'Touche ton signe, ou entre ta date de naissance.',born:'Ta date de naissance :',all:'🔊 Écouter les 12 signes',mine:'🔊 Écouter ma journée',stop:'⏹ Arrêter',
+ T:{title:'✨ LES 12 SIGNES ASTRAUX',hint:'Touche ton signe ou fais défiler vers le bas.',born:'Ta date de naissance :',all:'🔊 Écouter les 12 signes',mine:'🔊 Écouter ma journée',stop:'⏹ Arrêter',
   yours:(r,n)=>`Si tu es né(e) du ${r}, ton signe astrologique est ${n.toUpperCase()}.`,lucky:'Ton numéro porte-bonheur aujourd’hui est le',color:'Ta couleur est',day:'Ta journée',love:'Situation amoureuse',
   bye:n=>`Bonne chance et bonne journée à toi, ${n} ! On se retrouve demain.`,noAudio:'Ce téléphone ne prend pas en charge l\'audio.',fb:'',
   disc:'Pour le divertissement uniquement. Les positions de la Lune et des planètes sont calculées pour aujourd’hui ; leurs interprétations sont traditionnelles et ne prédisent rien. Les numéros sont aléatoires.'}},
@@ -623,7 +1017,7 @@ es:{code:['es-US','es-DO','es-ES','es'],fb:'es-ES',to:'al',
  dayLine:(d,p)=>`Este ${d}, ${p} te acompaña.`,
  dayMsg:["Hoy recibirás una buena noticia en el trabajo.", "Un viejo amigo te va a llamar, respóndele.", "Hoy es un buen día para empezar un proyecto que venías aplazando.", "Mantén la calma, un problema se resolverá sin que te esfuerces.", "Una pequeña sorpresa agradable llegará hasta ti.", "Tómate un momento para descansar, tu cuerpo lo necesita.", "Una palabra amable de alguien cercano te levantará el ánimo.", "Tu paciencia será notada y apreciada hoy.", "Una puerta que creías cerrada se abrirá un poco.", "Alguien te agradecerá algo que hiciste hace tiempo.", "Hoy tu intuición está afilada, confía en tu primera impresión.", "Un pequeño paso hoy te llevará más lejos de lo que crees.", "Encontrarás un momento de paz en medio de un día agitado.", "Una conversación agradable te dará una idea nueva.", "Sonríe primero, y el día te sonreirá de vuelta.", "Una invitación inesperada puede alegrar tu tarde.", "Hoy es ideal para ordenar, tanto la casa como la cabeza.", "Un mensaje que esperabas está en camino.", "Tu buena energía inspirará a alguien a tu alrededor.", "Suelta una pequeña preocupación, pesa menos de lo que parece.", "Alguien te sorprenderá ofreciéndote una mano.", "Hoy escucha más de lo que hablas, aprenderás algo valioso.", "Un recuerdo feliz te visitará y te calentará el corazón.", "Quienes te rodean ven tu esfuerzo y lo respetan.", "Tómate tu tiempo para decidir, la respuesta correcta llegará clara antes de la noche.", "Se acerca una buena carcajada con alguien que quieres.", "Tu amabilidad volverá a ti hoy.", "Siéntete orgulloso u orgullosa de lo que has avanzado, sigue adelante.", "Un nuevo comienzo llama suavemente a la puerta, ábrele con calma.", "Esta noche te dormirás con el corazón ligero."],
  loveMsg:["Una pequeña discusión terminará con un gran beso.", "Si estás soltero o soltera, alguien te escribirá esta noche.", "Una palabra dulce te alegrará el corazón hoy.", "Tómate el tiempo de escuchar a tu pareja, los acercará.", "Un viejo sentimiento vuelve a tu mente, mantén el corazón tranquilo.", "Un encuentro inesperado puede encender una chispa.", "Dile «te quiero» a alguien hoy, necesita escucharlo.", "Un abrazo dirá más que un largo discurso.", "Una cena sencilla en pareja hará volver la magia.", "Tu sonrisa llamará la atención de alguien especial.", "Alguien está pensando en ti ahora mismo, con el corazón cálido.", "Perdona un pequeño error, el amor es más fuerte que el orgullo.", "Un mensaje sorpresa hará latir tu corazón más rápido.", "Si estás soltero o soltera, una amistad podría convertirse en algo más.", "Agradece a tu pareja, un simple gracias derrite corazones.", "Un tierno recuerdo te acercará a la persona que amas.", "El amor crece cuando se dedica tiempo el uno al otro, dedícalo hoy.", "Un cumplido iluminará tu noche.", "Abre tu corazón sin miedo, la persona indicada verá su belleza.", "Un pequeño gesto de atención significará mucho para alguien.", "Bailen, canten o rían juntos, la alegría es el mejor idioma del amor.", "Alguien de tu pasado puede saludarte, escucha con el corazón tranquilo.", "Habla con suavidad hoy, tus palabras llegarán directo al corazón.", "Un momento a solas con la persona que amas te devolverá la energía.", "Tu lealtad es notada y valorada por alguien cercano.", "Si tu corazón está pesado, una buena charla con un ser querido lo aliviará.", "El amor sorprende cuando menos lo esperas, mantente abierto o abierta.", "Quiérete hoy, mereces la misma ternura que tú das.", "Una canción romántica te recordará a alguien especial.", "Esta noche, una palabra dulce antes de dormir hará tu amor más bonito."],
- T:{title:'✨ LOS 12 SIGNOS ASTRALES',hint:'Toca tu signo, o escribe tu fecha de nacimiento.',born:'Tu fecha de nacimiento:',all:'🔊 Escuchar los 12 signos',mine:'🔊 Escuchar mi día',stop:'⏹ Parar',
+ T:{title:'✨ LOS 12 SIGNOS ASTRALES',hint:'Toca tu signo o desliza hacia abajo.',born:'Tu fecha de nacimiento:',all:'🔊 Escuchar los 12 signos',mine:'🔊 Escuchar mi día',stop:'⏹ Parar',
   yours:(r,n)=>`Si naciste del ${r}, tu signo astrológico es ${n.toUpperCase()}.`,lucky:'Tu número de la suerte de hoy es el',color:'Tu color es el',day:'Tu día',love:'Situación amorosa',
   bye:n=>`¡Buena suerte y buen día para ti, ${n}! Hasta mañana.`,noAudio:'Este teléfono no soporta audio.',fb:'',
   disc:'Solo para entretenimiento. Las posiciones de la Luna y los planetas se calculan para hoy; sus interpretaciones son tradicionales y no predicen nada. Los números son aleatorios.'}},
@@ -636,7 +1030,7 @@ en:{code:['en-US','en'],fb:'en-US',to:'to',
  dayLine:(d,p)=>`This ${d}, ${p} watches over you.`,
  dayMsg:["You will receive good news at work today.", "An old friend will call you, answer.", "Today is a good day to start a project you have been putting off.", "Stay calm, a problem will sort itself out without wearing you out.", "A pleasant little surprise is coming your way.", "Take a moment to rest, your body needs it.", "A kind word from someone close will lift your mood.", "Your patience will be noticed and appreciated today.", "A door you thought was closed will open a little.", "Someone will thank you for something you did a while ago.", "Your intuition is sharp today, trust your first feeling.", "One small step today will take you further than you think.", "You will find a moment of peace in the middle of a busy day.", "A pleasant conversation will give you a new idea.", "Smile first, and the day will smile back.", "An unexpected invitation could brighten your afternoon.", "Today is great for tidying up, in your home and in your head.", "A message you have been waiting for is on its way.", "Your good energy will inspire someone around you.", "Let go of a small worry, it is lighter than it looks.", "Someone will surprise you with a helping hand.", "Today, listen more than you speak, and you will learn something precious.", "A happy memory will visit you and warm your heart.", "The people around you see your effort and respect it.", "Take your time with decisions, the right answer will come clearly by evening.", "A good laugh with someone you love is coming.", "Your kindness will come back to you today.", "Be proud of how far you have come, keep going.", "A new beginning is quietly knocking, open the door gently.", "Tonight you will fall asleep with a light heart."],
  loveMsg:["A small argument will end with a big kiss.", "If you are single, someone will text you tonight.", "A sweet word will warm your heart today.", "Take time to listen to your partner, it will bring you closer.", "An old feeling comes back to mind, keep your heart calm.", "An unexpected meeting can spark something.", "Tell someone you love them today, they need to hear it.", "A hug will say more than a long speech.", "A simple dinner together will bring the magic back.", "Your smile will catch the eye of someone special.", "Someone is thinking of you right now, with a warm heart.", "Forgive a small mistake, love is stronger than pride.", "A surprise message will make your heart beat faster.", "If you are single, a friendship may be turning into something more.", "Thank your partner, a simple thank you melts hearts.", "A tender memory will bring you closer to the one you love.", "Love grows when you make time for each other, make that time today.", "A compliment will brighten your evening.", "Open your heart without fear, the right person will see its beauty.", "A small gesture of attention will mean a lot to someone.", "Dance, sing or laugh together, joy is the best language of love.", "Someone from your past may say hello, listen with a calm heart.", "Speak softly today, your words will go straight to the heart.", "A quiet moment with the one you love will refill your energy.", "Your loyalty is noticed and cherished by someone close.", "If your heart feels heavy, a good talk with a loved one will lighten it.", "Love surprises you when you least expect it, stay open.", "Love yourself today, you deserve the same tenderness you give.", "A romantic song will remind you of someone special.", "Tonight, a sweet word before sleep will make your love even sweeter."],
- T:{title:'✨ THE 12 ZODIAC SIGNS',hint:'Tap your sign, or enter your birth date.',born:'Your birth date:',all:'🔊 Listen to the 12 signs',mine:'🔊 Listen to my day',stop:'⏹ Stop',
+ T:{title:'✨ THE 12 ZODIAC SIGNS',hint:'Tap your sign or scroll down.',born:'Your birth date:',all:'🔊 Listen to the 12 signs',mine:'🔊 Listen to my day',stop:'⏹ Stop',
   yours:(r,n)=>`If you were born from ${r}, your zodiac sign is ${n.toUpperCase()}.`,lucky:'Your lucky number today is',color:'Your color is',day:'Your day',love:'Love life',
   bye:n=>`Good luck and a great day to you, ${n}! See you tomorrow.`,noAudio:'This phone does not support audio.',fb:'',
   disc:'For entertainment only. The positions of the Moon and planets are calculated for today; their interpretations are traditional and predict nothing. Numbers are random.'}}
@@ -660,7 +1054,8 @@ en:{g:['Good morning','Good afternoon','Good evening'],
 };
 function greet(){const h=new Date().getHours();return SW[al].g[h<12?0:(h<18?1:2)]}
 const COLORS=['#e53935','#1e66f5','#2e9e4f','#f4c20d','#ec6fa5','#8e44ad','#f57c00','#f5f5f5'];
-let al=load('astLang');if(!D[al])al=D[lang]?lang:'es';
+let al=D[lang]?lang:'es';
+let pgOpen=false;
 let sel=load('astSign');sel=(sel!==null&&sel!==''&&+sel>=0&&+sel<12)?+sel:-1;
 const $=id=>document.getElementById(id);
 const hasTTS='speechSynthesis' in window&&'SpeechSynthesisUtterance' in window;
@@ -873,49 +1268,55 @@ function renderAst(){
    $('astDay').textContent='📅 '+(al==='en'?dn+', '+mn+' '+o.day+', '+o.year:al==='es'?dn+' '+o.day+' de '+mn+' de '+o.year:dn+' '+o.day+' '+mn+' '+o.year)}
   {const sk=skyText(0);$('astSky').textContent=sk?sk.bar:''}
   $('astHint').textContent=T.hint;
-  $('astBorn').textContent=T.born;
-  $('astDisc').textContent=T.disc;
-  document.querySelectorAll('#astLangBar button').forEach(b=>b.classList.toggle('on',b.dataset.al===al));
   const la=$('astListenAll');la.textContent=T.all;la.style.display=hasTTS?'block':'none';
   const list=$('astList');list.innerHTML='';
   SIGNS.forEach((g,i)=>{
     const b=document.createElement('button');b.type='button';b.className='sg'+(i===sel?' on':'');
     b.innerHTML='<i></i><span><b></b><small></small></span>';
     b.querySelector('i').textContent=g.s;b.querySelector('b').textContent=d.names[i];b.querySelector('small').textContent=range(i);
-    b.onclick=()=>{sel=i;store('astSign',String(i));renderAst();$('astRead').scrollIntoView({behavior:'smooth',block:'nearest'})};
+    b.onclick=()=>{sel=i;store('astSign',String(i));renderAst();goSign(i)};
     list.appendChild(b);
   });
   const box=$('astRead');
-  if(sel<0){box.style.display='none';return}
-  const r=reading(sel);
   box.style.display='block';box.innerHTML='';
-  const add=(cls,html)=>{const p=document.createElement('p');if(cls)p.className=cls;p.innerHTML=html;box.appendChild(p);return p};
   const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-  add('big',esc(SIGNS[sel].s+' '+r.name.toUpperCase()));
-  add('',esc(r.yours));
-  add('','🍀 <b>'+esc(T.lucky)+'</b> <span class="nm">'+r.num+'</span>');
-  add('','🎨 <b>'+esc(T.color)+'</b> <span class="sw" style="background:'+r.hex+'"></span>'+esc(r.color));
-  add('','📅 <b>'+esc(T.day)+':</b> '+esc(r.dayTxt));
-  add('','❤️ <b>'+esc(T.love)+':</b> '+esc(r.loveTxt));
-  add('','✨ <b>'+esc(r.bye)+'</b>');
-  if(hasTTS){
-    const b=document.createElement('button');b.type='button';b.className='abtn';b.textContent=T.mine;
-    b.onclick=()=>speak(b,[SW[al].mineIntro(greet(),r.name),r.yours,T.lucky+' '+r.num+'.',T.color+' '+r.color+'.',T.day+'. '+r.dayTxt,T.love+'. '+r.loveTxt,r.bye].join(' '));
-    box.appendChild(b);
+  const UP={fr:'⬆️ Retour aux 12 signes',es:'⬆️ Volver a los 12 signos',en:'⬆️ Back to the 12 signs'}[al];
+  for(let i=0;i<12;i++){
+    const r=reading(i),sec=document.createElement('div');sec.className='sp';sec.id='sign'+i;box.appendChild(sec);
+    const add=(cls,html)=>{const q=document.createElement('p');if(cls)q.className=cls;q.innerHTML=html;sec.appendChild(q);return q};
+    add('big',esc(SIGNS[i].s+' '+r.name.toUpperCase()));
+    add('',esc(r.yours));
+    add('','🍀 <b>'+esc(T.lucky)+'</b> <span class="nm">'+r.num+'</span>');
+    add('','🎨 <b>'+esc(T.color)+'</b> <span class="sw" style="background:'+r.hex+'"></span>'+esc(r.color));
+    add('','📅 <b>'+esc(T.day)+':</b> '+esc(r.dayTxt));
+    add('','❤️ <b>'+esc(T.love)+':</b> '+esc(r.loveTxt));
+    add('','✨ <b>'+esc(r.bye)+'</b>');
+    if(hasTTS){
+      const x=document.createElement('button');x.type='button';x.className='abtn';x.textContent=T.mine;
+      x.onclick=()=>speak(x,[SW[al].mineIntro(greet(),r.name),r.yours,T.lucky+' '+r.num+'.',T.color+' '+r.color+'.',T.day+'. '+r.dayTxt,T.love+'. '+r.loveTxt,r.bye,SW[al].mineOutro].join(' '));
+      sec.appendChild(x);
+    }
+    if(i===2||i===5||i===8){
+      const ad=document.createElement('div');ad.className='ad';ad.style.display=esVip()?'none':'block';
+      ad.innerHTML='<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="2091072091" data-ad-format="auto" data-full-width-responsive="true"></ins>';
+      box.appendChild(ad);
+    }
   }
+  const fin=document.createElement('div');fin.className='sp';fin.id='signEnd';box.appendChild(fin);
+  const fp=document.createElement('p');fp.className='dsc';fp.style.cssText='border-top:none;padding-top:0;margin-top:0';fp.textContent=T.disc;fin.appendChild(fp);
+  const u=document.createElement('button');u.type='button';u.className='up';u.textContent=UP;u.onclick=()=>{$('astList').scrollIntoView({behavior:'smooth',block:'start'})};fin.appendChild(u);
+  try{if(window.pushAds)pushAds()}catch(e){}
 }
+function goSign(i){setTimeout(()=>{const e=$('sign'+i);if(e)e.scrollIntoView({behavior:'smooth',block:'start'})},50)}
 $('astListenAll').onclick=function(){
   const d=D[al];
   speak(this,SW[al].listIntro(greet())+' '+SIGNS.map((g,i)=>d.names[i]+', '+range(i)+'.').join(' ')+' '+SW[al].listOutro);
 };
-document.querySelectorAll('#astLangBar button').forEach(b=>b.onclick=()=>{al=b.dataset.al;store('astLang',al);renderAst()});
-$('astDate').onchange=function(){
-  const p=this.value.split('-').map(Number);if(p.length<3||!p[1])return;
-  sel=signFor(p[1],p[2]);store('astSign',String(sel));renderAst();
-};
+
 document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.go!=='astral')stopAudio()}));
 if(hasTTS&&speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=()=>{renderVoiceSel()};
 $('astVoice').onchange=function(){store('astVoice_'+al,this.value);stopAudio()};
+window.astSync=function(){al=D[lang]?lang:'es';renderAst()};
 renderAst();
 loadAstralJson();
 let lastDay=ETK();
@@ -923,6 +1324,29 @@ function chkDay(){const k=ETK();if(k!==lastDay){lastDay=k;if(!activeBtn)renderAs
 setInterval(chkDay,30000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){chkDay();try{render()}catch(e){}}});
 window.addEventListener('focus',chkDay);
+})();
+</script>
+<script>
+// ===== Chaje fichye mo rèv apa (reves-1.js, reves-2.js, ... max reves-10.js). Si yon fichye pa egziste, li sispann. =====
+(function(){
+  function addPack(){
+    try{
+      const packs=window.REVES_PACKS||[];window.REVES_PACKS=[];
+      packs.forEach(p=>{
+        const rows=String(p).trim().split('\n').map(l=>l.split('|').map(x=>x.trim())).filter(r=>r.length>=6);
+        if(window.__tcAdd)window.__tcAdd(rows);
+      });
+    }catch(e){}
+  }
+  function load(n){
+    if(n>10)return;
+    const s=document.createElement('script');
+    s.src='reves-'+n+'.js';
+    s.onload=function(){addPack();load(n+1)};
+    s.onerror=function(){};
+    document.head.appendChild(s);
+  }
+  load(1);
 })();
 </script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}</script>
