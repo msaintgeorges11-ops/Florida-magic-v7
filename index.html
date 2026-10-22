@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" translate="no">
 <head>
 <meta charset="UTF-8">
+<meta name="google" content="notranslate">
 <meta name="google-site-verification" content="7ll5tNAjLiaoWWbaxfljPvWBGHG599SCldlYa6Rcn2Y" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Generador aleatorio de números de entretenimiento y últimos resultados de Florida Pick 3 y Pick 4. No afiliado a la Lotería de Florida.">
@@ -164,7 +165,8 @@ header h1{color:#000}
 .stb{margin:10px 0}
 .pl{display:inline-block;min-width:34px;text-align:center;border:1px solid var(--b);border-radius:14px;padding:4px 10px;font-size:19px;font-weight:bold;margin:2px}
 .tkr{border:1px solid var(--line);border-radius:14px;padding:8px 10px;margin-top:8px;font-size:15px;text-align:left}
-.tcrow{text-align:left;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-top:8px}
+.tcrow{text-align:left;background:#fff;border:1px solid #fff;border-radius:20px;padding:14px 16px;margin-top:12px}
+#tcList>.small,#tcList2>.small{color:#fff;text-align:center}
 .tcrow b{font-size:17px;color:var(--b)}
 .tcrow p{font-size:15px;margin:4px 0;line-height:1.45}
 .np{display:inline-block;background:var(--b);color:#fff;border-radius:999px;padding:2px 12px;font-weight:bold;margin:2px 6px 0 0;font-size:15px}
@@ -219,14 +221,16 @@ header h1{color:#000}
 
   <div class="ad" id="adH2" data-tab="home"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="7343398778" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
-  <div class="card" data-tab="home">
-    <h2 data-t="tcT"></h2>
-    <p class="small" data-t="tcHint"></p>
-    <input class="inp" id="tcIn" type="search" autocomplete="off">
-    <div id="tcList" style="margin-top:6px"></div>
+  <div data-tab="home">
+    <div class="card">
+      <h2 data-t="tcT"></h2>
+      <p class="small" data-t="tcHint"></p>
+      <input class="inp" id="tcIn" type="search" autocomplete="off">
+    </div>
+    <div id="tcList"></div>
     <div class="ad" id="adH3"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="2091072091" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
     <div id="tcList2"></div>
-    <p class="small" data-t="tcNote"></p>
+    <div class="card"><p class="small" data-t="tcNote"></p></div>
   </div>
 
   <div class="card" data-tab="results">
@@ -473,8 +477,12 @@ function render(){
   document.querySelectorAll('.fd').forEach(e=>e.textContent=fechaDisplay());
   try{
     const sx='';
-    const slug={es:["pick3", "pick4", "straight-box", "probabilidades", "resultados", "mitos", "juego-responsable", "signos-zodiaco", "numeros-suerte", "horoscopo-diario"],fr:["pick3", "pick4", "straight-box", "probabilidades", "resultados", "mitos", "juego-responsable", "signos-zodiaco", "numeros-suerte", "horoscopo-diario"],en:["pick3", "pick4", "straight-box", "probabilidades", "resultados", "mitos", "juego-responsable", "signos-zodiaco", "numeros-suerte", "horoscopo-diario"]}[lang];
-    const ttl={"es": ["¿Cómo funciona Pick 3?", "¿Cómo funciona Pick 4?", "Straight o Box: diferencias", "Las probabilidades reales", "Cómo leer los resultados", "Mitos sobre la lotería", "Juego responsable", "Los 12 signos del zodiaco", "Números de la suerte", "Cómo leer tu horóscopo diario"], "fr": ["Comment fonctionne Pick 3 ?", "Comment fonctionne Pick 4 ?", "Straight ou Box : différences", "Les probabilités réelles", "Comment lire les résultats", "Les mythes sur la loterie", "Jeu responsable", "Les 12 signes du zodiaque", "Numéros chance", "Comment lire votre horoscope"], "en": ["How does Pick 3 work?", "How does Pick 4 work?", "Straight vs Box: differences", "The real odds", "How to read the results", "Lottery myths", "Responsible play", "The 12 zodiac signs", "Lucky numbers", "How to read your daily horoscope"]}[lang];
+    const slug=["pick3","pick4","straight-box","probabilidades","resultados","mitos","juego-responsable","signos-zodiaco","numeros-suerte","horoscopo-diario","loteria-hoy","resultado-florida"];
+    const ttl={
+      es:["¿Cómo funciona Pick 3?","¿Cómo funciona Pick 4?","Straight o Box: diferencias","Las probabilidades reales","Cómo leer los resultados","Mitos sobre la lotería","Juego responsable","Los 12 signos del zodiaco","Números de la suerte","Cómo leer tu horóscopo diario","Lotería de hoy","Resultado Florida"],
+      fr:["Comment fonctionne Pick 3 ?","Comment fonctionne Pick 4 ?","Straight ou Box : différences","Les probabilités réelles","Comment lire les résultats","Les mythes sur la loterie","Jeu responsable","Les 12 signes du zodiaque","Numéros chance","Comment lire votre horoscope","Loterie du jour","Résultat Floride"],
+      en:["How does Pick 3 work?","How does Pick 4 work?","Straight vs Box: differences","The real odds","How to read the results","Lottery myths","Responsible play","The 12 zodiac signs","Lucky numbers","How to read your daily horoscope","Today's lottery","Florida results"]
+    }[lang];
     const box=document.getElementById('artLinks');
     if(box)box.innerHTML=slug.map((u,i)=>'📖 <a href="/'+u+'.html" style="color:#1363f8;font-weight:bold">'+ttl[i]+'</a>').join('<br>');
     const f3=document.getElementById('fP3'),f4=document.getElementById('fP4');
