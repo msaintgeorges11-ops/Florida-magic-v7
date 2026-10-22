@@ -425,7 +425,7 @@ function renderVipToday(){
 let vipRows=null,vipNote=null;
 function renderVipRes(){
   const box=document.getElementById('vipRes'),tb=document.getElementById('vipList'),t=L[lang];
-  box.style.display='block';tb.innerHTML='';
+  box.style.display=esVip()?'none':'block';tb.innerHTML='';
   const one=txt=>{const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=3;td.textContent=txt;tr.appendChild(td);tb.appendChild(tr)};
   renderVipToday();
   const np=document.getElementById('vipNoteP');if(np)np.textContent=vipNote!==null?vipNote:t.vipResNote;
