@@ -477,11 +477,11 @@ function render(){
   document.querySelectorAll('.fd').forEach(e=>e.textContent=fechaDisplay());
   try{
     const sx='';
-    const slug=["pick3","pick4","straight-box","probabilidades","resultados","mitos","juego-responsable","signos-zodiaco","numeros-suerte","horoscopo-diario","loteria-hoy","resultado-florida"];
+    const slug=["pick3","pick4","straight-box","probabilidades","resultados","mitos","juego-responsable","signos-zodiaco","numeros-suerte","horoscopo-diario","signos-astrales","digitos-salidos","suenos-tchala","loteria-hoy","resultado-florida"];
     const ttl={
-      es:["¿Cómo funciona Pick 3?","¿Cómo funciona Pick 4?","Straight o Box: diferencias","Las probabilidades reales","Cómo leer los resultados","Mitos sobre la lotería","Juego responsable","Los 12 signos del zodiaco","Números de la suerte","Cómo leer tu horóscopo diario","Lotería de hoy","Resultado Florida"],
-      fr:["Comment fonctionne Pick 3 ?","Comment fonctionne Pick 4 ?","Straight ou Box : différences","Les probabilités réelles","Comment lire les résultats","Les mythes sur la loterie","Jeu responsable","Les 12 signes du zodiaque","Numéros chance","Comment lire votre horoscope","Loterie du jour","Résultat Floride"],
-      en:["How does Pick 3 work?","How does Pick 4 work?","Straight vs Box: differences","The real odds","How to read the results","Lottery myths","Responsible play","The 12 zodiac signs","Lucky numbers","How to read your daily horoscope","Today's lottery","Florida results"]
+      es:["¿Cómo funciona Pick 3?","¿Cómo funciona Pick 4?","Straight o Box: diferencias","Las probabilidades reales","Cómo leer los resultados","Mitos sobre la lotería","Juego responsable","Los 12 signos del zodiaco","Números de la suerte","Cómo leer tu horóscopo diario","Los 12 signos astrales","Dígitos más y menos salidos","Tchala: significado de los sueños","Lotería de hoy","Resultado Florida"],
+      fr:["Comment fonctionne Pick 3 ?","Comment fonctionne Pick 4 ?","Straight ou Box : différences","Les probabilités réelles","Comment lire les résultats","Les mythes sur la loterie","Jeu responsable","Les 12 signes du zodiaque","Numéros chance","Comment lire votre horoscope","Les 12 signes astraux","Chiffres les plus et moins sortis","Tchala : le sens des rêves","Loterie du jour","Résultat Floride"],
+      en:["How does Pick 3 work?","How does Pick 4 work?","Straight vs Box: differences","The real odds","How to read the results","Lottery myths","Responsible play","The 12 zodiac signs","Lucky numbers","How to read your daily horoscope","The 12 astral signs","Most and least drawn digits","Tchala: dream meanings","Today's lottery","Florida results"]
     }[lang];
     const box=document.getElementById('artLinks');
     if(box)box.innerHTML=slug.map((u,i)=>'📖 <a href="/'+u+'.html" style="color:#1363f8;font-weight:bold">'+ttl[i]+'</a>').join('<br>');
