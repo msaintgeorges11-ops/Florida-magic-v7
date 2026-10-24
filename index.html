@@ -42,6 +42,7 @@ header p{font-size:13px;margin-top:6px}
 .vtd .vdate{font-size:14px;font-weight:bold;color:#000;margin-bottom:12px;text-transform:uppercase}
 .vglow{display:inline-block;min-width:200px;padding:16px 26px;border-radius:24px;background:radial-gradient(circle,#fff 0%,#e4eeff 70%);border:2px solid var(--b);font-size:34px;font-weight:bold;letter-spacing:4px;color:#000;animation:vglow 2s ease-in-out infinite}
 .vglow.lock{font-size:18px;letter-spacing:1px;color:#555;padding:16px 20px}
+.vglow.multi{display:grid;grid-template-columns:1fr 1fr;gap:8px 22px;min-width:0;padding:16px 24px;font-size:30px;letter-spacing:3px}
 @keyframes vglow{0%,100%{box-shadow:0 0 8px 2px rgba(19,99,248,.35),0 0 18px 4px rgba(19,99,248,.15)}50%{box-shadow:0 0 22px 8px rgba(19,99,248,.7),0 0 44px 14px rgba(19,99,248,.35)}}
 .vtd .vwho{font-size:12px;font-weight:bold;color:var(--muted);margin-top:14px}
 .nums{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
@@ -435,8 +436,10 @@ function renderVipToday(){
   d.textContent=new Date(Date.UTC(o.year,o.month-1,o.day,12)).toLocaleDateString(t.loc,{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
   const w=document.querySelector('.vwho');if(w)w.style.display=esVip()?'none':'';
   const wr=document.getElementById('vtWarn');if(wr)wr.style.display=esVip()?'block':'none';
+  n.classList.remove('multi');
   if(esVip()){
-    if(vipToday){n.textContent=vipToday;n.classList.remove('lock')}
+    const four=pair(fechaKey(),getSession(),true);
+    if(four.length===4){n.textContent='';four.forEach(x=>{const sp=document.createElement('span');sp.textContent=x;n.appendChild(sp)});n.classList.add('multi');n.classList.remove('lock')}
     else{n.textContent='⏳';n.classList.add('lock')}
   }else{n.textContent='🔒 '+t.vtJoin;n.classList.add('lock')}
 }
