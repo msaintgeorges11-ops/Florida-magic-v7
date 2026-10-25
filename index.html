@@ -174,6 +174,21 @@ header h1{color:#000}
 .tcrow b{font-size:17px;color:var(--b)}
 .tcrow p{font-size:15px;margin:4px 0;line-height:1.45}
 .np{display:inline-block;background:var(--b);color:#fff;border-radius:999px;padding:2px 12px;font-weight:bold;margin:2px 6px 0 0;font-size:15px}
+/* ===== Tikè dènye tiraj (stamp) ===== */
+[hidden]{display:none!important}
+.stamp{position:relative;background:#000;border-radius:24px;padding:12px;margin-top:12px}
+.stamp:before{content:"";position:absolute;inset:0;border-radius:24px;border:7px dotted #fff;pointer-events:none}
+.st-h{background:var(--b);border-radius:16px 16px 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:14px 10px}
+.st-h img{width:58px;height:58px;border-radius:50%;border:2px solid #d9a21b;background:#0b2a6f}
+.st-h b{color:#fff;font-size:30px;letter-spacing:1px}
+.st-i{width:58px;height:58px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.st-b{background:#fff;border-radius:0 0 16px 16px;padding:14px 10px 12px;text-align:center}
+.st-d{color:var(--b);font-weight:bold;font-size:15px}
+.st-g{display:flex;gap:10px;margin-top:12px}
+.st-g>div{flex:1;border:1px solid #d9d9d9;border-radius:18px;padding:10px 6px;background:#fafafa}
+.st-g span{display:block;color:var(--b);font-weight:bold;font-size:15px}
+.st-g i{display:block;font-style:normal;font-weight:bold;font-size:26px;letter-spacing:1px;border:2px solid var(--b);border-radius:30px;margin-top:8px;padding:8px 0;background:#fff}
+.st-f{font-size:11px;color:#444;margin-top:10px}
 </style>
 </head>
 <body>
@@ -240,6 +255,15 @@ header h1{color:#000}
     <div class="ad" id="adH3"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="2091072091" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
     <div id="tcList2"></div>
     <div class="card"><p class="small" data-t="tcNote"></p></div>
+  </div>
+
+  <div class="stamp" id="stamp" data-tab="results" hidden>
+    <div class="st-h"><img src="/icon-192.png" alt="Florida Magic V7"><b>FLORIDA</b><span class="st-i" aria-hidden="true"><svg viewBox="0 0 100 100" width="40" height="40"><path d="M2 20 L30 18 L40 14 L52 17 L62 22 L70 24 L72 34 L74 45 L78 55 L82 68 L88 82 L80 92 L74 94 L64 86 L61 76 L56 64 L52 52 L48 40 L40 30 L32 27 L24 30 L16 28 L6 28 Z" fill="#1363f8" stroke="#1363f8" stroke-width="3" stroke-linejoin="round"/></svg></span></div>
+    <div class="st-b">
+      <div class="st-d" id="stD"></div>
+      <div class="st-g"><div><span>Pick 3</span><i id="stP3">---</i></div><div><span>Pick 4</span><i id="stP4">---</i></div></div>
+      <div class="st-f" id="stF"></div>
+    </div>
   </div>
 
   <div class="card" data-tab="results">
@@ -532,7 +556,7 @@ function render(){
     }
   }catch(e){}
   renderHist();renderVipRes();
-  renderReal();renderReal10();
+  renderReal();renderReal10();renderStamp();
   if(window.renderExtras)renderExtras();
 }
 
@@ -585,6 +609,22 @@ async function actualizarFloridaReal(){
   document.getElementById('floridaRealBox').textContent=L[lang].cargando;
   await loadResults();
   real=latestReal();realLoading=false;renderReal();
+}
+function renderStamp(){
+  const st=document.getElementById('stamp');if(!st)return;
+  if(!realRows||!realRows.length){st.hidden=true;return}
+  let pick=null;
+  for(const r of realRows){
+    if(/^\d{3}$/.test(r.eve3||'')&&/^\d{4}$/.test(r.eve4||'')){pick={d:r.date,s:'se',a:r.eve3,b:r.eve4};break}
+    if(/^\d{3}$/.test(r.mid3||'')&&/^\d{4}$/.test(r.mid4||'')){pick={d:r.date,s:'sm',a:r.mid3,b:r.mid4};break}
+  }
+  if(!pick){st.hidden=true;return}
+  const q=String(pick.d).split('-').map(Number),t=L[lang];
+  document.getElementById('stD').textContent=fmt(q[0],q[1],q[2])+' • '+t[pick.s];
+  document.getElementById('stP3').textContent=pick.a;
+  document.getElementById('stP4').textContent=pick.b;
+  document.getElementById('stF').textContent=t.fuente+': '+realSrc+' · flalottery.com';
+  st.hidden=false;
 }
 function renderReal(){
   const box=document.getElementById('floridaRealBox'),t=L[lang];
