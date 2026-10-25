@@ -269,21 +269,20 @@ header h1{color:#000}
 
   <div class="card real" data-tab="results">
     <h2><span data-t="real">🎯 RESULTADOS REALES OFICIALES FLORIDA</span> — <span class="fd"></span></h2>
+    <div class="stamp" id="stamp" data-tab="results" hidden>
+      <div class="st-h"><img src="/icon-192.png" alt="Florida Magic V7"><b>FLORIDA</b><span class="st-i" aria-hidden="true"><svg viewBox="0 0 100 100" width="40" height="40"><path d="M2 20 L30 18 L40 14 L52 17 L62 22 L70 24 L72 34 L74 45 L78 55 L82 68 L88 82 L80 92 L74 94 L64 86 L61 76 L56 64 L52 52 L48 40 L40 30 L32 27 L24 30 L16 28 L6 28 Z" fill="#1363f8" stroke="#1363f8" stroke-width="3" stroke-linejoin="round"/></svg></span></div>
+      <div class="st-b">
+        <div class="st-d" id="stD"></div>
+        <div class="st-g"><div><span>Pick 3</span><i id="stP3">---</i></div><div><span>Pick 4</span><i id="stP4">---</i></div></div>
+        <div class="st-f" id="stF"></div>
+      </div>
+    </div>
     <div id="floridaRealBox"></div>
     <table>
       <thead><tr><th></th><th colspan="2">Pick 3 + Pick 4</th></tr><tr><th data-t="fecha">FECHA</th><th data-t="sm">MEDIODÍA</th><th data-t="se">NOCHE</th></tr></thead>
       <tbody id="real10"></tbody>
     </table>
     <p class="small" data-t="snap">Pick 3 y Pick 4 · 8 últimos resultados, tomados de fuentes que publican los números oficiales. Verifica siempre en www.flalottery.com.</p>
-  </div>
-
-  <div class="stamp" id="stamp" data-tab="results" hidden>
-    <div class="st-h"><img src="/icon-192.png" alt="Florida Magic V7"><b>FLORIDA</b><span class="st-i" aria-hidden="true"><svg viewBox="0 0 100 100" width="40" height="40"><path d="M2 20 L30 18 L40 14 L52 17 L62 22 L70 24 L72 34 L74 45 L78 55 L82 68 L88 82 L80 92 L74 94 L64 86 L61 76 L56 64 L52 52 L48 40 L40 30 L32 27 L24 30 L16 28 L6 28 Z" fill="#1363f8" stroke="#1363f8" stroke-width="3" stroke-linejoin="round"/></svg></span></div>
-    <div class="st-b">
-      <div class="st-d" id="stD"></div>
-      <div class="st-g"><div><span>Pick 3</span><i id="stP3">---</i></div><div><span>Pick 4</span><i id="stP4">---</i></div></div>
-      <div class="st-f" id="stF"></div>
-    </div>
   </div>
 
   <div class="card real" id="vipRes" data-tab="vip">
@@ -660,9 +659,6 @@ function renderReal(){
       });
       d.appendChild(g);return d;
     };
-    box.appendChild(mk(t.hoy+' · '+dl(tk),today));
-    if(prev)box.appendChild(mk(dl(prev.date),prev));
-    const f=document.createElement('p');f.className='small';f.textContent=t.fuente+': '+realSrc;box.appendChild(f);
   }
   const b=document.createElement('button');b.textContent=t.act;b.onclick=actualizarFloridaReal;box.appendChild(b);
 }
