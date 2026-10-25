@@ -40,6 +40,21 @@ a.btn{display:inline-block;margin-top:10px;background:var(--b);color:#fff;paddin
 .more a{color:var(--b);font-weight:bold}
 .disc{font-size:11px;color:#fff;text-align:center;line-height:1.6;margin-top:14px}
 .fnav{margin:14px 0 4px}
+.stamp{position:relative;background:#000;border-radius:24px;padding:12px;margin-top:12px}
+.stamp:before{content:"";position:absolute;inset:0;border-radius:24px;border:7px dotted #fff;pointer-events:none}
+.st-h{background:var(--b);border-radius:16px 16px 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:14px 10px}
+.st-h>img{width:58px;height:58px;border-radius:50%;border:2px solid #d9a21b;background:#0b2a6f;object-fit:cover;flex:none}
+.st-h b{color:#fff;font-size:30px;letter-spacing:1px}
+.st-i{width:76px;height:76px;min-width:76px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none;padding:3px}
+.st-i svg{display:block;width:100%;height:100%}
+.st-b{background:#fff;border-radius:0 0 16px 16px;padding:14px 10px 12px;text-align:center}
+.st-d{color:var(--b);font-weight:bold;font-size:15px}
+.st-g{display:flex;gap:10px;margin-top:12px}
+.st-g>div{flex:1;border:1px solid #d9d9d9;border-radius:18px;padding:10px 6px;background:#fafafa}
+.st-g span{display:block;color:var(--b);font-weight:bold;font-size:15px}
+.st-g i{display:block;font-style:normal;font-weight:bold;font-size:26px;letter-spacing:1px;border:2px solid var(--b);border-radius:30px;margin-top:8px;padding:8px 0;background:#fff}
+.st-f{font-size:11px;color:#444;margin-top:10px}
+@media(max-width:380px){.st-h{gap:8px;padding:12px 6px}.st-h>img{width:48px;height:48px}.st-h b{font-size:25px}.st-i{width:60px;height:60px;min-width:60px}.st-g{gap:7px}.st-g i{font-size:23px}}
 </style>
 </head>
 <body>
@@ -50,6 +65,21 @@ a.btn{display:inline-block;margin-top:10px;background:var(--b);color:#fff;paddin
   <h1 data-t="h1"></h1>
   <p>📅 <b class="fd"></b></p>
 </header>
+<div class="stamp" id="stamp" hidden>
+  <div class="st-h"><img src="/icon-192.png" alt="Florida Magic V7"><b>FLORIDA</b><span class="st-i" role="img" aria-label="Florida Lottery">
+    <svg viewBox="0 0 120 120" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="120" height="120" rx="60" fill="#fff"/>
+      <path d="M31 17 C42 10 52 18 49 28 C47 34 41 36 37 33 C32 30 34 24 39 23 C42 22 44 25 42 27 C40 29 38 27 40 26 C37 29 40 32 44 30 C49 27 47 20 42 19 C36 18 32 22 31 27 C30 34 37 39 45 37 C54 35 59 28 57 21 C63 28 66 37 62 45 C58 52 49 53 44 48 C41 45 39 41 40 38 C34 43 33 51 38 58 C42 65 51 67 57 62 C62 58 63 53 62 49 C71 55 76 65 73 75 C70 86 59 92 47 87 C37 83 31 74 33 65 C25 72 23 83 29 92 C36 103 51 106 63 100 C76 94 82 81 79 68 C76 56 69 49 65 43 C73 33 70 20 63 13 C58 8 52 7 47 9 C41 11 37 14 31 17Z" fill="#e94b87"/>
+      <text x="60" y="106" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#087b43">FLORIDA</text>
+      <text x="60" y="116" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#c72b39">LOTTERY</text>
+    </svg>
+  </span></div>
+  <div class="st-b">
+    <div class="st-d" id="stD"></div>
+    <div class="st-g"><div><span>Pick 3</span><i id="stP3">---</i></div><div><span>Pick 4</span><i id="stP4">---</i></div></div>
+    <div class="st-f" data-t="stSrc"></div>
+  </div>
+</div>
 <div class="card">
   <h2 data-t="h2"></h2>
   <table>
@@ -65,60 +95,21 @@ a.btn{display:inline-block;margin-top:10px;background:var(--b);color:#fff;paddin
 <nav class="fnav" data-l="es"><a href="/">Inicio</a><a href="/about.html">Acerca de</a><a href="/contact.html">Contacto</a><a href="/privacy.html">Privacidad</a></nav><nav class="fnav" data-l="fr" hidden><a href="/">Accueil</a><a href="/about.html">À propos</a><a href="/contact.html">Contact</a><a href="/privacy.html">Confidentialité</a></nav><nav class="fnav" data-l="en" hidden><a href="/">Home</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></nav>
 </div>
 <script>
-var T={"es": {"title": "Resultado Florida Midday / Evening – Pick 3 y Pick 4 | FLORIDA MAGIC", "desc": "Últimos resultados de Florida Pick 3 y Pick 4, sorteo de mediodía (Midday) y noche (Evening). Verifica siempre en la fuente oficial.", "h1": "Resultado Florida Midday / Evening", "h2": "🎯 Pick 3 + Pick 4 – últimos resultados", "c1": "FECHA", "c2": "MEDIODÍA", "c3": "NOCHE", "load": "Cargando...", "none": "Consulta la fuente oficial.", "verify": "Verifica siempre en la fuente oficial.", "btn": "Resultados oficiales", "more": "Lee también:", "l1": "Cómo leer los resultados", "l2": "Lotería de hoy", "l3": "Juego responsable", "disc": "FLORIDA MAGIC no está afiliado a la Lotería de Florida ni a ninguna lotería. Los números generados son aleatorios, solo de entretenimiento: no predicen resultados, no aumentan tus probabilidades y no garantizan ningún premio. Juega con responsabilidad. Solo mayores de 18 años."}, "fr": {"title": "Résultat Floride Midi / Soir – Pick 3 et Pick 4 | FLORIDA MAGIC", "desc": "Derniers résultats de Floride Pick 3 et Pick 4, tirage de midi (Midday) et du soir (Evening). Vérifiez toujours la source officielle.", "h1": "Résultat Floride Midi / Soir", "h2": "🎯 Pick 3 + Pick 4 – derniers résultats", "c1": "DATE", "c2": "MIDI", "c3": "SOIR", "load": "Chargement...", "none": "Consultez la source officielle.", "verify": "Vérifiez toujours la source officielle.", "btn": "Résultats officiels", "more": "À lire aussi :", "l1": "Comment lire les résultats", "l2": "Loterie du jour", "l3": "Jeu responsable", "disc": "FLORIDA MAGIC n'est affilié ni à la Loterie de Floride ni à aucune loterie. Les numéros générés sont aléatoires, uniquement pour le divertissement : ils ne prédisent pas les résultats, n'augmentent pas vos chances et ne garantissent aucun gain. Jouez de façon responsable. Réservé aux plus de 18 ans."}, "en": {"title": "Florida Results Midday / Evening – Pick 3 and Pick 4 | FLORIDA MAGIC", "desc": "Latest Florida Pick 3 and Pick 4 results, midday and evening draws. Always verify with the official source.", "h1": "Florida Results Midday / Evening", "h2": "🎯 Pick 3 + Pick 4 – latest results", "c1": "DATE", "c2": "MIDDAY", "c3": "EVENING", "load": "Loading...", "none": "Check the official source.", "verify": "Always verify with the official source.", "btn": "Official results", "more": "Also read:", "l1": "How to read the results", "l2": "Today's lottery", "l3": "Responsible play", "disc": "FLORIDA MAGIC is not affiliated with the Florida Lottery or any lottery. The numbers shown are random, for entertainment only: they do not predict results, do not improve your odds and do not guarantee any prize. Play responsibly. Ages 18 and over only."}};
+var T={"es":{"stSrc":"Fuente: lotteryusa.com · Verifica siempre en flalottery.com","sMid":"MEDIODÍA","sEve":"NOCHE","title":"Resultado Florida Midday / Evening – Pick 3 y Pick 4 | FLORIDA MAGIC","desc":"Últimos resultados de Florida Pick 3 y Pick 4, sorteo de mediodía (Midday) y noche (Evening). Verifica siempre en la fuente oficial.","h1":"Resultado Florida Midday / Evening","h2":"🎯 Pick 3 + Pick 4 – últimos resultados","c1":"FECHA","c2":"MEDIODÍA","c3":"NOCHE","load":"Cargando...","none":"Consulta la fuente oficial.","verify":"Verifica siempre en la fuente oficial.","btn":"Resultados oficiales","more":"Lee también:","l1":"Cómo leer los resultados","l2":"Lotería de hoy","l3":"Juego responsable","disc":"FLORIDA MAGIC no está afiliado a la Lotería de Florida ni a ninguna lotería. Los números generados son aleatorios, solo de entretenimiento: no predicen resultados, no aumentan tus probabilidades y no garantizan ningún premio. Juega con responsabilidad. Solo mayores de 18 años."},"fr":{"stSrc":"Source : lotteryusa.com · Vérifiez toujours sur flalottery.com","sMid":"MIDI","sEve":"SOIR","title":"Résultat Floride Midi / Soir – Pick 3 et Pick 4 | FLORIDA MAGIC","desc":"Derniers résultats de Floride Pick 3 et Pick 4, tirage de midi (Midday) et du soir (Evening). Vérifiez toujours la source officielle.","h1":"Résultat Floride Midi / Soir","h2":"🎯 Pick 3 + Pick 4 – derniers résultats","c1":"DATE","c2":"MIDI","c3":"SOIR","load":"Chargement...","none":"Consultez la source officielle.","verify":"Vérifiez toujours la source officielle.","btn":"Résultats officiels","more":"À lire aussi :","l1":"Comment lire les résultats","l2":"Loterie du jour","l3":"Jeu responsable","disc":"FLORIDA MAGIC n'est affilié ni à la Loterie de Floride ni à aucune loterie. Les numéros générés sont aléatoires, uniquement pour le divertissement : ils ne prédisent pas les résultats, n'augmentent pas vos chances et ne garantissent aucun gain. Jouez de façon responsable. Réservé aux plus de 18 ans."},"en":{"stSrc":"Source: lotteryusa.com · Always verify at flalottery.com","sMid":"MIDDAY","sEve":"EVENING","title":"Florida Results Midday / Evening – Pick 3 and Pick 4 | FLORIDA MAGIC","desc":"Latest Florida Pick 3 and Pick 4 results, midday and evening draws. Always verify with the official source.","h1":"Florida Results Midday / Evening","h2":"🎯 Pick 3 + Pick 4 – latest results","c1":"DATE","c2":"MIDDAY","c3":"EVENING","load":"Loading...","none":"Check the official source.","verify":"Always verify with the official source.","btn":"Official results","more":"Also read:","l1":"How to read the results","l2":"Today's lottery","l3":"Responsible play","disc":"FLORIDA MAGIC is not affiliated with the Florida Lottery or any lottery. The numbers shown are random, for entertainment only: they do not predict results, do not improve your odds and do not guarantee any prize. Play responsibly. Ages 18 and over only."}};
 function etNow(){const o={};new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date()).forEach(p=>o[p.type]=+p.value);if(o.hour===24)o.hour=0;return o}
 var LOC={es:'es-DO',fr:'fr-FR',en:'en-US'};
 function fmt(y,m,d,l,short){return new Date(Date.UTC(y,m-1,d,12)).toLocaleDateString(LOC[l],{day:'2-digit',month:short?'short':'long',year:'numeric',timeZone:'UTC'}).toUpperCase()}
 var cur='es';try{var v=localStorage.getItem('lang');if(v&&LOC[v])cur=v}catch(e){}
-function baseSet(l){
-  cur=l;document.documentElement.lang=l;
-  document.title=T[l].title;document.getElementById('md').setAttribute('content',T[l].desc);
-  document.querySelectorAll('[data-l]').forEach(function(e){e.hidden=e.getAttribute('data-l')!==l});
-  document.querySelectorAll('[data-b]').forEach(function(b){b.className=b.getAttribute('data-b')===l?'on':''});
-  document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(T[l][k]!=null)e.textContent=T[l][k]});
-  try{localStorage.setItem('lang',l)}catch(e){}
-}
+function baseSet(l){cur=l;document.documentElement.lang=l;document.title=T[l].title;document.getElementById('md').setAttribute('content',T[l].desc);document.querySelectorAll('[data-l]').forEach(function(e){e.hidden=e.getAttribute('data-l')!==l});document.querySelectorAll('[data-b]').forEach(function(b){b.className=b.getAttribute('data-b')===l?'on':''});document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(T[l][k]!=null)e.textContent=T[l][k]});try{localStorage.setItem('lang',l)}catch(e){}}
 document.querySelectorAll('[data-b]').forEach(function(b){b.addEventListener('click',function(){setL(b.getAttribute('data-b'))})});
 const o=etNow(),tn=o.year*10000+o.month*100+o.day;
 var rows=null;
-function render(){
-  const tb=document.getElementById('res');
-  if(rows===null)return;
-  tb.innerHTML='';
-  if(!rows.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=3;td.textContent=T[cur].none;tr.appendChild(td);tb.appendChild(tr);return}
-  rows.forEach(function(r){
-    const p=String(r.date).split('-').map(Number);
-    const mid=((r.mid3||'')+' '+(r.mid4||'')).trim()||'---',eve=((r.eve3||'')+' '+(r.eve4||'')).trim()||'---';
-    const tr=document.createElement('tr');
-    [fmt(p[0],p[1],p[2],cur,true),mid,eve].forEach(function(x){const td=document.createElement('td');td.textContent=x;tr.appendChild(td)});
-    tb.appendChild(tr);
-  });
-}
-function clean(list){
-  return list.filter(function(r){const q=String(r.date||'').split('-').map(Number);return q.length===3&&q[0]*10000+q[1]*100+q[2]<=tn})
-    .sort(function(a,b){return String(b.date).localeCompare(String(a.date))}).slice(0,10);
-}
-async function load(){
-  let list=null;
-  try{
-    const r=await fetch('/api/results?'+Date.now(),{cache:'no-store'});
-    const d=await r.json();
-    if(d&&Array.isArray(d.rows)&&d.rows.length)list=d.rows;
-  }catch(e){}
-  if(!list){
-    try{
-      const r=await fetch('/results.json?'+Date.now(),{cache:'no-store'});
-      const d=r.ok?await r.json():null;
-      if(Array.isArray(d)&&d.length)list=d;
-    }catch(e){}
-  }
-  rows=list?clean(list):[];
-  render();
-}
+function renderStamp(){const st=document.getElementById('stamp');if(!rows||!rows.length){st.hidden=true;return}let pick=null;for(const r of rows){if(/^\d{3}$/.test(r.eve3||'')&&/^\d{4}$/.test(r.eve4||'')){pick={d:r.date,s:'sEve',a:r.eve3,b:r.eve4};break}if(/^\d{3}$/.test(r.mid3||'')&&/^\d{4}$/.test(r.mid4||'')){pick={d:r.date,s:'sMid',a:r.mid3,b:r.mid4};break}}if(!pick){st.hidden=true;return}const q=String(pick.d).split('-').map(Number);document.getElementById('stD').textContent=fmt(q[0],q[1],q[2],cur)+' • '+T[cur][pick.s];document.getElementById('stP3').textContent=pick.a;document.getElementById('stP4').textContent=pick.b;st.hidden=false}
+function render(){renderStamp();const tb=document.getElementById('res');if(rows===null)return;tb.innerHTML='';if(!rows.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=3;td.textContent=T[cur].none;tr.appendChild(td);tb.appendChild(tr);return}rows.forEach(function(r){const p=String(r.date).split('-').map(Number);const mid=((r.mid3||'')+' '+(r.mid4||'')).trim()||'---',eve=((r.eve3||'')+' '+(r.eve4||'')).trim()||'---';const tr=document.createElement('tr');[fmt(p[0],p[1],p[2],cur,true),mid,eve].forEach(function(x){const td=document.createElement('td');td.textContent=x;tr.appendChild(td)});tb.appendChild(tr)})}
+function clean(list){return list.filter(function(r){const q=String(r.date||'').split('-').map(Number);return q.length===3&&q[0]*10000+q[1]*100+q[2]<=tn}).sort(function(a,b){return String(b.date).localeCompare(String(a.date))}).slice(0,10)}
+async function load(){let list=null;try{const r=await fetch('/api/results?'+Date.now(),{cache:'no-store'});const d=await r.json();if(d&&Array.isArray(d.rows)&&d.rows.length)list=d.rows}catch(e){}if(!list){try{const r=await fetch('/results.json?'+Date.now(),{cache:'no-store'});const d=r.ok?await r.json():null;if(Array.isArray(d)&&d.length)list=d}catch(e){}}rows=list?clean(list):[];render()}
 function setL(l){baseSet(l);document.querySelectorAll('.fd').forEach(function(x){x.textContent=fmt(o.year,o.month,o.day,l)});render();window.scrollTo(0,0)}
-setL(cur);
-load();
-try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}
+setL(cur);load();try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}
 </script>
 </body>
 </html>
