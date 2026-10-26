@@ -1,7 +1,7 @@
 // Service worker senp: paj la toujou chaje nan rezo an premye (done fre),
 // epi li sèvi ak kopi sere a sèlman si pa gen entènèt. API yo pa touche.
-const CACHE = 'magic-v7-shell-1';
-const SHELL = ['/', '/icon-192.png', '/icon-512.png'];
+const CACHE = 'magic-v7-shell-2';
+const SHELL = ['/', '/icon-v2-192.png', '/icon-v2-512.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
