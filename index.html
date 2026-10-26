@@ -264,20 +264,10 @@ header h1{color:#000}
     <div id="tkOut" style="margin-top:8px"></div>
   </div>
 
-  <!-- ADSTERRA 300x250 (page Chance seulement, caché pour les VIP) -->
-  <div class="ad" id="adH2" data-tab="home" style="text-align:center">
-    <div style="display:inline-block;width:300px;max-width:100%">
-<script>
-  atOptions = {
-    'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://bauval.org/22/b8e428adc27fc62ef8cec3cfbd9a18db"></script>
-    </div>
+  <!-- ADSTERRA Native Banner (paj Chance, kache pou VIP) -->
+  <div class="ad" id="adNat" data-tab="home" style="text-align:center">
+<script async="async" data-cfasync="false" src="https://bauval.org/21/1391bfea94f859a195fafcdeff8df687"></script>
+<div id="container-1391bfea94f859a195fafcdeff8df687"></div>
   </div>
 
   <div data-tab="home">
@@ -402,6 +392,19 @@ header h1{color:#000}
     <p class="small" id="astNote" style="display:none"></p>
     
   </section>
+
+  <div class="ad adx" id="adAst2" data-tab="astral" style="text-align:center"><div style="display:inline-block;width:300px;max-width:100%">
+<script>
+  atOptions = {
+    'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/b8e428adc27fc62ef8cec3cfbd9a18db"></script>
+</div></div>
 
   <div id="astRead" data-tab="astral"></div>
 
@@ -1236,7 +1239,7 @@ window.__tcAdd=function(rows){
 window.renderExtras=function(){
   const t=T();
   $('tkIn').placeholder=t.tkPh;$('tcIn').placeholder=t.tcPh;
-  $('adH2').style.display=$('adH3').style.display=esVip()?'none':'block';
+  $('adNat').style.display=$('adH3').style.display=esVip()?'none':'block';
   countdown();stats();ticket();tchala();
 };
 $('tkIn').addEventListener('input',ticket);
