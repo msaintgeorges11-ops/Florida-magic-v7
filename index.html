@@ -605,14 +605,14 @@ function sWin(){const ac=_ac;if(!ac)return;[0,.09,.18,.3].forEach((dl,i)=>{const
 let _spr=null;
 function sprites(){ // mismas bolitas y luces, dibujadas UNA sola vez (mucho más fluido en el teléfono)
   if(_spr)return _spr;
-  const cols=['#1363f8','#0a3fb0','#2e86ff','#111','#d9a21b','#8fb8ff'],balls=[];
+  const cols=['#e0202a','#1e5fd0','#5dbb1f','#f5c518','#d82fc0','#f28a1a','#f4f4f4','#2fb6ee'],dark=[0,0,0,1,0,0,1,0],edge=['#5a0508','#06204f','#1d4a06','#7a5c00','#52084a','#6b3200','#8a8a8a','#0a4a66'],balls=[];
   for(let ci=0;ci<cols.length;ci++)for(let n=0;n<10;n++){
     const S=48,cv=document.createElement('canvas');cv.width=cv.height=S;const c=cv.getContext('2d'),r=17;
     c.fillStyle='rgba(120,180,255,.30)';c.beginPath();c.arc(S/2,S/2,r+5,0,6.3);c.fill();
     c.fillStyle='rgba(120,180,255,.30)';c.beginPath();c.arc(S/2,S/2,r+2.5,0,6.3);c.fill();
-    const g=c.createRadialGradient(S/2-6,S/2-7,1,S/2,S/2,r);g.addColorStop(0,'#fff');g.addColorStop(.25,cols[ci]);g.addColorStop(1,'#000');
+    const g=c.createRadialGradient(S/2-6,S/2-7,1,S/2,S/2,r);g.addColorStop(0,'#fff');g.addColorStop(.25,cols[ci]);g.addColorStop(1,edge[ci]);
     c.fillStyle=g;c.beginPath();c.arc(S/2,S/2,r,0,6.3);c.fill();
-    c.fillStyle='#fff';c.font='bold 19px Arial';c.textAlign='center';c.textBaseline='middle';c.fillText(n,S/2,S/2+1);
+    c.fillStyle=dark[ci]?'#111':'#fff';c.font='bold 19px Arial';c.textAlign='center';c.textBaseline='middle';c.fillText(n,S/2,S/2+1);
     balls.push(cv);
   }
   const lights=['#fff','#ffe27a','#8fd0ff','#c9a0ff'].map(col=>{const S=24,cv=document.createElement('canvas');cv.width=cv.height=S;const c=cv.getContext('2d');
@@ -638,7 +638,7 @@ function rainFX(card,ms){ // lluvia continua de bolitas con número + luces, de 
     c.clearRect(0,0,W,H);
     if(el<STOPSPAWN)while(spawnAt<el){
       const r=11+Math.random()*5;
-      balls.push({x:r+Math.random()*(W-2*r),y:-r-4,vx:(Math.random()-.5)*1.2,vy:2+Math.random()*2,r:r,spr:SP.balls[(k++%6)*10+Math.floor(Math.random()*10)],rot:Math.random()*6,vr:(Math.random()-.5)*.2});
+      balls.push({x:r+Math.random()*(W-2*r),y:-r-4,vx:(Math.random()-.5)*1.2,vy:2+Math.random()*2,r:r,spr:SP.balls[(k++%8)*10+Math.floor(Math.random()*10)],rot:Math.random()*6,vr:(Math.random()-.5)*.2});
       spawnAt+=20+Math.random()*18;
     }
     c.globalCompositeOperation='lighter';
