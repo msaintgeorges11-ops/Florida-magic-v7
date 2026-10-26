@@ -264,12 +264,6 @@ header h1{color:#000}
     <div id="tkOut" style="margin-top:8px"></div>
   </div>
 
-  <!-- ADSTERRA Native Banner (paj Chance, kache pou VIP) -->
-  <div class="ad" id="adNat" data-tab="home" style="text-align:center">
-<script async="async" data-cfasync="false" src="https://bauval.org/21/1391bfea94f859a195fafcdeff8df687"></script>
-<div id="container-1391bfea94f859a195fafcdeff8df687"></div>
-  </div>
-
   <div data-tab="home">
     <div class="card">
       <h2 data-t="tcT"></h2>
@@ -282,19 +276,13 @@ header h1{color:#000}
     <div class="card"><p class="small" data-t="tcNote"></p></div>
   </div>
 
-  <div class="ad adx" data-tab="results" style="text-align:center"><div style="display:inline-block;width:300px;max-width:100%">
-<script>
-  atOptions = {
-    'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://bauval.org/22/b8e428adc27fc62ef8cec3cfbd9a18db"></script>
-</div></div>
+  <!-- ADSTERRA Native Banner (paj Chance, kache pou VIP) -->
+  <div class="ad" id="adNat" data-tab="home" style="text-align:center">
+<script async="async" data-cfasync="false" src="https://bauval.org/21/1391bfea94f859a195fafcdeff8df687"></script>
+<div id="container-1391bfea94f859a195fafcdeff8df687"></div>
+  </div>
 
+  
   <div class="card" data-tab="results">
     <h2>📅 <span data-t="last">8 ÚLTIMOS SORTEOS - NÚMEROS DE LA SUERTE</span></h2>
     <table>
@@ -335,6 +323,19 @@ header h1{color:#000}
     <p class="small" data-t="snap">Pick 3 y Pick 4 · 8 últimos resultados, tomados de fuentes que publican los números oficiales. Verifica siempre en www.flalottery.com.</p>
   </div>
 
+  <div class="ad adx" data-tab="results" style="text-align:center"><div style="display:inline-block;width:300px;max-width:100%">
+<script>
+  atOptions = {
+    'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/b8e428adc27fc62ef8cec3cfbd9a18db"></script>
+</div></div>
+
   <div class="card real" id="vipRes" data-tab="vip">
     <h2 data-t="vipResT"></h2>
     <table>
@@ -366,7 +367,7 @@ header h1{color:#000}
     <p style="margin-top:14px"><a id="vipWa" href="#" target="_blank" rel="noopener" data-t="wa" style="font-size:13px;font-weight:bold;padding:7px 14px;margin:0;background:#fff;color:#000;border:2px solid #000;border-radius:999px">💬 Soporte WhatsApp</a></p>
   </div>
 
-  <div class="ad adx" data-tab="astral" style="text-align:center"><div style="display:inline-block;width:300px;max-width:100%">
+  <div class="ad adx" id="adAstTop" data-tab="astral" style="text-align:center"><div style="display:inline-block;width:300px;max-width:100%">
 <script>
   atOptions = {
     'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
@@ -1527,6 +1528,7 @@ function renderVoiceSel(){
 function renderAst(){
   const d=D[al],T=d.T;
   stopAudio();
+  {const at0=$('adAstTop'),bx0=$('astRead');if(at0&&bx0&&at0.parentNode===bx0)bx0.parentNode.insertBefore(at0,bx0)}
   renderVoiceSel();
   $('astTitle').textContent=T.title;
   {const o=etNow(),wd=new Date(Date.UTC(o.year,o.month-1,o.day,12)).getUTCDay(),dn=d.days[wd],mn=d.months[o.month-1];
@@ -1567,6 +1569,7 @@ function renderAst(){
       box.appendChild(ad);
     }
   }
+  {const at=$('adAstTop'),s3=$('sign3');if(at&&s3){const ref=s3.previousElementSibling;box.insertBefore(at,ref&&ref.classList.contains('ad')?ref:s3)}}
   const fin=document.createElement('div');fin.className='sp';fin.id='signEnd';box.appendChild(fin);
   const fp=document.createElement('p');fp.className='dsc';fp.style.cssText='border-top:none;padding-top:0;margin-top:0';fp.textContent=T.disc;fin.appendChild(fp);
   const u=document.createElement('button');u.type='button';u.className='up';u.textContent=UP;u.onclick=()=>{$('astList').scrollIntoView({behavior:'smooth',block:'start'})};fin.appendChild(u);
