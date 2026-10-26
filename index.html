@@ -63,6 +63,11 @@ button.main:disabled{background:#e6e6e6;color:#888;cursor:not-allowed}
 .ad{margin-top:12px;min-height:0;overflow:hidden}
 .ad:has(ins[data-ad-status="unfilled"]){display:none!important}
 ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important}
+/* Adsterra: kache blòk la si poko gen pibisite (pa gen iframe) */
+.ad.adx:not(:has(iframe)),#adH2:not(:has(iframe)){display:none!important;margin:0!important}
+/* AdSense: pa gen espas toutotan pibisite a poko ranpli (kolapse, men pa display:none pou pushAds() ka toujou mache) */
+.ad:has(ins.adsbygoogle):not(:has(ins[data-ad-status="filled"])){margin:0!important;max-height:0!important;padding:0!important;overflow:hidden!important}
+.ad:has(ins.adsbygoogle:not([data-ad-status="filled"])) ins.adsbygoogle{min-height:0!important}
 .vip{display:block;background:#fff;color:#000;border:1px solid #fff;border-radius:20px;padding:15px;margin-top:12px;text-align:center}
 .vip p{font-size:13px;margin:5px 0}
 .vip a{display:inline-block;background:var(--b);color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:12px;margin:6px 0}
@@ -223,14 +228,25 @@ header h1{color:#000}
     <p class="small" id="limit"></p>
   </div>
 
+  <div class="ad adx" id="adTop" data-tab="home" style="text-align:center"><div style="display:inline-block;width:300px;max-width:100%">
+<script>
+  atOptions = {
+    'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/b8e428adc27fc62ef8cec3cfbd9a18db"></script>
+</div></div>
+
   <div class="card" data-tab="home">
     <h2>🍀 <span data-t="chance">4 NÚMEROS DE LA SUERTE</span> — <span class="fd"></span> — <span class="ses"></span></h2>
     <div class="nums"><span class="num" id="n1">???</span><span class="num" id="n2">???</span><span class="num" id="n3">???</span><span class="num" id="n4">???</span></div>
     <p class="small" id="basis"></p>
     <p class="small" data-t="calc">Estos son los números de la suerte y los más calientes del día de hoy.</p>
   </div>
-
-  <div class="ad" id="adTop" data-tab="home"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="7343398778" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
   <div class="card" data-tab="home">
     <h2 data-t="cdT"></h2>
@@ -248,7 +264,21 @@ header h1{color:#000}
     <div id="tkOut" style="margin-top:8px"></div>
   </div>
 
-  <div class="ad" id="adH2" data-tab="home"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="7343398778" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+  <!-- ADSTERRA 300x250 (page Chance seulement, caché pour les VIP) -->
+  <div class="ad" id="adH2" data-tab="home" style="text-align:center">
+    <div style="display:inline-block;width:300px;max-width:100%">
+<script>
+  atOptions = {
+    'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/b8e428adc27fc62ef8cec3cfbd9a18db"></script>
+    </div>
+  </div>
 
   <div data-tab="home">
     <div class="card">
@@ -262,6 +292,19 @@ header h1{color:#000}
     <div class="card"><p class="small" data-t="tcNote"></p></div>
   </div>
 
+  <div class="ad adx" data-tab="results" style="text-align:center"><div style="display:inline-block;width:300px;max-width:100%">
+<script>
+  atOptions = {
+    'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/b8e428adc27fc62ef8cec3cfbd9a18db"></script>
+</div></div>
+
   <div class="card" data-tab="results">
     <h2>📅 <span data-t="last">8 ÚLTIMOS SORTEOS - NÚMEROS DE LA SUERTE</span></h2>
     <table>
@@ -270,7 +313,19 @@ header h1{color:#000}
     </table>
   </div>
 
-  <div class="ad" id="adBot" data-tab="results"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="2091072091" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+  <div class="ad adx" id="adBot" data-tab="results" style="text-align:center"><div style="display:inline-block;width:300px;max-width:100%">
+<script>
+  atOptions = {
+    'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/b8e428adc27fc62ef8cec3cfbd9a18db"></script>
+</div></div>
 
   <div class="card real" data-tab="results">
     <h2><span data-t="real">🎯 ÚLTIMOS RESULTADOS OFICIALES FLORIDA</span></h2>
@@ -321,6 +376,19 @@ header h1{color:#000}
     <p style="margin-top:14px"><a id="vipWa" href="#" target="_blank" rel="noopener" data-t="wa" style="font-size:13px;font-weight:bold;padding:7px 14px;margin:0;background:#fff;color:#000;border:2px solid #000;border-radius:999px">💬 Soporte WhatsApp</a></p>
   </div>
 
+  <div class="ad adx" data-tab="astral" style="text-align:center"><div style="display:inline-block;width:300px;max-width:100%">
+<script>
+  atOptions = {
+    'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/b8e428adc27fc62ef8cec3cfbd9a18db"></script>
+</div></div>
+
   <section class="card" id="astralBox" data-tab="astral">
     <h2 id="astTitle"></h2>
     <p class="small" id="astDay" style="margin:0 0 6px;font-weight:bold"></p>
@@ -341,9 +409,32 @@ header h1{color:#000}
 
   <section class="card" data-tab="info"><h2 data-t="aboutH">Sobre FLORIDA MAGIC V7</h2><p class="small" style="font-size:13px;text-align:left" data-t="aboutP">FLORIDA MAGIC V7 es un generador aleatorio de números para entretenimiento. Cada día y cada sorteo (mediodía y noche, hora de Florida) muestra 4 números de la suerte iguales para todos, y una tabla con los últimos resultados de Pick 3 y Pick 4. Los números no predicen ningún sorteo.</p><div id="artLinks" style="font-size:13px;text-align:left;margin-top:10px;line-height:1.9"></div></section>
 
-  <div class="ad" id="adInfo" data-tab="info"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="7343398778" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+  <div class="ad adx" id="adInfo" data-tab="info" style="text-align:center"><div style="display:inline-block;width:300px;max-width:100%">
+<script>
+  atOptions = {
+    'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/b8e428adc27fc62ef8cec3cfbd9a18db"></script>
+</div></div>
 
   <p class="disc" data-tab="info" data-t="aviso">FLORIDA MAGIC no está afiliado a la Lotería de Florida ni a ninguna lotería. Los números generados son aleatorios, no predicen resultados y no aumentan tus probabilidades. Juega con responsabilidad. Solo mayores de 18 años.</p>
+  <div class="ad adx" data-tab="info" style="text-align:center"><div style="display:inline-block;width:320px;max-width:100%">
+<script>
+  atOptions = {
+    'key' : '27685c41af061c75c2482f077793c365',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></script>
+</div></div>
   <footer data-tab="info">
     © FLORIDA MAGIC V7 — <span class="fd"></span> — VIP WhatsApp <a id="fWa" href="https://wa.me/18498697028" target="_blank" rel="noopener">849-869-7028</a><br>
     <span data-t="foot">Lotería de Florida oficial</span> — <a href="https://www.flalottery.com" target="_blank" rel="noopener">www.flalottery.com</a><br>
@@ -537,7 +628,7 @@ function render(){
   }catch(e){}
   document.querySelectorAll('.ses').forEach(e=>e.textContent=sesName);
   document.getElementById('vipBadge').style.display=vip?'inline-block':'none';
-  document.getElementById('adTop').style.display=document.getElementById('adBot').style.display=document.getElementById('adInfo').style.display=document.getElementById('adAst').style.display=vip?'none':'block';
+  document.getElementById('adTop').style.display=document.getElementById('adBot').style.display=document.getElementById('adInfo').style.display=document.getElementById('adAst').style.display=vip?'none':'block';document.querySelectorAll('.adx').forEach(e=>{e.style.display=vip?'none':'block'});
   const wa="https://wa.me/18498697028?text="+encodeURIComponent("Hola quiero ser VIP FLORIDA MAGIC 💎 para "+fechaKey());
   document.getElementById('vipWa').href=wa;
 
