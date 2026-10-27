@@ -495,7 +495,7 @@ function firePop(){
   try{const sc=document.createElement('script');sc.setAttribute('data-cfasync','false');sc.src='https://abscloud.org/1/9e279522413fcd9a29034d4720ff67be';document.body.appendChild(sc)}catch(e){}
 }
 function histKey(){return 'histOK_'+fechaKey()}
-function histVisible(){return esVip()||load(histKey())==='1'}
+function histVisible(){return esVip()||etNow().hour>=22}
 function histCtl(){const c=document.getElementById('histCtl');if(c)c.innerHTML=''}
 
 // Fecha y sesión en hora de Florida (ET): igual para todos en el mundo
@@ -687,7 +687,7 @@ function renderHist(){
   for(let i=0;i<8;i++){
     const d=new Date(Date.UTC(o.year,o.month-1,o.day-i)),y=d.getUTCFullYear(),m=d.getUTCMonth()+1,dd=d.getUTCDate(),k=keyOf(y,m,dd);
     const tr=document.createElement('tr');if(i===0)tr.className='today';
-    const hn=pair(k,"MIDDAY",false);[fmt(y,m,dd),hn.length?hn.join(' · '):'---'].forEach((x,ix)=>{const td=document.createElement('td');if(ix)td.colSpan=2;td.textContent=x;tr.appendChild(td)});
+    const hn=pair(k,"MIDDAY",false);[fmt(y,m,dd),hn.length?((hv||i>0)?hn.join(' · '):'\u00a0'):'---'].forEach((x,ix)=>{const td=document.createElement('td');if(ix)td.colSpan=2;td.textContent=x;tr.appendChild(td)});
     tb.appendChild(tr);
   }
 }
@@ -1591,6 +1591,20 @@ function renderAst(){
   box.style.display='block';box.innerHTML='';
   const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
   const UP={fr:'⬆️ Retour aux 12 signes',es:'⬆️ Volver a los 12 signos',en:'⬆️ Back to the 12 signs'}[al];
+  function astAd(){
+    if(esVip())return;
+      const w=document.createElement('div');w.className='ad adx';w.style.cssText='text-align:center;height:0;overflow:hidden;margin:0';
+      const f=document.createElement('iframe');f.width=320;f.height=50;f.scrolling='no';
+      f.style.cssText='border:0;max-width:100%;display:inline-block;overflow:hidden';
+      f.srcdoc='<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:transparent;overflow:hidden}</style></head><body><scr'+'ipt>atOptions={"key":"27685c41af061c75c2482f077793c365","format":"iframe","height":50,"width":320,"params":{}};</scr'+'ipt><scr'+'ipt src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></scr'+'ipt></body></html>';
+      w.appendChild(f);box.appendChild(w);
+      // l'espace reste fermé tant qu'aucune pub n'est affichée
+      let tries=0;const iv=setInterval(()=>{
+        tries++;
+        try{const d=f.contentDocument;if(d&&d.querySelector('iframe,img,ins,a')){w.style.cssText='text-align:center;margin-top:12px';clearInterval(iv)}}catch(e){clearInterval(iv)}
+        if(tries>20||!w.isConnected)clearInterval(iv);
+      },500);
+  }
   for(let i=0;i<12;i++){
     const r=reading(i),sec=document.createElement('div');sec.className='sp';sec.id='sign'+i;box.appendChild(sec);
     const add=(cls,html)=>{const q=document.createElement('p');if(cls)q.className=cls;q.innerHTML=html;sec.appendChild(q);return q};
@@ -1606,11 +1620,12 @@ function renderAst(){
       x.onclick=()=>speak(x,[SW[al].mineIntro(greet(),r.name),r.yours,T.lucky+' '+r.num+'.',T.color+' '+r.color+'.',T.day+'. '+r.dayTxt,T.love+'. '+r.loveTxt,r.bye,SW[al].mineOutro].join(' '));
       sec.appendChild(x);
     }
+    if(i%3===2&&i<11)astAd();
   }
-  {const at=$('adAstTop'),s3=$('sign3');if(at&&s3){const ref=s3.previousElementSibling;box.insertBefore(at,ref&&ref.classList.contains('ad')?ref:s3)}}
   const fin=document.createElement('div');fin.className='sp';fin.id='signEnd';box.appendChild(fin);
   const fp=document.createElement('p');fp.className='dsc';fp.style.cssText='border-top:none;padding-top:0;margin-top:0';fp.textContent=T.disc;fin.appendChild(fp);
   const u=document.createElement('button');u.type='button';u.className='up';u.textContent=UP;u.onclick=()=>{$('astList').scrollIntoView({behavior:'smooth',block:'start'})};fin.appendChild(u);
+  astAd();
   try{if(window.pushAds)pushAds()}catch(e){}
 }
 function goSign(i){setTimeout(()=>{const e=$('sign'+i);if(e)e.scrollIntoView({behavior:'smooth',block:'start'})},50)}
@@ -1691,9 +1706,7 @@ window.addEventListener('focus',chkDay);
   // précharge le script popunder dès l'appui sur GIRAR (avant le clic)
   const sb=document.getElementById('spinBtn');
   if(sb)['pointerdown','touchstart'].forEach(ev=>sb.addEventListener(ev,()=>{if(!sb.disabled)firePop()},{passive:true}));
-  // charge le popunder dès que l'onglet Suerte s'ouvre, pour qu'il soit prêt au moment du clic sur GIRAR
-  document.querySelectorAll('.tabs button').forEach(bt=>bt.addEventListener('click',()=>{if(bt.dataset.go==='home')firePop()}));
-  setInterval(()=>{try{histCtl()}catch(e){}},30000);
+  setInterval(()=>{try{renderHist()}catch(e){}},30000);
   coverAll();
 })();
 </script>
