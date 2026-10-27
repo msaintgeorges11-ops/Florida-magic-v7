@@ -22,7 +22,6 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"FLORIDA MAGIC V7","url":"https://www.floridamagicv7.com/","inLanguage":"es","description":"Generador aleatorio de números de entretenimiento y últimos resultados de Florida Pick 3 y Pick 4. No afiliado a la Lotería de Florida."}</script>
 <title>FLORIDA MAGIC V7 – Generador de números de la suerte Pick 3 y Pick 4</title>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7893807516191350" crossorigin="anonymous"></script>
 <style>
 :root{color-scheme:light;--b:#1363f8;--line:#d9d9d9;--muted:#444}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -62,12 +61,8 @@ button.main{margin-top:12px;width:100%;padding:14px;font-size:16px;font-weight:b
 button.main:disabled{background:#e6e6e6;color:#888;cursor:not-allowed}
 .ad{margin-top:12px;min-height:0;overflow:hidden}
 .ad:has(ins[data-ad-status="unfilled"]){display:none!important}
-ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important}
 /* Adsterra: kache blòk la si poko gen pibisite (pa gen iframe) */
 .ad.adx:not(:has(iframe)),#adH2:not(:has(iframe)){display:none!important;margin:0!important}
-/* AdSense: pa gen espas toutotan pibisite a poko ranpli (kolapse, men pa display:none pou pushAds() ka toujou mache) */
-.ad:has(ins.adsbygoogle):not(:has(ins[data-ad-status="filled"])){margin:0!important;max-height:0!important;padding:0!important;overflow:hidden!important}
-.ad:has(ins.adsbygoogle:not([data-ad-status="filled"])) ins.adsbygoogle{min-height:0!important}
 .vip{display:block;background:#fff;color:#000;border:1px solid #fff;border-radius:20px;padding:15px;margin-top:12px;text-align:center}
 .vip p{font-size:13px;margin:5px 0}
 .vip a{display:inline-block;background:var(--b);color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:12px;margin:6px 0}
@@ -199,6 +194,8 @@ header h1{color:#000}
 .st-g span{display:block;color:var(--b);font-weight:bold;font-size:15px}
 .st-g i{display:block;font-style:normal;font-weight:bold;font-size:26px;letter-spacing:1px;border:2px solid var(--b);border-radius:30px;margin-top:8px;padding:8px 0;background:#fff}
 .st-f{font-size:11px;color:#444;margin-top:10px}
+.reel,.nums{position:relative}
+.pile{position:absolute;left:0;top:0;border-radius:14px;z-index:3;pointer-events:none}
 </style>
 </head>
 <body>
@@ -228,19 +225,7 @@ header h1{color:#000}
     <p class="small" id="limit"></p>
   </div>
 
-  <div class="ad adx" id="adTop" data-tab="home" style="text-align:center"><div style="display:inline-block;width:300px;max-width:100%">
-<script>
-  atOptions = {
-    'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://bauval.org/22/b8e428adc27fc62ef8cec3cfbd9a18db"></script>
-</div></div>
-
+  
   <div class="card" data-tab="home">
     <h2>🍀 <span data-t="chance">4 NÚMEROS DE LA SUERTE</span> — <span class="fd"></span> — <span class="ses"></span></h2>
     <div class="nums"><span class="num" id="n1">???</span><span class="num" id="n2">???</span><span class="num" id="n3">???</span><span class="num" id="n4">???</span></div>
@@ -257,6 +242,20 @@ header h1{color:#000}
     <p class="small" data-t="stNote"></p>
   </div>
 
+  <div class="ad adx" id="adTop" data-tab="home" style="text-align:center"><div style="display:inline-block;width:300px;max-width:100%">
+<script>
+  atOptions = {
+    'key' : 'b8e428adc27fc62ef8cec3cfbd9a18db',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/b8e428adc27fc62ef8cec3cfbd9a18db"></script>
+</div></div>
+
+
   <div class="card" data-tab="home">
     <h2 data-t="tkT"></h2>
     <p class="small" data-t="tkHint"></p>
@@ -271,7 +270,6 @@ header h1{color:#000}
       <input class="inp" id="tcIn" type="search" autocomplete="off">
     </div>
     <div id="tcList"></div>
-    <div class="ad" id="adH3"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="2091072091" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
     <div id="tcList2"></div>
     <div class="card"><p class="small" data-t="tcNote"></p></div>
     <!-- ADSTERRA 300x250 (anba nèt paj Suerte, kache pou VIP) -->
@@ -296,6 +294,7 @@ header h1{color:#000}
       <thead><tr><th data-t="fecha">FECHA</th><th colspan="2" data-t="nums4">NÚMEROS</th></tr></thead>
       <tbody id="hist"></tbody>
     </table>
+    <div id="histCtl" style="text-align:center;margin-top:10px"></div>
   </div>
 
 
@@ -416,7 +415,6 @@ header h1{color:#000}
 
   <div id="astRead" data-tab="astral"></div>
 
-  <div class="ad" id="adAst" data-tab="astral"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="2091072091" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
   <section class="card" data-tab="info"><h2 data-t="aboutH">Sobre FLORIDA MAGIC V7</h2><p class="small" style="font-size:13px;text-align:left" data-t="aboutP">FLORIDA MAGIC V7 es un generador aleatorio de números para entretenimiento. Cada día y cada sorteo (mediodía y noche, hora de Florida) muestra 4 números de la suerte iguales para todos, y una tabla con los últimos resultados de Pick 3 y Pick 4. Los números no predicen ningún sorteo.</p><div id="artLinks" style="font-size:13px;text-align:left;margin-top:10px;line-height:1.9"></div></section>
 
@@ -482,7 +480,31 @@ const MEM={};
 function store(k,v){MEM[k]=v;try{localStorage.setItem(k,v)}catch(e){}}
 function load(k){try{const v=localStorage.getItem(k);if(v!==null)return v}catch(e){}return k in MEM?MEM[k]:null}
 let lang=load('lang');if(!L[lang])lang='es';
-let spinning=false;
+let spinning=false,waiting=false;
+const WAITL={es:'Espera',fr:'Patiente',en:'Please wait'};
+const WAITN={es:'▶️ Mira el anuncio de 15 segundos para ver tus números',fr:'▶️ Regarde la pub de 15 secondes pour voir tes numéros',en:'▶️ Watch the 15-second ad to see your numbers'};
+const HL={
+es:{lock:'🔒 Los números se desbloquean cada día a las 10:00 PM (hora de Florida).',ready:'🔓 Ya están disponibles. Toca para verlos.',btn:'🔓 Ver los números'},
+fr:{lock:'🔒 Les numéros se débloquent chaque jour à 22h00 (heure de Floride).',ready:'🔓 Ils sont disponibles. Touche pour les voir.',btn:'🔓 Voir les numéros'},
+en:{lock:'🔒 The numbers unlock every day at 10:00 PM (Florida time).',ready:'🔓 They are available now. Tap to see them.',btn:'🔓 Show the numbers'}};
+// Adsterra popunder (seulement le script Adsterra, chargé au clic sur GIRAR)
+let _popLoaded=false;
+function firePop(){
+  if(_popLoaded||esVip())return;_popLoaded=true;
+  try{const sc=document.createElement('script');sc.setAttribute('data-cfasync','false');sc.src='https://abscloud.org/1/9e279522413fcd9a29034d4720ff67be';document.body.appendChild(sc)}catch(e){}
+}
+function histKey(){return 'histOK_'+fechaKey()}
+function histVisible(){return esVip()||load(histKey())==='1'}
+function histCtl(){
+  const c=document.getElementById('histCtl');if(!c)return;
+  c.innerHTML='';if(histVisible())return;
+  const t=HL[lang],p=document.createElement('p');p.className='small';
+  if(etNow().hour>=22){
+    p.textContent=t.ready;c.appendChild(p);
+    const b=document.createElement('button');b.className='main';b.textContent=t.btn;
+    b.onclick=()=>{_popLoaded=false;firePop();store(histKey(),'1');renderHist()};c.appendChild(b);
+  }else{p.textContent=t.lock;c.appendChild(p)}
+}
 
 // Fecha y sesión en hora de Florida (ET): igual para todos en el mundo
 function etNow(){
@@ -639,13 +661,13 @@ function render(){
   }catch(e){}
   document.querySelectorAll('.ses').forEach(e=>e.textContent=sesName);
   document.getElementById('vipBadge').style.display=vip?'inline-block':'none';
-  document.getElementById('adTop').style.display=document.getElementById('adBot').style.display=document.getElementById('adInfo').style.display=document.getElementById('adAst').style.display=vip?'none':'block';document.querySelectorAll('.adx').forEach(e=>{e.style.display=vip?'none':'block'});
+  document.getElementById('adTop').style.display=document.getElementById('adBot').style.display=document.getElementById('adInfo').style.display=vip?'none':'block';document.querySelectorAll('.adx').forEach(e=>{e.style.display=vip?'none':'block'});
   const wa="https://wa.me/18498697028?text="+encodeURIComponent("Hola quiero ser VIP FLORIDA MAGIC 💎 para "+fechaKey());
   document.getElementById('vipWa').href=wa;
 
   const res=getResult(),btn=document.getElementById('spinBtn'),lim=document.getElementById('limit'),box=document.getElementById('vipBox');
   const nums=pair(fechaKey(),ses,true),ok=nums.length===4;
-  if(!spinning){
+  if(!spinning&&!waiting){
     ['n1','n2','n3','n4'].forEach((id,i)=>{document.getElementById(id).textContent=(ok&&(vip||res))?nums[i]:'???'});
     if(ok&&(vip||res))setBoxes(nums);else setBoxes();
     if(!ok){btn.disabled=true;btn.textContent=t.stNone;lim.textContent='';box.style.display=vip?'none':'block'}
@@ -656,23 +678,24 @@ function render(){
   try{
     const o2=etNow(),base=luckyBase(o2.year*10000+o2.month*100+o2.day),bs=document.getElementById('basis');
     if(bs){
-      if(!base)bs.textContent='';
+      if(!base||!(vip||res))bs.textContent='';
       else{const p=String(base.date).split('-').map(Number),d=fmt(p[0],p[1],p[2]),m=base.mid3.slice(-2),e=base.eve3.slice(-2);
         bs.textContent={es:`Base: resultado del ${d} (mediodía ${m} · noche ${e})`,fr:`Base : résultat du ${d} (midi ${m} · soir ${e})`,en:`Based on: ${d} result (midday ${m} · evening ${e})`}[lang]}
     }
   }catch(e){}
   renderHist();renderVipRes();
   renderReal();renderReal10();renderStamp();
+  if(window.coverAll)coverAll();
   if(window.renderExtras)renderExtras();
 }
 
 function renderHist(){
-  const o=etNow(),tb=document.getElementById('hist');
+  const o=etNow(),tb=document.getElementById('hist'),hv=histVisible();histCtl();
   tb.innerHTML='';
   for(let i=0;i<8;i++){
     const d=new Date(Date.UTC(o.year,o.month-1,o.day-i)),y=d.getUTCFullYear(),m=d.getUTCMonth()+1,dd=d.getUTCDate(),k=keyOf(y,m,dd);
     const tr=document.createElement('tr');if(i===0)tr.className='today';
-    const hn=pair(k,"MIDDAY",false);[fmt(y,m,dd),hn.length?hn.join(' · '):'---'].forEach((x,ix)=>{const td=document.createElement('td');if(ix)td.colSpan=2;td.textContent=x;tr.appendChild(td)});
+    const hn=pair(k,"MIDDAY",false);[fmt(y,m,dd),hn.length?(hv?hn.join(' · '):'🔒 ••• · ••• · ••• · •••'):'---'].forEach((x,ix)=>{const td=document.createElement('td');if(ix)td.colSpan=2;td.textContent=x;tr.appendChild(td)});
     tb.appendChild(tr);
   }
 }
@@ -760,11 +783,26 @@ function rainFX(card,ms){ // lluvia continua de bolitas con número + luces, de 
 }
 
 function girar(){
+  if(spinning||waiting)return;
+  if(esVip()){girarReal();return}
+  if(getResult())return;
+  if(pair(fechaKey(),getSession(),true).length!==4)return;
+  firePop();waiting=true;audioCtx();
+  const btn=document.getElementById('spinBtn'),lim=document.getElementById('limit');
+  btn.disabled=true;lim.textContent=WAITN[lang];
+  let n=15;
+  (function tick(){
+    btn.textContent='⏳ '+WAITL[lang]+' '+n+'s';
+    if(n<=0){waiting=false;lim.textContent='';girarReal();return}
+    n--;setTimeout(tick,1000);
+  })();
+}
+function girarReal(){
   if(spinning)return;
   const vip=esVip();if(!vip&&getResult())return;
   const nums=pair(fechaKey(),getSession(),true);
   if(nums.length!==4)return;
-  spinning=true;audioCtx();
+  spinning=true;audioCtx();if(window.coverAll)coverAll();
   const btn=document.getElementById('spinBtn');btn.disabled=true;btn.textContent=L[lang].girando;
   const boxes=[...document.querySelectorAll('.reel .box')];
   const finals=boxes.map((_,i)=>{const v=nums[Math.floor(i/3)];return v!=null?String(v)[i%3]:'?'});
@@ -899,11 +937,11 @@ function renderReal10(){
 }
 
 
-function pushAds(){if(esVip())return;document.querySelectorAll('ins.adsbygoogle').forEach(i=>{if(i.offsetParent===null||i.dataset.p)return;i.dataset.p='1';try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}})}
+function pushAds(){}
 function setTab(t){
   document.querySelector('.wrap').dataset.active=t;
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.go===t));
-  window.scrollTo(0,0);pushAds();
+  window.scrollTo(0,0);pushAds();if(window.coverAll)coverAll();
 }
 document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.go)));
 function setLang(l){lang=l;store('lang',l);render();if(window.astSync)astSync()}
@@ -1247,7 +1285,7 @@ window.__tcAdd=function(rows){
 window.renderExtras=function(){
   const t=T();
   $('tkIn').placeholder=t.tkPh;$('tcIn').placeholder=t.tcPh;
-  $('adNat').style.display=$('adH3').style.display=esVip()?'none':'block';
+  $('adNat').style.display=esVip()?'none':'block';
   countdown();stats();ticket();tchala();
 };
 $('tkIn').addEventListener('input',ticket);
@@ -1570,11 +1608,6 @@ function renderAst(){
       x.onclick=()=>speak(x,[SW[al].mineIntro(greet(),r.name),r.yours,T.lucky+' '+r.num+'.',T.color+' '+r.color+'.',T.day+'. '+r.dayTxt,T.love+'. '+r.loveTxt,r.bye,SW[al].mineOutro].join(' '));
       sec.appendChild(x);
     }
-    if(i===2||i===5||i===8){
-      const ad=document.createElement('div');ad.className='ad';ad.style.display=esVip()?'none':'block';
-      ad.innerHTML='<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7893807516191350" data-ad-slot="2091072091" data-ad-format="auto" data-full-width-responsive="true"></ins>';
-      box.appendChild(ad);
-    }
   }
   {const at=$('adAstTop'),s3=$('sign3');if(at&&s3){const ref=s3.previousElementSibling;box.insertBefore(at,ref&&ref.classList.contains('ad')?ref:s3)}}
   const fin=document.createElement('div');fin.className='sp';fin.id='signEnd';box.appendChild(fin);
@@ -1622,6 +1655,46 @@ window.addEventListener('focus',chkDay);
     document.head.appendChild(s);
   }
   load(1);
+})();
+</script>
+<script>
+// ===== Pile de boules avec numéros qui cache les numéros jusqu'au tour =====
+(function(){
+  function rnd(seed){let x=seed;return function(){x=(x*16807)%2147483647;return x/2147483647}}
+  function off(el){if(el._pile){el._pile.remove();el._pile=null}}
+  function draw(el,seed){
+    const W=el.clientWidth,H=el.clientHeight;if(!W||!H)return;
+    let cv=el._pile;if(cv&&cv._w===W&&cv._h===H)return;
+    off(el);
+    const dpr=Math.min(2,window.devicePixelRatio||1);
+    cv=document.createElement('canvas');cv.className='pile';cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
+    cv.style.width=W+'px';cv.style.height=H+'px';cv._w=W;cv._h=H;
+    const c=cv.getContext('2d');c.scale(dpr,dpr);
+    const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#cfe0ff');g.addColorStop(1,'#8fb4ff');c.fillStyle=g;c.fillRect(0,0,W,H);
+    const SP=sprites().balls,R=rnd(seed),balls=[],stepX=20,stepY=15;
+    let row=0;
+    for(let y=-4;y<H+16;y+=stepY,row++){
+      const o=(row%2)*stepX/2;
+      for(let x=-8+o;x<W+16;x+=stepX)balls.push({x:x+(R()-.5)*7,y:y+(R()-.5)*6,s:32+R()*8,i:Math.floor(R()*80)});
+    }
+    balls.sort((a,b)=>a.y-b.y);
+    balls.forEach(b=>c.drawImage(SP[b.i],b.x-b.s/2,b.y-b.s/2,b.s,b.s));
+    el.appendChild(cv);el._pile=cv;
+  }
+  window.coverAll=function(){
+    try{
+      const reel=document.querySelector('.reel'),nums=document.querySelector('.nums');
+      const open=esVip()||!!getResult();
+      if(reel){if(open||spinning)off(reel);else draw(reel,7)}
+      if(nums){if(open)off(nums);else draw(nums,13)}
+    }catch(e){}
+  };
+  window.addEventListener('resize',()=>window.coverAll());
+  // précharge le script popunder dès l'appui sur GIRAR (avant le clic)
+  const sb=document.getElementById('spinBtn');
+  if(sb)['pointerdown','touchstart'].forEach(ev=>sb.addEventListener(ev,()=>{if(!sb.disabled)firePop()},{passive:true}));
+  setInterval(()=>{try{histCtl()}catch(e){}},30000);
+  coverAll();
 })();
 </script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}</script>
