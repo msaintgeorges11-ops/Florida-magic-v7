@@ -481,12 +481,13 @@ function store(k,v){MEM[k]=v;try{localStorage.setItem(k,v)}catch(e){}}
 function load(k){try{const v=localStorage.getItem(k);if(v!==null)return v}catch(e){}return k in MEM?MEM[k]:null}
 let lang=load('lang');if(!L[lang])lang='es';
 let spinning=false,waiting=false;
+const WATCHL={es:'⏳ Mira el anuncio...',fr:'⏳ Regarde la pub...',en:'⏳ Watch the ad...'};
 const WAITL={es:'Espera',fr:'Patiente',en:'Please wait'};
-const WAITN={es:'▶️ Mira el anuncio de 15 segundos para ver tus números',fr:'▶️ Regarde la pub de 15 secondes pour voir tes numéros',en:'▶️ Watch the 15-second ad to see your numbers'};
+const WAITN={es:'▶️ Mira el anuncio hasta el final y vuelve aquí para ver tus números',fr:'▶️ Regarde la pub jusqu\'à la fin puis reviens ici pour voir tes numéros',en:'▶️ Watch the ad to the end, then come back here to see your numbers'};
 const HL={
-es:{lock:'🔒 Los números se desbloquean cada día a las 10:00 PM (hora de Florida).',ready:'🔓 Ya están disponibles. Toca para verlos.',btn:'🔓 Ver los números'},
-fr:{lock:'🔒 Les numéros se débloquent chaque jour à 22h00 (heure de Floride).',ready:'🔓 Ils sont disponibles. Touche pour les voir.',btn:'🔓 Voir les numéros'},
-en:{lock:'🔒 The numbers unlock every day at 10:00 PM (Florida time).',ready:'🔓 They are available now. Tap to see them.',btn:'🔓 Show the numbers'}};
+es:{lock:'🔒 Los números de hoy se desbloquean a las 10:00 PM (hora de Florida).',ready:'🔓 Ya están disponibles. Toca para verlos.',btn:'🔓 Ver los números'},
+fr:{lock:'🔒 Les numéros du jour se débloquent à 22h00 (heure de Floride).',ready:'🔓 Ils sont disponibles. Touche pour les voir.',btn:'🔓 Voir les numéros'},
+en:{lock:'🔒 The numbers for today unlock at 10:00 PM (Florida time).',ready:'🔓 They are available now. Tap to see them.',btn:'🔓 Show the numbers'}};
 // Adsterra popunder (seulement le script Adsterra, chargé au clic sur GIRAR)
 let _popLoaded=false;
 function firePop(){
@@ -695,7 +696,7 @@ function renderHist(){
   for(let i=0;i<8;i++){
     const d=new Date(Date.UTC(o.year,o.month-1,o.day-i)),y=d.getUTCFullYear(),m=d.getUTCMonth()+1,dd=d.getUTCDate(),k=keyOf(y,m,dd);
     const tr=document.createElement('tr');if(i===0)tr.className='today';
-    const hn=pair(k,"MIDDAY",false);[fmt(y,m,dd),hn.length?(hv?hn.join(' · '):'🔒 ••• · ••• · ••• · •••'):'---'].forEach((x,ix)=>{const td=document.createElement('td');if(ix)td.colSpan=2;td.textContent=x;tr.appendChild(td)});
+    const hn=pair(k,"MIDDAY",false);[fmt(y,m,dd),hn.length?((hv||i>0)?hn.join(' · '):'🔒 ••• · ••• · ••• · •••'):'---'].forEach((x,ix)=>{const td=document.createElement('td');if(ix)td.colSpan=2;td.textContent=x;tr.appendChild(td)});
     tb.appendChild(tr);
   }
 }
@@ -790,12 +791,18 @@ function girar(){
   firePop();waiting=true;audioCtx();
   const btn=document.getElementById('spinBtn'),lim=document.getElementById('limit');
   btn.disabled=true;lim.textContent=WAITN[lang];
-  let n=15;
-  (function tick(){
-    btn.textContent='⏳ '+WAITL[lang]+' '+n+'s';
-    if(n<=0){waiting=false;lim.textContent='';girarReal();return}
-    n--;setTimeout(tick,1000);
-  })();
+  btn.textContent=WATCHL[lang];
+  // Le décompte est dans la pub elle-même. Quand l'utilisateur revient sur la page après la pub
+  // (page cachée au moins 3 s puis de nouveau visible), l'animation démarre et les numéros apparaissent.
+  let hiddenAt=null,fb=null;
+  const end=()=>{clearTimeout(fb);document.removeEventListener('visibilitychange',vc);waiting=false;lim.textContent='';girarReal()};
+  const vc=()=>{
+    if(document.hidden){hiddenAt=Date.now()}
+    else if(hiddenAt!==null){if(Date.now()-hiddenAt>=3000)end();else hiddenAt=null}
+  };
+  document.addEventListener('visibilitychange',vc);
+  // secours : si aucune pub ne s'ouvre, on ne bloque pas l'utilisateur
+  fb=setTimeout(()=>{if(hiddenAt===null&&!document.hidden)end()},15000);
 }
 function girarReal(){
   if(spinning)return;
@@ -1693,6 +1700,8 @@ window.addEventListener('focus',chkDay);
   // précharge le script popunder dès l'appui sur GIRAR (avant le clic)
   const sb=document.getElementById('spinBtn');
   if(sb)['pointerdown','touchstart'].forEach(ev=>sb.addEventListener(ev,()=>{if(!sb.disabled)firePop()},{passive:true}));
+  // charge le popunder dès que l'onglet Suerte s'ouvre, pour qu'il soit prêt au moment du clic sur GIRAR
+  document.querySelectorAll('.tabs button').forEach(bt=>bt.addEventListener('click',()=>{if(bt.dataset.go==='home')firePop()}));
   setInterval(()=>{try{histCtl()}catch(e){}},30000);
   coverAll();
 })();
