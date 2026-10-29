@@ -6,9 +6,9 @@ const STATES = {
     mid3: [U + 'florida/midday-pick-3/', 3], eve3: [U + 'florida/pick-3/', 3],
     mid4: [U + 'florida/midday-pick-4/', 4], eve4: [U + 'florida/pick-4/', 4]
   },
-  ga: { // Georgia Cash 3 / Cash 4 (midi, swa, nuit)
-    mid3: [U + 'georgia/midday-cash-3/', 3], eve3: [U + 'georgia/cash-3/', 3], nig3: [U + 'georgia/night-cash-3/', 3],
-    mid4: [U + 'georgia/midday-cash-4/', 4], eve4: [U + 'georgia/cash-4/', 4], nig4: [U + 'georgia/night-cash-4/', 4]
+  ga: { // Georgia Cash 3 / Cash 4 (midi, swa, nuit) - adrès verifye sou lotteryusa.com
+    mid3: [U + 'georgia/midday-3/', 3], eve3: [U + 'georgia/cash-3-evening/', 3], nig3: [U + 'georgia/cash-3/', 3],
+    mid4: [U + 'georgia/midday-4/', 4], eve4: [U + 'georgia/cash-4-evening/', 4], nig4: [U + 'georgia/cash-4/', 4]
   },
   ny: { // New York Numbers / Win 4 (midi, swa)
     mid3: [U + 'new-york/midday-numbers/', 3], eve3: [U + 'new-york/numbers/', 3],
