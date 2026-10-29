@@ -147,6 +147,7 @@ async function load(){
   var a=[],m=[];
   try{var r=await fetch('/api/sd?'+Date.now(),{cache:'no-store'});var d=await r.json();if(d&&Array.isArray(d.rows))a=d.rows}catch(e){}
   try{var r2=await fetch('/sd-results.json?'+Date.now(),{cache:'no-store'});if(r2.ok){var d2=await r2.json();if(Array.isArray(d2))m=d2}}catch(e){}
+  if(a.length||m.length){try{localStorage.setItem('fmx_sd',JSON.stringify({t:Date.now(),rows:a.concat(m)}))}catch(e){}}else{try{var c=JSON.parse(localStorage.getItem('fmx_sd')||'null');if(c&&Array.isArray(c.rows)&&Date.now()-c.t<7*864e5)m=c.rows}catch(e){}}
   var seen={};
   rows=a.concat(m).filter(function(r){if(!r||r.name!==LOT||!r.date||!r.nums)return false;var k=r.date;if(seen[k])return false;seen[k]=1;var q=String(r.date).split('-').map(Number);return q.length===3&&q[0]*10000+q[1]*100+q[2]<=tn})
     .sort(function(a,b){return (b.date+(b.t||'')).localeCompare(a.date+(a.t||''))}).slice(0,8);

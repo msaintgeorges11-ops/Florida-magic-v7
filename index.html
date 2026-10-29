@@ -931,6 +931,8 @@ function renderReal(){
 
 const RES=[[13,'268','808','9504','4248'],[12,'508','598','1184','2441'],[11,'516','648','5329','7797'],[10,'744','152','3547','3753'],[9,'174','097','2033','1197'],[8,'489','515','1963','2884'],[7,'046','330','0560','9397'],[6,'238','595','8722','7117'],[5,'654','898','1465','9517'],[4,'124','902','7811','7283']];
 let realRows=null,realSrc='lotteryusa.com',realDiag='';
+function fmxGet(k){try{var c=JSON.parse(localStorage.getItem('fmx_'+k)||'null');if(c&&Array.isArray(c.rows)&&c.rows.length&&Date.now()-c.t<7*864e5)return c.rows}catch(e){}return null}
+function fmxSet(k,rows){try{if(rows&&rows.length)localStorage.setItem('fmx_'+k,JSON.stringify({t:Date.now(),rows:rows}))}catch(e){}}
 async function loadResults(){
   let rows=null;realDiag='';
   try{
@@ -946,6 +948,8 @@ async function loadResults(){
       if(Array.isArray(d)&&d.length){rows=d;realSrc='results.json'}
     }catch(e){}
   }
+  if(rows&&realSrc!=='cache')fmxSet('fl',rows);
+  if(!rows){const c=fmxGet('fl');if(c){rows=c;realSrc='cache'}}
   realRows=rows;
   renderReal10();
   try{render()}catch(e){}
@@ -1004,7 +1008,7 @@ function renderX(){
     const tb=document.getElementById('xb-'+st),sb=document.getElementById('xs-'+st);
     if(!tb)return;
     if(!rows||!rows.length){
-      set('xe-'+st,rows===null?'':x.fail+' '+XE[st]);
+      set('xe-'+st,rows===null?'':x.fail);try{if(XE[st])console.log('['+st+'] '+XE[st])}catch(e){}
       if(rows!==null){tb.innerHTML='';sb.hidden=true}
       return;
     }
@@ -1024,10 +1028,11 @@ async function loadX(){
     try{
       const r=await fetch('/api/results?state='+st+'&'+Date.now(),{cache:'no-store'});
       let d=null;try{d=await r.json()}catch(e){}
-      if(d&&Array.isArray(d.rows)&&d.rows.length){XD[st]=d.rows;XE[st]=''}
+      if(d&&Array.isArray(d.rows)&&d.rows.length){XD[st]=d.rows;XE[st]='';try{localStorage.setItem('fmx_'+st,JSON.stringify({t:Date.now(),rows:d.rows}))}catch(e){}}
       else{
         let man=null;
         try{const q=await fetch('/results-'+st+'.json?'+Date.now(),{cache:'no-store'});if(q.ok){const j=await q.json();if(Array.isArray(j)&&j.length)man=j}}catch(e){}
+        if(!man){try{const c=JSON.parse(localStorage.getItem('fmx_'+st)||'null');if(c&&Array.isArray(c.rows)&&c.rows.length&&Date.now()-c.t<7*864e5)man=c.rows}catch(e){}}
         if(man){XD[st]=man;XE[st]=''}
         else{XD[st]=[];XE[st]='(HTTP '+r.status+(d&&d.errors&&d.errors.length?' — '+d.errors.join(' | '):'')+')'}
       }
@@ -1107,6 +1112,7 @@ async function loadSD(){
   let a=[],m=[];
   try{const r=await fetch('/api/sd?'+Date.now(),{cache:'no-store'});const d=await r.json();if(d&&Array.isArray(d.rows))a=d.rows}catch(e){}
   try{const r=await fetch('/sd-results.json?'+Date.now(),{cache:'no-store'});if(r.ok){const d=await r.json();if(Array.isArray(d))m=d}}catch(e){}
+  if(a.length||m.length)fmxSet('sd',a.concat(m));else{const c=fmxGet('sd');if(c)m=c}
   const seen={};SDD=a.concat(m).filter(r=>{const k=r&&r.date+'|'+r.name;if(!r||seen[k])return false;seen[k]=1;return true});
   renderSD();
 }
