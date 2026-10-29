@@ -155,6 +155,28 @@ header h1{color:#000}
 [data-tab="results"] table tr.today td:first-child{color:#fff}
 [data-tab="results"] table tr.today td:not(:first-child){color:#fff}
 [data-tab="results"] table th{font-size:13px}
+/* Kare dènye rezilta: fòm rektang, pi ba (mwens wotè) */
+.stamp.cp{padding:8px;margin-top:8px;border-radius:18px}
+.stamp.cp:before{border-width:5px;border-radius:18px}
+.stamp.cp .st-h{padding:8px 10px;gap:10px;border-radius:12px 12px 0 0}
+.stamp.cp .st-h img{width:38px;height:38px}
+.stamp.cp .st-h b{font-size:20px!important}
+.stamp.cp .st-i{width:38px;height:38px;font-size:22px}
+.stamp.cp .st-i svg{width:26px;height:26px}
+.stamp.cp .st-b{padding:8px 8px 6px;border-radius:0 0 12px 12px}
+.stamp.cp .st-d{font-size:13px}
+.stamp.cp .st-g{gap:8px;margin-top:8px}
+.stamp.cp .st-g>div{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:6px 8px;border-radius:12px}
+.stamp.cp .st-g span{font-size:12px}
+.stamp.cp .st-g i{margin-top:0;padding:4px 10px;font-size:20px;border-width:2px;border-radius:14px;letter-spacing:.5px}
+.stamp.cp .st-f{font-size:10px;margin-top:6px}
+
+/* Georgia / New York: nimewo yo sou yon sèl liy */
+table.xt td,table.xt th{white-space:nowrap}
+[data-tab="results"] table.xt td:not(:first-child){font-size:13.5px;letter-spacing:0;padding:8px 1px}
+[data-tab="results"] table.xt td:first-child{font-size:11px;padding-left:0;padding-right:2px}
+[data-tab="results"] table.xt th{font-size:11.5px;padding-left:1px;padding-right:1px}
+
 .real .num.s{font-size:19px;padding:5px 8px;letter-spacing:1px}
 .rn{font-size:12px}
 .tg{font-size:11px}
@@ -313,7 +335,7 @@ header h1{color:#000}
 
   <div class="card real" data-tab="results" id="xc-ga">
     <h2 id="xt-ga"></h2>
-    <div class="stamp" id="xs-ga" data-tab="results" hidden>
+    <div class="stamp cp" id="xs-ga" data-tab="results" hidden>
       <div class="st-h"><img src="/icon-v2-192.png" alt="Florida Magic V7"><b id="xn-ga" style="font-size:26px"></b><span class="st-i" aria-hidden="true">🍑</span></div>
       <div class="st-b">
         <div class="st-d" id="xd-ga"></div>
@@ -322,7 +344,7 @@ header h1{color:#000}
       </div>
     </div>
     <p class="small" id="xe-ga" style="font-size:10px"></p>
-    <table>
+    <table class="xt">
       <thead><tr><th></th><th colspan="3">Cash 3 + Cash 4</th></tr><tr><th data-t="fecha">FECHA</th><th id="xh-ga-mid"></th><th id="xh-ga-eve"></th><th id="xh-ga-nig"></th></tr></thead>
       <tbody id="xb-ga"><tr><td colspan="4">...</td></tr></tbody>
     </table>
@@ -331,7 +353,7 @@ header h1{color:#000}
 
   <div class="card real" data-tab="results">
     <h2><span data-t="real">🎯 ÚLTIMOS RESULTADOS OFICIALES FLORIDA</span></h2>
-    <div class="stamp" id="stamp" data-tab="results" hidden>
+    <div class="stamp cp" id="stamp" data-tab="results" hidden>
       <div class="st-h"><img src="/icon-v2-192.png" alt="Florida Magic V7"><b>FLORIDA</b><span class="st-i" aria-hidden="true"><svg viewBox="0 0 100 100" width="40" height="40"><path d="M2 20 L30 18 L40 14 L52 17 L62 22 L70 24 L72 34 L74 45 L78 55 L82 68 L88 82 L80 92 L74 94 L64 86 L61 76 L56 64 L52 52 L48 40 L40 30 L32 27 L24 30 L16 28 L6 28 Z" fill="#1363f8" stroke="#1363f8" stroke-width="3" stroke-linejoin="round"/></svg></span></div>
       <div class="st-b">
         <div class="st-d" id="stD"></div>
@@ -350,7 +372,7 @@ header h1{color:#000}
 
   <div class="card real" data-tab="results" id="xc-ny">
     <h2 id="xt-ny"></h2>
-    <div class="stamp" id="xs-ny" data-tab="results" hidden>
+    <div class="stamp cp" id="xs-ny" data-tab="results" hidden>
       <div class="st-h"><img src="/icon-v2-192.png" alt="Florida Magic V7"><b id="xn-ny" style="font-size:26px"></b><span class="st-i" aria-hidden="true">🗽</span></div>
       <div class="st-b">
         <div class="st-d" id="xd-ny"></div>
@@ -359,7 +381,7 @@ header h1{color:#000}
       </div>
     </div>
     <p class="small" id="xe-ny" style="font-size:10px"></p>
-    <table>
+    <table class="xt">
       <thead><tr><th></th><th colspan="2">Numbers + Win 4</th></tr><tr><th data-t="fecha">FECHA</th><th id="xh-ny-mid"></th><th id="xh-ny-eve"></th></tr></thead>
       <tbody id="xb-ny"><tr><td colspan="3">...</td></tr></tbody>
     </table>
@@ -1011,7 +1033,7 @@ function renderX(){
     if(pick){const q=pick.d.split('-').map(Number);set('xd-'+st,fmt(q[0],q[1],q[2])+' • '+xlab(st,pick.k));set('x3-'+st,pick.a);set('x4-'+st,pick.b);set('xf-'+st,'lotteryusa.com · '+c.off);sb.hidden=false}else sb.hidden=true;
     tb.innerHTML='';
     list.forEach(r=>{const p=r.date.split('-').map(Number),tr=document.createElement('tr');
-      [fmt(p[0],p[1],p[2])].concat(c.keys.map(k=>((r[k+'3']||'')+' '+(r[k+'4']||'')).trim()||'---')).forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});
+      [new Date(Date.UTC(p[0],p[1]-1,p[2],12)).toLocaleDateString(L[lang].loc,{day:'2-digit',month:'short',timeZone:'UTC'}).toUpperCase().replace(/\./g,'')].concat(c.keys.map(k=>((r[k+'3']||'')+' '+(r[k+'4']||'')).trim()||'---')).forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});
       tb.appendChild(tr)});
   });
 }
