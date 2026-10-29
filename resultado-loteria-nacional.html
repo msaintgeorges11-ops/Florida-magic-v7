@@ -71,6 +71,14 @@ th,td{font-size:11.5px}
 .stamp.cp .st-d{font-size:13px}
 .stamp.cp .st-g{gap:8px;margin-top:8px}
 .stamp.cp .st-g>div{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:6px 8px;border-radius:12px}
+.card table td:first-child{font-size:12px;font-weight:normal;color:#444;padding-left:0}
+.card table td:not(:first-child){font-size:16px;font-weight:bold;color:#000;letter-spacing:.5px;padding:8px 2px}
+.card table th{font-size:13px}
+.card table.xt td,.card table.xt th{white-space:nowrap}
+.card table.xt td:first-child{font-size:11px;padding-right:2px}
+.card table.xt td:not(:first-child){font-size:13.5px;letter-spacing:0;padding:8px 1px}
+.card table.xt th{font-size:11.5px;padding-left:1px;padding-right:1px}
+.stamp.cp{margin-left:16px;margin-right:16px}
 </style>
 </head>
 <body>
@@ -88,7 +96,7 @@ th,td{font-size:11.5px}
 </div>
 <div class="card">
   <h2 data-t="h2"></h2>
-  <table>
+  <table class="xt">
     <thead><tr><th data-t="date"></th><th data-t="hour"></th><th data-t="nums"></th></tr></thead>
     <tbody id="res"><tr><td colspan="3" data-t="load"></td></tr></tbody>
   </table>
