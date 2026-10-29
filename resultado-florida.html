@@ -53,6 +53,20 @@ a.btn{display:inline-block;margin-top:10px;background:var(--b);color:#fff;paddin
 .st-g i{display:block;font-style:normal;font-weight:bold;font-size:26px;letter-spacing:1px;border:2px solid var(--b);border-radius:30px;margin-top:8px;padding:8px 0;background:#fff}
 .st-f{font-size:11px;color:#444;margin-top:10px}
 .ad.adn:not(:has(#container-1391bfea94f859a195fafcdeff8df687 *)){display:none!important;margin:0!important}
+.stamp.cp{padding:8px;margin-top:8px;border-radius:18px}
+.stamp.cp:before{border-width:5px;border-radius:18px}
+.stamp.cp .st-h{padding:8px 10px;gap:10px;border-radius:12px 12px 0 0}
+.stamp.cp .st-h img{width:38px;height:38px}
+.stamp.cp .st-h b{font-size:20px!important}
+.stamp.cp .st-i{width:38px;height:38px;font-size:22px}
+.stamp.cp .st-i svg{width:26px;height:26px}
+.stamp.cp .st-b{padding:8px 8px 6px;border-radius:0 0 12px 12px}
+.stamp.cp .st-d{font-size:13px}
+.stamp.cp .st-g{gap:8px;margin-top:8px}
+.stamp.cp .st-g>div{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:6px 8px;border-radius:12px}
+.stamp.cp .st-g span{font-size:12px}
+.stamp.cp .st-g i{margin-top:0;padding:4px 10px;font-size:20px;border-width:2px;border-radius:14px;letter-spacing:.5px}
+.stamp.cp .st-f{font-size:10px;margin-top:6px}
 </style>
 </head>
 <body>
@@ -62,7 +76,7 @@ a.btn{display:inline-block;margin-top:10px;background:var(--b);color:#fff;paddin
 <header>
   <h1 data-t="h1"></h1>
 </header>
-<div class="stamp" id="stamp" hidden>
+<div class="stamp cp" id="stamp" hidden>
   <div class="st-h"><img src="/icon-192.png" alt="Florida Magic V7"><b>FLORIDA</b><span class="st-i" aria-hidden="true"><svg viewBox="0 0 100 100" width="40" height="40"><path d="M2 20 L30 18 L40 14 L52 17 L62 22 L70 24 L72 34 L74 45 L78 55 L82 68 L88 82 L80 92 L74 94 L64 86 L61 76 L56 64 L52 52 L48 40 L40 30 L32 27 L24 30 L16 28 L6 28 Z" fill="#1363f8" stroke="#1363f8" stroke-width="3" stroke-linejoin="round"/></svg></span></div>
   <div class="st-b">
     <div class="st-d" id="stD"></div>
@@ -130,9 +144,11 @@ function render(){
     tb.appendChild(tr);
   });
 }
+function fmxGet(k){try{var c=JSON.parse(localStorage.getItem('fmx_'+k)||'null');if(c&&Array.isArray(c.rows)&&c.rows.length&&Date.now()-c.t<7*864e5)return c.rows}catch(e){}return null}
+function fmxSet(k,r){try{if(r&&r.length)localStorage.setItem('fmx_'+k,JSON.stringify({t:Date.now(),rows:r}))}catch(e){}}
 function clean(list){
   return list.filter(function(r){const q=String(r.date||'').split('-').map(Number);return q.length===3&&q[0]*10000+q[1]*100+q[2]<=tn})
-    .sort(function(a,b){return String(b.date).localeCompare(String(a.date))}).slice(0,10);
+    .sort(function(a,b){return String(b.date).localeCompare(String(a.date))}).slice(0,6);
 }
 async function load(){
   let list=null;
@@ -148,6 +164,7 @@ async function load(){
       if(Array.isArray(d)&&d.length)list=d;
     }catch(e){}
   }
+  if(list)fmxSet('fl',list);else list=fmxGet('fl');
   rows=list?clean(list):[];
   render();
 }
