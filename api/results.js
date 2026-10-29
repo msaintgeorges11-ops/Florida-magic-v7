@@ -1,11 +1,19 @@
-// Vercel serverless function: GET /api/results
-// Rale rezilta Florida Pick 3 ak Pick 4 (midi + swa) bò sèvè a, san pwoblèm CORS.
-const BASE = 'https://www.lotteryusa.com/florida/';
-const SOURCES = {
-  mid3: { url: BASE + 'midday-pick-3/', n: 3 },
-  eve3: { url: BASE + 'pick-3/', n: 3 },
-  mid4: { url: BASE + 'midday-pick-4/', n: 4 },
-  eve4: { url: BASE + 'pick-4/', n: 4 }
+// Vercel serverless function: GET /api/results?state=fl|ga|ny   (default: fl)
+// Rale rezilta otomatikman bò sèvè a (pa gen pwoblèm CORS). Cache 5 minit.
+const U = 'https://www.lotteryusa.com/';
+const STATES = {
+  fl: { // Florida Pick 3 / Pick 4
+    mid3: [U + 'florida/midday-pick-3/', 3], eve3: [U + 'florida/pick-3/', 3],
+    mid4: [U + 'florida/midday-pick-4/', 4], eve4: [U + 'florida/pick-4/', 4]
+  },
+  ga: { // Georgia Cash 3 / Cash 4 (midi, swa, nuit)
+    mid3: [U + 'georgia/midday-cash-3/', 3], eve3: [U + 'georgia/cash-3/', 3], nig3: [U + 'georgia/night-cash-3/', 3],
+    mid4: [U + 'georgia/midday-cash-4/', 4], eve4: [U + 'georgia/cash-4/', 4], nig4: [U + 'georgia/night-cash-4/', 4]
+  },
+  ny: { // New York Numbers / Win 4 (midi, swa)
+    mid3: [U + 'new-york/midday-numbers/', 3], eve3: [U + 'new-york/numbers/', 3],
+    mid4: [U + 'new-york/midday-win-4/', 4], eve4: [U + 'new-york/win-4/', 4]
+  }
 };
 const MONTHS = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };
 
@@ -26,17 +34,19 @@ function parse(html, n) {
   return out;
 }
 
-async function grab(src) {
-  const r = await fetch(src.url, {
+async function grab([url, n]) {
+  const r = await fetch(url, {
     headers: { 'User-Agent': 'Mozilla/5.0 (compatible; FloridaMagicBot/1.0)', 'Accept': 'text/html' }
   });
   if (!r.ok) throw new Error('HTTP ' + r.status);
-  return parse(await r.text(), src.n);
+  return parse(await r.text(), n);
 }
 
 module.exports = async (req, res) => {
-  const keys = Object.keys(SOURCES);
-  const got = await Promise.allSettled(keys.map(k => grab(SOURCES[k])));
+  const st = String((req.query && req.query.state) || 'fl').toLowerCase();
+  const SRC = STATES[st] || STATES.fl;
+  const keys = Object.keys(SRC);
+  const got = await Promise.allSettled(keys.map(k => grab(SRC[k])));
   const byDate = {};
   const errors = [];
   got.forEach((g, i) => {
@@ -49,7 +59,6 @@ module.exports = async (req, res) => {
   const rows = Object.values(byDate).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 12);
   res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
-  res.status(rows.length ? 200 : 502).send(JSON.stringify({ rows, errors, src: 'lotteryusa.com', updated: new Date().toISOString() }));
+  res.status(rows.length ? 200 : 502).send(JSON.stringify({ state: st, rows, errors, src: 'lotteryusa.com', updated: new Date().toISOString() }));
 };
 module.exports.parse = parse;
-         
