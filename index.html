@@ -927,7 +927,6 @@ function renderReal(){
       d.appendChild(g);return d;
     };
   }
-  const b=document.createElement('button');b.textContent=t.act;b.onclick=actualizarFloridaReal;box.appendChild(b);
 }
 
 const RES=[[13,'268','808','9504','4248'],[12,'508','598','1184','2441'],[11,'516','648','5329','7797'],[10,'744','152','3547','3753'],[9,'174','097','2033','1197'],[8,'489','515','1963','2884'],[7,'046','330','0560','9397'],[6,'238','595','8722','7117'],[5,'654','898','1465','9517'],[4,'124','902','7811','7283']];
@@ -1074,12 +1073,16 @@ function sdBuild(){
       '<p class="small sdV"></p><p class="small"><a href="/'+SD_PAGES[i]+'.html" style="color:#1363f8;font-weight:bold">'+nm+' →</a></p>';
     wrap.appendChild(c);
   });
-  const bot=sdAd(300,250,SD_KEY300);   /* yon sèl 300x250 anba tout rezilta yo */
-  if(bot){bot.style.marginTop='14px';wrap.appendChild(bot)}
+  /* yon sèl piblisite anba tout rezilta yo (menm kòd ak dènye pati atik yo) */
+  const bot=document.createElement('div');bot.className='ad';bot.id='adSdNat';bot.dataset.tab='results';bot.style.cssText='text-align:center;margin-top:14px';
+  const box=document.createElement('div');box.id='container-1391bfea94f859a195fafcdeff8df687';bot.appendChild(box);
+  const sc=document.createElement('script');sc.async=true;sc.setAttribute('data-cfasync','false');sc.src='https://bauval.org/21/1391bfea94f859a195fafcdeff8df687';bot.appendChild(sc);
+  wrap.appendChild(bot);
 }
 function renderSD(){
   const x=SDL[lang]||SDL.es;
   sdBuild();
+  const nb=document.getElementById('adSdNat');if(nb)nb.style.display=esVip()?'none':'';
   const rows=SDD===null?null:sdClean(SDD);
   SD_LOT.forEach((nm,i)=>{
     const c=document.getElementById('sdc'+i);if(!c)return;
