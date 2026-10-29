@@ -326,19 +326,6 @@ table.xt td,table.xt th{white-space:nowrap}
   </div>
 
 
-  <div class="ad adx" id="adBot" data-tab="results" style="text-align:center"><div style="display:inline-block;width:320px;max-width:100%">
-<script>
-  atOptions = {
-    'key' : '27685c41af061c75c2482f077793c365',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
-</script>
-<script src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></script>
-</div></div>
-
   <div class="card real" data-tab="results" id="xc-ga">
     <h2 id="xt-ga"></h2>
     <div class="stamp cp" id="xs-ga" data-tab="results" hidden>
@@ -376,19 +363,6 @@ table.xt td,table.xt th{white-space:nowrap}
   </div>
 
 
-  <div class="ad adx" data-tab="results" style="text-align:center"><div style="display:inline-block;width:320px;max-width:100%">
-<script>
-  atOptions = {
-    'key' : '27685c41af061c75c2482f077793c365',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
-</script>
-<script src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></script>
-</div></div>
-
   <div class="card real" data-tab="results" id="xc-ny">
     <h2 id="xt-ny"></h2>
     <div class="stamp cp" id="xs-ny" data-tab="results" hidden>
@@ -406,19 +380,6 @@ table.xt td,table.xt th{white-space:nowrap}
     </table>
     <p class="small" id="xv-ny"></p>
   </div>
-
-  <div class="ad adx" data-tab="results" style="text-align:center"><div style="display:inline-block;width:320px;max-width:100%">
-<script>
-  atOptions = {
-    'key' : '27685c41af061c75c2482f077793c365',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
-</script>
-<script src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></script>
-</div></div>
 
   <div id="sdWrap"></div>
 
@@ -720,7 +681,7 @@ function render(){
   }catch(e){}
   document.querySelectorAll('.ses').forEach(e=>e.textContent=sesName);
   document.getElementById('vipBadge').style.display=vip?'inline-block':'none';
-  document.getElementById('adTop').style.display=document.getElementById('adBot').style.display=document.getElementById('adInfo').style.display=vip?'none':'block';document.querySelectorAll('.adx').forEach(e=>{e.style.display=vip?'none':'block'});
+  document.getElementById('adTop').style.display=document.getElementById('adInfo').style.display=vip?'none':'block';document.querySelectorAll('.adx').forEach(e=>{e.style.display=vip?'none':'block'});
   const wa="https://wa.me/18498697028?text="+encodeURIComponent("Hola quiero ser VIP FLORIDA MAGIC 💎 para "+fechaKey());
   document.getElementById('vipWa').href=wa;
 
@@ -993,7 +954,7 @@ function renderReal10(){
   const tb=document.getElementById('real10');tb.innerHTML='';
   const rows=(realRows||RES.map(r=>({date:'2026-10-'+String(r[0]).padStart(2,'0'),mid3:r[1],eve3:r[2],mid4:r[3],eve4:r[4]})));
   const o=etNow(),tn=o.year*10000+o.month*100+o.day;
-  rows.filter(r=>{const q=String(r.date).split('-').map(Number);return q[0]*10000+q[1]*100+q[2]<=tn}).slice(0,8).forEach(r=>{
+  rows.filter(r=>{const q=String(r.date).split('-').map(Number);return q[0]*10000+q[1]*100+q[2]<=tn}).slice(0,6).forEach(r=>{
     const p=String(r.date).split('-').map(Number);
     const tr=document.createElement('tr');
     [fmt(p[0],p[1],p[2]),((r.mid3||'')+' '+(r.mid4||'')).trim()||'---',((r.eve3||'')+' '+(r.eve4||'')).trim()||'---'].forEach(x=>{const td=document.createElement('td');td.textContent=x;tr.appendChild(td)});
@@ -1048,7 +1009,7 @@ function renderX(){
       return;
     }
     set('xe-'+st,'');
-    const list=rows.filter(r=>{const q=String(r.date).split('-').map(Number);return q.length===3&&q[0]*10000+q[1]*100+q[2]<=tn}).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,8);
+    const list=rows.filter(r=>{const q=String(r.date).split('-').map(Number);return q.length===3&&q[0]*10000+q[1]*100+q[2]<=tn}).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,6);
     let pick=null;
     for(const r of list){for(let i=c.keys.length-1;i>=0;i--){const k=c.keys[i];if(xok(r[k+'3'],3)&&xok(r[k+'4'],4)){pick={d:r.date,k:k,a:r[k+'3'],b:r[k+'4']};break}}if(pick)break}
     if(pick){const q=pick.d.split('-').map(Number);set('xd-'+st,fmt(q[0],q[1],q[2])+' • '+xlab(st,pick.k));set('x3-'+st,pick.a);set('x4-'+st,pick.b);set('xf-'+st,'lotteryusa.com · '+c.off);sb.hidden=false}else sb.hidden=true;
@@ -1064,7 +1025,12 @@ async function loadX(){
       const r=await fetch('/api/results?state='+st+'&'+Date.now(),{cache:'no-store'});
       let d=null;try{d=await r.json()}catch(e){}
       if(d&&Array.isArray(d.rows)&&d.rows.length){XD[st]=d.rows;XE[st]=''}
-      else{XD[st]=[];XE[st]='(HTTP '+r.status+(d&&d.errors&&d.errors.length?' — '+d.errors.join(' | '):'')+')'}
+      else{
+        let man=null;
+        try{const q=await fetch('/results-'+st+'.json?'+Date.now(),{cache:'no-store'});if(q.ok){const j=await q.json();if(Array.isArray(j)&&j.length)man=j}}catch(e){}
+        if(man){XD[st]=man;XE[st]=''}
+        else{XD[st]=[];XE[st]='(HTTP '+r.status+(d&&d.errors&&d.errors.length?' — '+d.errors.join(' | '):'')+')'}
+      }
     }catch(e){XD[st]=[];XE[st]='('+e.message+')'}
   }
   renderX();
@@ -1105,12 +1071,10 @@ function sdBuild(){
       '<p class="small sdE"></p>'+
       '<table class="sdt"><thead><tr><th class="sdC0"></th><th class="sdC1"></th><th class="sdC2"></th></tr></thead><tbody class="sdB"></tbody></table>'+
       '<p class="small sdV"></p><p class="small"><a href="/'+SD_PAGES[i]+'.html" style="color:#1363f8;font-weight:bold">'+nm+' →</a></p>';
-    const a300=sdAd(300,250,SD_KEY300);   /* 300x250 anba chak atik */
-    if(a300){a300.style.marginTop='14px';c.appendChild(a300)}
     wrap.appendChild(c);
-    const a50=sdAd(320,50,SD_KEY50);      /* 320x50 ant chak kat */
-    if(a50)wrap.appendChild(a50);
   });
+  const bot=sdAd(300,250,SD_KEY300);   /* yon sèl 300x250 anba tout rezilta yo */
+  if(bot){bot.style.marginTop='14px';wrap.appendChild(bot)}
 }
 function renderSD(){
   const x=SDL[lang]||SDL.es;

@@ -150,8 +150,11 @@ async function load(){
     const d=await r.json();
     if(d&&Array.isArray(d.rows)&&d.rows.length)list=d.rows;
   }catch(e){}
+  if(!list){
+    try{const q=await fetch('/results-'+ST+'.json?'+Date.now(),{cache:'no-store'});if(q.ok){const j=await q.json();if(Array.isArray(j)&&j.length)list=j}}catch(e){}
+  }
   rows=(list||[]).filter(function(r){const q=String(r.date||'').split('-').map(Number);return q.length===3&&q[0]*10000+q[1]*100+q[2]<=tn})
-    .sort(function(a,b){return String(b.date).localeCompare(String(a.date))}).slice(0,8);
+    .sort(function(a,b){return String(b.date).localeCompare(String(a.date))}).slice(0,6);
   render();
 }
 setL(cur);
