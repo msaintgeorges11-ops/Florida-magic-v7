@@ -1100,7 +1100,7 @@ function sdBuild(){
   SD_LOT.forEach((nm,i)=>{
     const c=document.createElement('div');c.className='card real';c.dataset.tab='results';c.id='sdc'+i;
     c.innerHTML='<h2 class="sdT"></h2>'+
-      '<div class="stamp cp sdS" hidden><div class="st-h"><img src="/icon-v2-192.png" alt="Florida Magic V7"><b class="sdN" style="font-size:20px"></b><span class="st-i" aria-hidden="true">🇩🇴</span></div>'+
+      '<div class="stamp cp sdS" hidden><div class="st-h"><img src="/icon-v2-192.png" alt="Florida Magic V7"><b class="sdN" style="font-size:17px;text-align:center;line-height:1.15;min-width:0"></b><span class="st-i" aria-hidden="true">🇩🇴</span></div>'+
       '<div class="st-b"><div class="st-d sdH"></div><div class="sdL"></div></div></div>'+
       '<p class="small sdE"></p>'+
       '<table class="sdt"><thead><tr><th class="sdC0"></th><th class="sdC1"></th><th class="sdC2"></th></tr></thead><tbody class="sdB"></tbody></table>'+
@@ -1119,7 +1119,7 @@ function renderSD(){
   SD_LOT.forEach((nm,i)=>{
     const c=document.getElementById('sdc'+i);if(!c)return;
     const q=s=>c.querySelector(s);
-    q('.sdT').textContent=x.t+nm.toUpperCase();q('.sdN').textContent=x.n;q('.sdH').textContent=x.h;
+    q('.sdT').textContent=x.t+nm.toUpperCase();q('.sdN').textContent=nm.toUpperCase();q('.sdH').textContent=x.h;
     q('.sdC0').textContent=x.c0;q('.sdC1').textContent=x.c1;q('.sdC2').textContent=x.c2;q('.sdV').textContent=x.ver;
     const mine=rows?rows.filter(r=>r.name===nm):null;
     if(!mine||!mine.length){q('.sdS').hidden=true;q('.sdB').innerHTML='';q('.sdE').textContent=mine===null?'':x.none;return}
