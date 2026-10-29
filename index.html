@@ -155,6 +155,12 @@ header h1{color:#000}
 [data-tab="results"] table tr.today td:first-child{color:#fff}
 [data-tab="results"] table tr.today td:not(:first-child){color:#fff}
 [data-tab="results"] table th{font-size:13px}
+/* Sendomeng */
+.sdrow{display:flex;justify-content:space-between;align-items:center;gap:6px;border:1px solid #d9d9d9;border-radius:12px;padding:6px 8px;margin-top:6px;background:#fafafa}
+.sdrow .sdl{font-size:12px;font-weight:bold;color:#1363f8;text-align:left;line-height:1.2}.sdrow .sdl small{display:block;font-weight:normal;color:#444;font-size:10px}
+.sdrow .sdp{display:flex;gap:4px}.sdp i{font-style:normal;font-weight:bold;font-size:17px;border:2px solid #1363f8;border-radius:14px;padding:3px 7px;background:#fff;color:#000}
+table.sdt td:not(:first-child){font-size:13px!important;letter-spacing:0!important;padding:7px 1px!important}table.sdt td:first-child{font-size:11px!important}table.sdt td,table.sdt th{white-space:nowrap}
+
 /* Kare dènye rezilta: fòm rektang, pi ba (mwens wotè) */
 .stamp.cp{padding:8px;margin-top:8px;border-radius:18px}
 .stamp.cp:before{border-width:5px;border-radius:18px}
@@ -370,6 +376,19 @@ table.xt td,table.xt th{white-space:nowrap}
   </div>
 
 
+  <div class="ad adx" data-tab="results" style="text-align:center"><div style="display:inline-block;width:320px;max-width:100%">
+<script>
+  atOptions = {
+    'key' : '27685c41af061c75c2482f077793c365',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></script>
+</div></div>
+
   <div class="card real" data-tab="results" id="xc-ny">
     <h2 id="xt-ny"></h2>
     <div class="stamp cp" id="xs-ny" data-tab="results" hidden>
@@ -400,6 +419,8 @@ table.xt td,table.xt th{white-space:nowrap}
 </script>
 <script src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></script>
 </div></div>
+
+  <div id="sdWrap"></div>
 
   <div class="card real" id="vipRes" data-tab="vip">
     <h2 data-t="vipResT"></h2>
@@ -686,11 +707,11 @@ function render(){
   document.querySelectorAll('.fd').forEach(e=>e.textContent=fechaDisplay());
   try{
     const sx='';
-    const slug=["pick3","pick4","straight-box","probabilidades","resultados","mitos","juego-responsable","signos-zodiaco","numeros-suerte","horoscopo-diario","signos-astrales","digitos-salidos","suenos-tchala","loteria-hoy","resultado-florida","resultado-georgia","resultado-newyork"];
+    const slug=["pick3","pick4","straight-box","probabilidades","resultados","mitos","juego-responsable","signos-zodiaco","numeros-suerte","horoscopo-diario","signos-astrales","digitos-salidos","suenos-tchala","loteria-hoy","resultado-florida","resultado-georgia","resultado-newyork","resultado-quiniela-real","resultado-la-primera-dia","resultado-gana-mas","resultado-quiniela-loteka","resultado-la-primera-noche","resultado-quiniela-leidsa","resultado-loteria-nacional"];
     const ttl={
-      es:["¿Cómo funciona Pick 3?","¿Cómo funciona Pick 4?","Straight o Box: diferencias","Las probabilidades reales","Cómo leer los resultados","Mitos sobre la lotería","Juego responsable","Los 12 signos del zodiaco","Números de la suerte","Cómo leer tu horóscopo diario","Los 12 signos astrales","Dígitos más y menos salidos","Tchala: significado de los sueños","Lotería de hoy","Resultado Florida","Resultado Georgia","Resultado New York"],
-      fr:["Comment fonctionne Pick 3 ?","Comment fonctionne Pick 4 ?","Straight ou Box : différences","Les probabilités réelles","Comment lire les résultats","Les mythes sur la loterie","Jeu responsable","Les 12 signes du zodiaque","Numéros chance","Comment lire votre horoscope","Les 12 signes astraux","Chiffres les plus et moins sortis","Tchala : le sens des rêves","Loterie du jour","Résultat Floride","Résultat Géorgie","Résultat New York"],
-      en:["How does Pick 3 work?","How does Pick 4 work?","Straight vs Box: differences","The real odds","How to read the results","Lottery myths","Responsible play","The 12 zodiac signs","Lucky numbers","How to read your daily horoscope","The 12 astral signs","Most and least drawn digits","Tchala: dream meanings","Today's lottery","Florida results","Georgia results","New York results"]
+      es:["¿Cómo funciona Pick 3?","¿Cómo funciona Pick 4?","Straight o Box: diferencias","Las probabilidades reales","Cómo leer los resultados","Mitos sobre la lotería","Juego responsable","Los 12 signos del zodiaco","Números de la suerte","Cómo leer tu horóscopo diario","Los 12 signos astrales","Dígitos más y menos salidos","Tchala: significado de los sueños","Lotería de hoy","Resultado Florida","Resultado Georgia","Resultado New York","Resultado Quiniela Real","Resultado La Primera Día","Resultado Gana Más","Resultado Quiniela Loteka","Resultado La Primera Noche","Resultado Quiniela Leidsa","Resultado Lotería Nacional"],
+      fr:["Comment fonctionne Pick 3 ?","Comment fonctionne Pick 4 ?","Straight ou Box : différences","Les probabilités réelles","Comment lire les résultats","Les mythes sur la loterie","Jeu responsable","Les 12 signes du zodiaque","Numéros chance","Comment lire votre horoscope","Les 12 signes astraux","Chiffres les plus et moins sortis","Tchala : le sens des rêves","Loterie du jour","Résultat Floride","Résultat Géorgie","Résultat New York","Résultat Quiniela Real","Résultat La Primera Día","Résultat Gana Más","Résultat Quiniela Loteka","Résultat La Primera Noche","Résultat Quiniela Leidsa","Résultat Lotería Nacional"],
+      en:["How does Pick 3 work?","How does Pick 4 work?","Straight vs Box: differences","The real odds","How to read the results","Lottery myths","Responsible play","The 12 zodiac signs","Lucky numbers","How to read your daily horoscope","The 12 astral signs","Most and least drawn digits","Tchala: dream meanings","Today's lottery","Florida results","Georgia results","New York results","Quiniela Real results","La Primera Día results","Gana Más results","Quiniela Loteka results","La Primera Noche results","Quiniela Leidsa results","Lotería Nacional results"]
     }[lang];
     const box=document.getElementById('artLinks');
     if(box)box.innerHTML=slug.map((u,i)=>'📖 <a href="/'+u+'.html" style="color:#1363f8;font-weight:bold">'+ttl[i]+'</a>').join('<br>');
@@ -1050,6 +1071,79 @@ async function loadX(){
 }
 (function(){const _r=render;render=function(){const v=_r.apply(this,arguments);try{renderX()}catch(e){}return v}})();
 renderX();loadX();setInterval(loadX,5*60*1000);
+
+
+/* ===== Sendomeng: yon kat pou chak lotri (/api/sd + /sd-results.json: [{date,t,name,nums}]) ===== */
+const SD_KEY50='27685c41af061c75c2482f077793c365';
+const SD_KEY300=''; /* <<< METE KLE ADSTERRA 300x250 OU A ISIT LA (san li, pa gen 300x250) */
+const SD_LOT=['Quiniela Real','La Primera Día','Gana Más','Quiniela Loteka','La Primera Noche','Quiniela Leidsa','Lotería Nacional'];
+const SDL={
+  es:{t:'🎯 RESULTADOS ',n:'SANTO DOMINGO',h:'ÚLTIMO SORTEO',c0:'FECHA',c1:'HORA',c2:'NÚMEROS',none:'Aún no hay resultados publicados.',ver:'Verifica siempre en la fuente oficial de cada lotería.'},
+  fr:{t:'🎯 RÉSULTATS ',n:'ST-DOMINGUE',h:'DERNIER TIRAGE',c0:'DATE',c1:'HEURE',c2:'NUMÉROS',none:'Aucun résultat publié pour le moment.',ver:'Vérifie toujours la source officielle de chaque loterie.'},
+  en:{t:'🎯 RESULTS ',n:'SANTO DOMINGO',h:'LATEST DRAW',c0:'DATE',c1:'TIME',c2:'NUMBERS',none:'No results published yet.',ver:'Always verify with each lottery’s official source.'}
+};
+const SD_PAGES=["resultado-quiniela-real", "resultado-la-primera-dia", "resultado-gana-mas", "resultado-quiniela-loteka", "resultado-la-primera-noche", "resultado-quiniela-leidsa", "resultado-loteria-nacional"];
+let SDD=null,SDBUILT=false;
+function sdClean(a){return (Array.isArray(a)?a:[]).filter(r=>r&&r.date&&r.name&&r.nums).sort((x,y)=>(y.date+(y.t||'')).localeCompare(x.date+(x.t||'')))}
+function sdShort(d){const p=d.split('-').map(Number);return new Date(Date.UTC(p[0],p[1]-1,p[2],12)).toLocaleDateString(L[lang].loc,{day:'2-digit',month:'short',timeZone:'UTC'}).toUpperCase().replace(/\./g,'')}
+function sdTime(t){if(!t)return'';const m=String(t).split(':').map(Number);return (m[0]%12||12)+':'+String(m[1]||0).padStart(2,'0')+(m[0]>=12?' PM':' AM')}
+function sdAd(w,h,key){
+  if(!key)return null;
+  const d=document.createElement('div');d.className='ad adx';d.dataset.tab='results';d.style.textAlign='center';
+  if(esVip())d.style.display='none';
+  const f=document.createElement('iframe');f.width=w;f.height=h;f.scrolling='no';f.style.cssText='border:0;max-width:100%;display:inline-block;overflow:hidden';
+  f.srcdoc='<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:transparent;overflow:hidden}</style></head><body><scr'+'ipt>atOptions={"key":"'+key+'","format":"iframe","height":'+h+',"width":'+w+',"params":{}};</scr'+'ipt><scr'+'ipt src="https://bauval.org/22/'+key+'"></scr'+'ipt></body></html>';
+  d.appendChild(f);return d;
+}
+function sdBuild(){
+  const wrap=document.getElementById('sdWrap');if(!wrap||SDBUILT)return;SDBUILT=true;
+  SD_LOT.forEach((nm,i)=>{
+    const c=document.createElement('div');c.className='card real';c.dataset.tab='results';c.id='sdc'+i;
+    c.innerHTML='<h2 class="sdT"></h2>'+
+      '<div class="stamp cp sdS" hidden><div class="st-h"><img src="/icon-v2-192.png" alt="Florida Magic V7"><b class="sdN" style="font-size:20px"></b><span class="st-i" aria-hidden="true">🇩🇴</span></div>'+
+      '<div class="st-b"><div class="st-d sdH"></div><div class="sdL"></div></div></div>'+
+      '<p class="small sdE"></p>'+
+      '<table class="sdt"><thead><tr><th class="sdC0"></th><th class="sdC1"></th><th class="sdC2"></th></tr></thead><tbody class="sdB"></tbody></table>'+
+      '<p class="small sdV"></p><p class="small"><a href="/'+SD_PAGES[i]+'.html" style="color:#1363f8;font-weight:bold">'+nm+' →</a></p>';
+    const a300=sdAd(300,250,SD_KEY300);   /* 300x250 anba chak atik */
+    if(a300){a300.style.marginTop='14px';c.appendChild(a300)}
+    wrap.appendChild(c);
+    const a50=sdAd(320,50,SD_KEY50);      /* 320x50 ant chak kat */
+    if(a50)wrap.appendChild(a50);
+  });
+}
+function renderSD(){
+  const x=SDL[lang]||SDL.es;
+  sdBuild();
+  const rows=SDD===null?null:sdClean(SDD);
+  SD_LOT.forEach((nm,i)=>{
+    const c=document.getElementById('sdc'+i);if(!c)return;
+    const q=s=>c.querySelector(s);
+    q('.sdT').textContent=x.t+nm.toUpperCase();q('.sdN').textContent=x.n;q('.sdH').textContent=x.h;
+    q('.sdC0').textContent=x.c0;q('.sdC1').textContent=x.c1;q('.sdC2').textContent=x.c2;q('.sdV').textContent=x.ver;
+    const mine=rows?rows.filter(r=>r.name===nm):null;
+    if(!mine||!mine.length){q('.sdS').hidden=true;q('.sdB').innerHTML='';q('.sdE').textContent=mine===null?'':x.none;return}
+    q('.sdE').textContent='';
+    const r0=mine[0],L1=q('.sdL');L1.innerHTML='';
+    const d=document.createElement('div');d.className='sdrow';
+    const l=document.createElement('div');l.className='sdl';l.textContent=nm;const sm=document.createElement('small');sm.textContent=sdShort(r0.date)+(r0.t?' • '+sdTime(r0.t):'');l.appendChild(sm);
+    const pp=document.createElement('div');pp.className='sdp';String(r0.nums).trim().split(/[\s-]+/).forEach(n=>{const e=document.createElement('i');e.textContent=n;pp.appendChild(e)});
+    d.appendChild(l);d.appendChild(pp);L1.appendChild(d);q('.sdS').hidden=false;
+    const tb=q('.sdB');tb.innerHTML='';
+    mine.slice(0,5).forEach(r=>{const tr=document.createElement('tr');
+      [sdShort(r.date),sdTime(r.t),String(r.nums).trim().split(/[\s-]+/).join(' ')].forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});
+      tb.appendChild(tr)});
+  });
+}
+async function loadSD(){
+  let a=[],m=[];
+  try{const r=await fetch('/api/sd?'+Date.now(),{cache:'no-store'});const d=await r.json();if(d&&Array.isArray(d.rows))a=d.rows}catch(e){}
+  try{const r=await fetch('/sd-results.json?'+Date.now(),{cache:'no-store'});if(r.ok){const d=await r.json();if(Array.isArray(d))m=d}}catch(e){}
+  const seen={};SDD=a.concat(m).filter(r=>{const k=r&&r.date+'|'+r.name;if(!r||seen[k])return false;seen[k]=1;return true});
+  renderSD();
+}
+(function(){const _r=render;render=function(){const v=_r.apply(this,arguments);try{renderSD()}catch(e){}return v}})();
+renderSD();loadSD();setInterval(loadSD,5*60*1000);
 
 setTab('astral');
 </script>
