@@ -517,12 +517,6 @@ const HL={
 es:{lock:'🔒 Los números de hoy se desbloquean a las 10:00 PM (hora de Florida).',ready:'🔓 Ya están disponibles. Toca para verlos.',btn:'🔓 Ver los números'},
 fr:{lock:'🔒 Les numéros du jour se débloquent à 22h00 (heure de Floride).',ready:'🔓 Ils sont disponibles. Touche pour les voir.',btn:'🔓 Voir les numéros'},
 en:{lock:'🔒 The numbers for today unlock at 10:00 PM (Florida time).',ready:'🔓 They are available now. Tap to see them.',btn:'🔓 Show the numbers'}};
-// Adsterra popunder (seulement le script Adsterra, chargé au clic sur GIRAR)
-let _popLoaded=false;
-function firePop(){
-  if(_popLoaded||esVip())return;_popLoaded=true;
-  try{const sc=document.createElement('script');sc.setAttribute('data-cfasync','false');sc.src='https://abscloud.org/1/9e279522413fcd9a29034d4720ff67be';document.body.appendChild(sc)}catch(e){}
-}
 function histKey(){return 'histOK_'+fechaKey()}
 function histVisible(){return esVip()||etNow().hour>=22}
 function histCtl(){const c=document.getElementById('histCtl');if(c)c.innerHTML=''}
@@ -671,9 +665,9 @@ function render(){
     const sx='';
     const slug=["pick3","pick4","straight-box","probabilidades","resultados","mitos","juego-responsable","signos-zodiaco","numeros-suerte","horoscopo-diario","signos-astrales","digitos-salidos","suenos-tchala","loteria-hoy","resultado-florida","resultado-georgia","resultado-newyork","resultado-quiniela-real","resultado-la-primera-dia","resultado-gana-mas","resultado-quiniela-loteka","resultado-la-primera-noche","resultado-quiniela-leidsa","resultado-loteria-nacional"];
     const ttl={
-      es:["¿Cómo funciona Pick 3?","¿Cómo funciona Pick 4?","Straight o Box: diferencias","Las probabilidades reales","Cómo leer los resultados","Mitos sobre la lotería","Juego responsable","Los 12 signos del zodiaco","Números de la suerte","Cómo leer tu horóscopo diario","Los 12 signos astrales","Dígitos más y menos salidos","Tchala: significado de los sueños","Lotería de hoy","Resultado Florida","Resultado Georgia","Resultado New York","Resultado Quiniela Real","Resultado La Primera Día","Resultado Gana Más","Resultado Quiniela Loteka","Resultado La Primera Noche","Resultado Quiniela Leidsa","Resultado Lotería Nacional"],
-      fr:["Comment fonctionne Pick 3 ?","Comment fonctionne Pick 4 ?","Straight ou Box : différences","Les probabilités réelles","Comment lire les résultats","Les mythes sur la loterie","Jeu responsable","Les 12 signes du zodiaque","Numéros chance","Comment lire votre horoscope","Les 12 signes astraux","Chiffres les plus et moins sortis","Tchala : le sens des rêves","Loterie du jour","Résultat Floride","Résultat Géorgie","Résultat New York","Résultat Quiniela Real","Résultat La Primera Día","Résultat Gana Más","Résultat Quiniela Loteka","Résultat La Primera Noche","Résultat Quiniela Leidsa","Résultat Lotería Nacional"],
-      en:["How does Pick 3 work?","How does Pick 4 work?","Straight vs Box: differences","The real odds","How to read the results","Lottery myths","Responsible play","The 12 zodiac signs","Lucky numbers","How to read your daily horoscope","The 12 astral signs","Most and least drawn digits","Tchala: dream meanings","Today's lottery","Florida results","Georgia results","New York results","Quiniela Real results","La Primera Día results","Gana Más results","Quiniela Loteka results","La Primera Noche results","Quiniela Leidsa results","Lotería Nacional results"]
+      es:["¿Cómo funciona Pick 3?","¿Cómo funciona Pick 4?","Straight o Box: diferencias","Las probabilidades reales","Cómo leer los resultados","Mitos sobre la lotería","Juego responsable","Los 12 signos del zodiaco","Números de la suerte","Cómo leer tu horóscopo diario","Los 12 signos astrales","Dígitos más y menos salidos","Tchala: significado de los sueños","Lotería de hoy","Resultado Lotería Florida hoy","Resultado Lotería Georgia hoy","Resultado Lotería New York hoy","Resultado Lotería Quiniela Real hoy","Resultado Lotería La Primera Día hoy","Resultado Lotería Gana Más hoy","Resultado Lotería Quiniela Loteka hoy","Resultado Lotería La Primera Noche hoy","Resultado Lotería Quiniela Leidsa hoy","Resultado Lotería Nacional hoy"],
+      fr:["Comment fonctionne Pick 3 ?","Comment fonctionne Pick 4 ?","Straight ou Box : différences","Les probabilités réelles","Comment lire les résultats","Les mythes sur la loterie","Jeu responsable","Les 12 signes du zodiaque","Numéros chance","Comment lire votre horoscope","Les 12 signes astraux","Chiffres les plus et moins sortis","Tchala : le sens des rêves","Loterie du jour","Résultat Loterie Floride aujourd’hui","Résultat Loterie Géorgie aujourd’hui","Résultat Loterie New York aujourd’hui","Résultat Loterie Quiniela Real aujourd’hui","Résultat Loterie La Primera Día aujourd’hui","Résultat Loterie Gana Más aujourd’hui","Résultat Loterie Quiniela Loteka aujourd’hui","Résultat Loterie La Primera Noche aujourd’hui","Résultat Loterie Quiniela Leidsa aujourd’hui","Résultat Lotería Nacional aujourd’hui"],
+      en:["How does Pick 3 work?","How does Pick 4 work?","Straight vs Box: differences","The real odds","How to read the results","Lottery myths","Responsible play","The 12 zodiac signs","Lucky numbers","How to read your daily horoscope","The 12 astral signs","Most and least drawn digits","Tchala: dream meanings","Today's lottery","Florida Lottery Results Today","Georgia Lottery Results Today","New York Lottery Results Today","Quiniela Real Lottery Results Today","La Primera Día Lottery Results Today","Gana Más Lottery Results Today","Quiniela Loteka Lottery Results Today","La Primera Noche Lottery Results Today","Quiniela Leidsa Lottery Results Today","Lotería Nacional Results Today"]
     }[lang];
     const box=document.getElementById('artLinks');
     if(box)box.innerHTML=slug.map((u,i)=>'📖 <a href="/'+u+'.html" style="color:#1363f8;font-weight:bold">'+ttl[i]+'</a>').join('<br>');
@@ -808,7 +802,7 @@ function girar(){
   if(esVip()){girarReal();return}
   if(getResult())return;
   if(pair(fechaKey(),getSession(),true).length!==4)return;
-  firePop();waiting=true;audioCtx();
+  waiting=true;audioCtx();
   const btn=document.getElementById('spinBtn'),lim=document.getElementById('limit');
   btn.disabled=true;lim.textContent='';
   btn.textContent=L[lang].stNone;
@@ -1869,13 +1863,11 @@ window.addEventListener('focus',chkDay);
     }catch(e){}
   };
   window.addEventListener('resize',()=>window.coverAll());
-  // précharge le script popunder dès l'appui sur GIRAR (avant le clic)
-  const sb=document.getElementById('spinBtn');
-  if(sb)['pointerdown','touchstart'].forEach(ev=>sb.addEventListener(ev,()=>{if(!sb.disabled)firePop()},{passive:true}));
   setInterval(()=>{try{renderHist()}catch(e){}},30000);
   coverAll();
 })();
 </script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}</script>
+<script>(function(s){s.dataset.zone='12152998',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 </body>
 </html>
