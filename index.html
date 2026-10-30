@@ -1834,7 +1834,7 @@ window.addEventListener('focus',chkDay);
   function load(n){
     if(n>100)return;
     const s=document.createElement('script');
-    s.src='reves-'+n+'.js';
+    s.src='reves/reves-'+n+'.js';
     s.onload=function(){addPack();load(n+1)};
     s.onerror=function(){};
     document.head.appendChild(s);
