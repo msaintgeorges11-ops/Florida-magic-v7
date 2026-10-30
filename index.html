@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="es" translate="no">
 <head>
-<script src="https://5gvci.com/act/files/tag.min.js?z=12152948" data-cfasync="false" async></script>
+<script>
+/* VIP: si moun nan VIP, okenn script piblisite pa chaje */
+window.__vip=function(){try{var v=localStorage.getItem('isVip')==='true',d=localStorage.getItem('vipDate');return !!(v&&d&&(new Date()-new Date(d))/86400000<=30)}catch(e){return false}};
+window.__ad=function(u,a){if(window.__vip())return;document.write('<script src="'+u+'"'+(a||'')+'><\/script>')};
+</script>
+<script>__ad("https://5gvci.com/act/files/tag.min.js?z=12152948"," data-cfasync=\"false\" async")</script>
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="google-site-verification" content="7ll5tNAjLiaoWWbaxfljPvWBGHG599SCldlYa6Rcn2Y" />
@@ -281,11 +286,11 @@ table.xt td,table.xt th{white-space:nowrap}
     'params' : {}
   };
 </script>
-<script src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></script>
+<script>__ad("https://bauval.org/22/27685c41af061c75c2482f077793c365")</script>
 </div></div>
 
   <div class="ad adx" id="adExo" data-tab="home" style="text-align:center">
-    <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+    <script>__ad("https://a.magsrv.com/ad-provider.js"," async type=\"application/javascript\"")</script>
     <ins class="eas6a97888e2" data-zoneid="6070570"></ins>
     <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
   </div>
@@ -318,7 +323,7 @@ table.xt td,table.xt th{white-space:nowrap}
         'params' : {}
       };
     </script>
-    <script src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></script>
+    <script>__ad("https://bauval.org/22/27685c41af061c75c2482f077793c365")</script>
     </div></div>
   </div>
 
@@ -451,7 +456,7 @@ table.xt td,table.xt th{white-space:nowrap}
     'params' : {}
   };
 </script>
-<script src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></script>
+<script>__ad("https://bauval.org/22/27685c41af061c75c2482f077793c365")</script>
 </div></div>
 
   <div id="astRead" data-tab="astral"></div>
@@ -469,7 +474,7 @@ table.xt td,table.xt th{white-space:nowrap}
     'params' : {}
   };
 </script>
-<script src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></script>
+<script>__ad("https://bauval.org/22/27685c41af061c75c2482f077793c365")</script>
 </div></div>
 
   <p class="disc" data-tab="info" data-t="aviso">FLORIDA MAGIC no está afiliado a la Lotería de Florida ni a ninguna lotería. Los números generados son aleatorios, no predicen resultados y no aumentan tus probabilidades. Juega con responsabilidad. Solo mayores de 18 años.</p>
@@ -483,7 +488,7 @@ table.xt td,table.xt th{white-space:nowrap}
     'params' : {}
   };
 </script>
-<script src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></script>
+<script>__ad("https://bauval.org/22/27685c41af061c75c2482f077793c365")</script>
 </div></div>
   <footer data-tab="info">
     © FLORIDA MAGIC V7 — <span class="fd"></span> — VIP WhatsApp <a id="fWa" href="https://wa.me/18498697028" target="_blank" rel="noopener">849-869-7028</a><br>
@@ -1066,8 +1071,8 @@ function sdShort(d){const p=d.split('-').map(Number);return new Date(Date.UTC(p[
 function sdTime(t){if(!t)return'';const m=String(t).split(':').map(Number);return (m[0]%12||12)+':'+String(m[1]||0).padStart(2,'0')+(m[0]>=12?' PM':' AM')}
 function sdAd(w,h,key){
   if(!key)return null;
+  if(esVip())return null;
   const d=document.createElement('div');d.className='ad adx';d.dataset.tab='results';d.style.textAlign='center';
-  if(esVip())d.style.display='none';
   const f=document.createElement('iframe');f.width=w;f.height=h;f.scrolling='no';f.style.cssText='border:0;max-width:100%;display:inline-block;overflow:hidden';
   f.srcdoc='<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:transparent;overflow:hidden}</style></head><body><scr'+'ipt>atOptions={"key":"'+key+'","format":"iframe","height":'+h+',"width":'+w+',"params":{}};</scr'+'ipt><scr'+'ipt src="https://bauval.org/22/'+key+'"></scr'+'ipt></body></html>';
   d.appendChild(f);return d;
@@ -1087,7 +1092,7 @@ function sdBuild(){
   /* yon sèl piblisite anba tout rezilta yo (menm kòd ak dènye pati atik yo) */
   const bot=document.createElement('div');bot.className='ad';bot.id='adSdNat';bot.dataset.tab='results';bot.style.cssText='text-align:center;margin-top:14px';
   const box=document.createElement('div');box.id='container-1391bfea94f859a195fafcdeff8df687';bot.appendChild(box);
-  const sc=document.createElement('script');sc.async=true;sc.setAttribute('data-cfasync','false');sc.src='https://bauval.org/21/1391bfea94f859a195fafcdeff8df687';bot.appendChild(sc);
+  if(!esVip()){const sc=document.createElement('script');sc.async=true;sc.setAttribute('data-cfasync','false');sc.src='https://bauval.org/21/1391bfea94f859a195fafcdeff8df687';bot.appendChild(sc)}
   wrap.appendChild(bot);
 }
 function renderSD(){
@@ -1880,6 +1885,6 @@ window.addEventListener('focus',chkDay);
 })();
 </script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}</script>
-<script>(function(s){s.dataset.zone='12152998',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<script>if(!window.__vip()){(function(s){s.dataset.zone='12152998',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))}</script>
 </body>
 </html>
