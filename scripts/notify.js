@@ -1,5 +1,3 @@
-// Voye notifikasyon push via OneSignal SÈLMAN lè yon nouvo rezilta parèt sou sit la.
-// Pa gen lè fiks: script la gade rezilta yo regilyèman epi li konpare ak scripts/state.json.
 const fs = require("fs");
 const path = require("path");
 
@@ -9,7 +7,6 @@ const SITE = "https://www.floridamagicv7.com";
 const FORCE = process.env.FORCE === "true";
 const STATE_FILE = path.join(__dirname, "state.json");
 
-// Sous rezilta yo (menm API ak sit la)
 const SOURCES = [
   { id: "fl", name: "Florida", url: `${SITE}/api/results`, keys: ["mid", "eve"] },
   { id: "ga", name: "Georgia", url: `${SITE}/api/results?state=ga`, keys: ["mid", "eve", "nig"] },
@@ -24,7 +21,7 @@ const SESS_GA_EVE = { fr: "Soir", es: "Tarde", en: "Evening" };
 
 function etDate(offsetDays = 0) {
   const d = new Date(Date.now() + offsetDays * 864e5);
-  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(d); // YYYY-MM-DD
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(d);
 }
 
 function loadState() {
@@ -38,11 +35,10 @@ async function fetchRows(src) {
     return Array.isArray(d.rows) ? d.rows : [];
   } catch (e) {
     console.log(src.id, "erè:", e.message);
-    return null; // null = pa konnen (pa touche eta a)
+    return null;
   }
 }
 
-// Retounen tout rezilta konplè (Cash3/Pick3 + Cash4/Pick4) pou jodi ak yè
 function collect(src, rows) {
   const recent = new Set([etDate(0), etDate(-1)]);
   const out = [];
@@ -58,7 +54,6 @@ function collect(src, rows) {
   return out;
 }
 
-// Loto Dominikèn yo (Quiniela Real, La Primera, Gana Más, Loteka, Leidsa, Nacional): /api/sd + sd-results.json
 async function collectSD() {
   const rows = [];
   let ok = false;
@@ -86,9 +81,59 @@ async function collectSD() {
   return out;
 }
 
+// Rezilta VIP piblik yo (fichye vip.json ou modifye chak jou)
+async function collectVIP() {
+  try {
+    const r = await fetch(`${SITE}/vip.json?${Date.now()}`, { cache: "no-store" });
+    if (!r.ok) return [];
+    const d = await r.json();
+    if (!Array.isArray(d)) return [];
+    const out = [];
+    const seen = new Set();
+    for (const x of d) {
+      if (!x || !x.numbers) continue;
+      const label = [x.date, x.session].filter(Boolean).join(" · ");
+      const nums = String(x.numbers).trim();
+      const id = `vip|${x.date || ""}|${x.session || ""}|${nums}`;
+      if (seen.has(id)) continue;
+      seen.add(id);
+      out.push({ id, vip: true, label, nums });
+    }
+    return out;
+  } catch (e) {
+    console.log("vip erè:", e.message);
+    return [];
+  }
+}
+
+async function post(payload) {
+  const r = await fetch("https://api.onesignal.com/notifications?c=push", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Key ${API_KEY}` },
+    body: JSON.stringify(payload),
+  });
+  console.log("OneSignal", r.status, await r.text());
+  return r.ok;
+}
+
 async function send(item) {
+  if (item.vip) {
+    return post({
+      app_id: APP_ID,
+      target_channel: "push",
+      // Sèlman moun ki PA VIP (tag vip != true). Moun VIP yo pa resevwa notifikasyon sa a.
+      filters: [{ field: "tag", key: "vip", relation: "!=", value: "true" }],
+      headings: { en: "💎 VIP", fr: "💎 VIP", es: "💎 VIP" },
+      contents: {
+        en: `VIP result: ${item.label} — ${item.nums}`,
+        fr: `Résultat VIP : ${item.label} — ${item.nums}`,
+        es: `Resultado VIP: ${item.label} — ${item.nums}`,
+      },
+      url: SITE + "/",
+    });
+  }
   if (item.sd) {
-    const payload = {
+    return post({
       app_id: APP_ID,
       target_channel: "push",
       included_segments: ["Subscribed Users"],
@@ -100,18 +145,11 @@ async function send(item) {
       },
       url: SITE + "/",
       collapse_id: "result-sd-" + item.name.replace(/[^a-z0-9]/gi, "").toLowerCase(),
-    };
-    const r = await fetch("https://api.onesignal.com/notifications?c=push", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Key ${API_KEY}` },
-      body: JSON.stringify(payload),
     });
-    console.log("Voye", item.id, r.status, await r.text());
-    return r.ok;
   }
   const sess = item.src.id === "ga" && item.key === "eve" ? SESS_GA_EVE : SESS[item.key];
   const nums = `${item.a} · ${item.b}`;
-  const payload = {
+  return post({
     app_id: APP_ID,
     target_channel: "push",
     included_segments: ["Subscribed Users"],
@@ -127,14 +165,7 @@ async function send(item) {
     },
     url: SITE + "/",
     collapse_id: "result-" + item.src.id + "-" + item.key,
-  };
-  const r = await fetch("https://api.onesignal.com/notifications?c=push", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Key ${API_KEY}` },
-    body: JSON.stringify(payload),
   });
-  console.log("Voye", item.id, r.status, await r.text());
-  return r.ok;
 }
 
 (async () => {
@@ -153,24 +184,28 @@ async function send(item) {
     if (rows) found.push(...collect(src, rows));
   }
   found.push(...(await collectSD()));
+  found.push(...(await collectVIP()));
 
-  // Premye fwa: sèlman anrejistre sa ki la deja, pa voye anyen (evite spam)
   if (!prev) {
     found.forEach((f) => sent.add(f.id));
-    console.log("Premye egzekisyon: eta inisyalize ak", found.length, "rezilta, okenn notifikasyon voye.");
+    console.log("Premye egzekisyon: okenn notifikasyon voye.");
   } else {
-    // Si eta a te egziste anvan loto dominikèn yo te ajoute, anrejistre yo an silans (pa spam)
     if (![...sent].some((x) => x.startsWith("sd|"))) {
       found.filter((f) => f.sd).forEach((f) => sent.add(f.id));
-      console.log("Loto dominikèn yo anrejistre an silans (premye fwa).");
+    }
+    if (![...sent].some((x) => x.startsWith("vip|"))) {
+      found.filter((f) => f.vip).forEach((f) => sent.add(f.id));
+      console.log("Rezilta VIP yo anrejistre an silans (premye fwa).");
     }
     const fresh = found.filter((f) => !sent.has(f.id));
     console.log("Nouvo rezilta:", fresh.length);
     for (const f of fresh) {
-      if (await send(f)) sent.add(f.id); // si echwe, nou eseye ankò nan pwochen pasaj la
+      if (await send(f)) sent.add(f.id);
     }
   }
 
-  const list = [...sent].sort().slice(-80);
+  const all = [...sent];
+  const vipIds = all.filter((x) => x.startsWith("vip|")).slice(-300);
+  const list = all.filter((x) => !x.startsWith("vip|")).sort().slice(-80).concat(vipIds);
   fs.writeFileSync(STATE_FILE, JSON.stringify({ sent: list }, null, 2) + "\n");
 })();
