@@ -231,6 +231,23 @@ table.xt td,table.xt th{white-space:nowrap}
 .reel,.nums{position:relative}
 .pile{position:absolute;left:0;top:0;border-radius:14px;z-index:3;pointer-events:none}
 </style>
+<!-- OneSignal: notifikasyon otomatik -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "a5f12c17-b24a-44ec-b230-873f38ddeff2",
+      serviceWorkerPath: "OneSignalSDKWorker.js",
+      serviceWorkerParam: { scope: "/push/onesignal/" }
+    });
+    try { OneSignal.Slidedown.promptPush(); } catch (e) {}
+  });
+</script>
+<style>
+.shareBtn{display:inline-block;margin-top:12px;background:var(--b);color:#fff;border:0;border-radius:30px;padding:10px 20px;font-weight:bold;font-size:14px;cursor:pointer}
+.shareBtn:active{opacity:.8}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -1886,5 +1903,102 @@ window.addEventListener('focus',chkDay);
 </script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}</script>
 <script>if(!window.__vip()){(function(s){s.dataset.zone='12152998',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))}</script>
+<script>
+/* ===== Bouton pataje (4 nimewo chans + chak tablo rezilta) ===== */
+(function(){
+  var SL={fr:'📤 Partager',es:'📤 Compartir',en:'📤 Share'};
+  var URL_='https://www.floridamagicv7.com';
+  function lbl(){try{return SL[lang]||SL.es}catch(e){return SL.es}}
+  function luckyText(){
+    var c=document.getElementById('n1').closest('.card');
+    var n=['n1','n2','n3','n4'].map(function(i){return document.getElementById(i).textContent.trim()});
+    if(n.some(function(x){return x==='???'}))return null;
+    var h=c.querySelector('h2').textContent.replace(/\s+/g,' ').trim();
+    var b=document.getElementById('basis');
+    return h+'\n'+n.join(' · ')+(b&&b.textContent?'\n'+b.textContent:'');
+  }
+  function cardText(c){
+    var lines=[(c.querySelector('h2')||{textContent:''}).textContent.replace(/\s+/g,' ').trim()];
+    var rows=c.querySelectorAll('table tr');
+    if(rows.length){
+      rows.forEach(function(tr){
+        var cells=[].map.call(tr.children,function(x){return x.textContent.trim()}).filter(Boolean);
+        if(cells.length)lines.push(cells.join(' | '));
+      });
+    }else{
+      var b=c.querySelector('#floridaRealBox')||c;
+      lines.push(b.innerText.replace(/\n{2,}/g,'\n').trim());
+    }
+    return lines.join('\n');
+  }
+  var SHL={
+    fr:{t:'Partager sur',nat:'📲 Plus d’apps',cp:'📋 Copier le texte',ok:'✅ Texte copié ! Colle-le dans ',x:'Fermer'},
+    es:{t:'Compartir en',nat:'📲 Más apps',cp:'📋 Copiar texto',ok:'✅ ¡Texto copiado! Pégalo en ',x:'Cerrar'},
+    en:{t:'Share on',nat:'📲 More apps',cp:'📋 Copy text',ok:'✅ Text copied! Paste it in ',x:'Close'}
+  };
+  function T(){try{return SHL[lang]||SHL.es}catch(e){return SHL.es}}
+  function copy(text){
+    try{if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(text)}catch(e){}
+    return new Promise(function(res){var a=document.createElement('textarea');a.value=text;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove();res()});
+  }
+  function toast(m){
+    var d=document.createElement('div');d.textContent=m;
+    d.style.cssText='position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#000;color:#fff;padding:10px 16px;border-radius:20px;font-size:13px;font-weight:bold;z-index:100000;max-width:90%;text-align:center';
+    document.body.appendChild(d);setTimeout(function(){d.remove()},3500);
+  }
+  function closeSheet(){var e=document.getElementById('shareSheet');if(e)e.remove()}
+  function doShare(text){
+    closeSheet();
+    var full=text+'\n\n'+URL_,t=T();
+    var ov=document.createElement('div');ov.id='shareSheet';
+    ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:99999;display:flex;align-items:flex-end;justify-content:center';
+    var box=document.createElement('div');
+    box.style.cssText='background:#fff;width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:16px;text-align:center';
+    var h=document.createElement('div');h.textContent=t.t;h.style.cssText='font-weight:bold;color:#1363f8;font-size:16px;margin-bottom:12px';box.appendChild(h);
+    function btn(label,bg,fn){
+      var b=document.createElement('button');b.type='button';b.textContent=label;
+      b.style.cssText='display:block;width:100%;margin-top:8px;padding:12px;border:0;border-radius:12px;font-weight:bold;font-size:15px;color:#fff;background:'+bg;
+      b.addEventListener('click',function(){fn();closeSheet()});box.appendChild(b);
+    }
+    btn('Facebook','#1877f2',function(){
+      window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(URL_)+'&quote='+encodeURIComponent(text),'_blank','noopener');
+    });
+    btn('WhatsApp','#25d366',function(){
+      window.open('https://wa.me/?text='+encodeURIComponent(full),'_blank','noopener');
+    });
+    btn('Instagram','linear-gradient(45deg,#f09433,#dc2743,#bc1888)',function(){
+      copy(full).then(function(){toast(t.ok+'Instagram');setTimeout(function(){window.open('https://www.instagram.com/','_blank','noopener')},900)});
+    });
+    btn('TikTok','#000',function(){
+      copy(full).then(function(){toast(t.ok+'TikTok');setTimeout(function(){window.open('https://www.tiktok.com/','_blank','noopener')},900)});
+    });
+    if(navigator.share)btn(t.nat,'#1363f8',function(){navigator.share({title:'FLORIDA MAGIC V7',text:text,url:URL_}).catch(function(){})});
+    btn(t.cp,'#555',function(){copy(full).then(function(){toast(t.ok.split('!')[0]+'!')})});
+    var x=document.createElement('button');x.type='button';x.textContent=t.x;
+    x.style.cssText='display:block;width:100%;margin-top:10px;padding:10px;border:0;background:none;color:#444;font-size:14px';
+    x.addEventListener('click',closeSheet);box.appendChild(x);
+    ov.appendChild(box);ov.addEventListener('click',function(e){if(e.target===ov)closeSheet()});
+    document.body.appendChild(ov);
+  }
+  function mk(card,getText){
+    var b=card.querySelector(':scope>.shareBtn');
+    if(!b){
+      b=document.createElement('button');b.type='button';b.className='shareBtn';
+      b.addEventListener('click',function(){var t=getText();if(t)doShare(t)});
+      card.appendChild(b);
+    }
+    var l=lbl();if(b.textContent!==l)b.textContent=l;
+  }
+  function addShare(){
+    var n1=document.getElementById('n1');
+    if(n1)mk(n1.closest('.card'),luckyText);
+    document.querySelectorAll('.card.real[data-tab="results"]').forEach(function(c){
+      mk(c,function(){return cardText(c)});
+    });
+  }
+  try{var _r=render;render=function(){var v=_r.apply(this,arguments);try{addShare()}catch(e){}return v}}catch(e){}
+  addShare();setInterval(addShare,1500);
+})();
+</script>
 </body>
 </html>
