@@ -242,10 +242,20 @@ table.xt td,table.xt th{white-space:nowrap}
       serviceWorkerParam: { scope: "/push/onesignal/" }
     });
     try { OneSignal.Slidedown.promptPush(); } catch (e) {}
+    // Make moun nan "vip=true" oswa "vip=false" pou notifikasyon rezilta VIP yo ale sèlman bay moun ki pa VIP
+    var lastVip = null;
+    function syncVipTag() {
+      try {
+        var v = window.__vip && window.__vip() ? "true" : "false";
+        if (v !== lastVip) { OneSignal.User.addTag("vip", v); lastVip = v; }
+      } catch (e) {}
+    }
+    syncVipTag();
+    setInterval(syncVipTag, 20000);
   });
 </script>
 <style>
-.shareBtn{display:inline-block;margin-top:12px;background:var(--b);color:#fff;border:0;border-radius:30px;padding:10px 20px;font-weight:bold;font-size:14px;cursor:pointer}
+.shareBtn{display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:var(--b);color:#fff;border:0;border-radius:30px;padding:10px 20px;font-weight:bold;font-size:14px;cursor:pointer}
 .shareBtn:active{opacity:.8}
 </style>
 </head>
@@ -1906,7 +1916,8 @@ window.addEventListener('focus',chkDay);
 <script>
 /* ===== Bouton pataje (4 nimewo chans + chak tablo rezilta) ===== */
 (function(){
-  var SL={fr:'📤 Partager',es:'📤 Compartir',en:'📤 Share'};
+  var SL={fr:'Partager',es:'Compartir',en:'Share'};
+  var ICO='<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" style="flex:none"><path d="M14 9V5l7 7-7 7v-4.1c-5 0-8.5 1.6-11 5.1 1-5 4-10 11-11z"/></svg>';
   var URL_='https://www.floridamagicv7.com';
   function lbl(){try{return SL[lang]||SL.es}catch(e){return SL.es}}
   function luckyText(){
@@ -1984,10 +1995,11 @@ window.addEventListener('focus',chkDay);
     var b=card.querySelector(':scope>.shareBtn');
     if(!b){
       b=document.createElement('button');b.type='button';b.className='shareBtn';
+      b.innerHTML='<span class="shL"></span>'+ICO;
       b.addEventListener('click',function(){var t=getText();if(t)doShare(t)});
       card.appendChild(b);
     }
-    var l=lbl();if(b.textContent!==l)b.textContent=l;
+    var sp=b.querySelector('.shL'),l=lbl();if(sp&&sp.textContent!==l)sp.textContent=l;
   }
   function addShare(){
     var n1=document.getElementById('n1');
@@ -1998,6 +2010,54 @@ window.addEventListener('focus',chkDay);
   }
   try{var _r=render;render=function(){var v=_r.apply(this,arguments);try{addShare()}catch(e){}return v}}catch(e){}
   addShare();setInterval(addShare,1500);
+})();
+</script>
+<script>
+/* ===== Bouton visible pou abòne nan notifikasyon ===== */
+(function(){
+  var TT={
+    fr:{b:"🔔 S'abonner",s:'Recevoir les notifications',inapp:'Ouvre le site dans Chrome (menu ⋮ → Ouvrir dans le navigateur) pour activer les notifications.',den:'Les notifications sont bloquées. Active-les dans les réglages du navigateur (cadenas → Notifications).',ok:'✅ Notifications activées !'},
+    es:{b:'🔔 Suscribirse',s:'Recibir notificaciones',inapp:'Abre el sitio en Chrome (menú ⋮ → Abrir en el navegador) para activar las notificaciones.',den:'Las notificaciones están bloqueadas. Actívalas en los ajustes del navegador (candado → Notificaciones).',ok:'✅ ¡Notificaciones activadas!'},
+    en:{b:'🔔 Subscribe',s:'Get notifications',inapp:'Open the site in Chrome (menu ⋮ → Open in browser) to enable notifications.',den:'Notifications are blocked. Enable them in your browser settings (padlock → Notifications).',ok:'✅ Notifications enabled!'}
+  };
+  function T(){try{return TT[lang]||TT.es}catch(e){return TT.es}}
+  var IN=/FBAN|FBAV|FB_IAB|Instagram|TikTok|musical_ly|Snapchat|Line\/|; wv\)/i.test(navigator.userAgent);
+  var OS=null,btn=null;
+  function ensure(){
+    if(btn)return btn;
+    var h=document.querySelector('header');if(!h)return null;
+    btn=document.createElement('button');btn.type='button';btn.id='pushBtn';btn.className='shareBtn';
+    btn.style.cssText='margin-top:10px;background:#000;display:none;flex-direction:column;align-items:center;gap:0;padding:8px 22px';
+    btn.addEventListener('click',onClick);h.appendChild(btn);return btn;
+  }
+  function refresh(){
+    var b=ensure();if(!b)return;
+    var t=T(),k=t.b+'|'+t.s;
+    if(b.getAttribute('data-k')!==k){
+      b.setAttribute('data-k',k);
+      b.innerHTML='<span style="display:block;font-size:15px;font-weight:bold;line-height:1.2"></span><span style="display:block;font-size:10px;font-weight:normal;opacity:.85;line-height:1.2;margin-top:2px"></span>';
+      b.children[0].textContent=t.b;b.children[1].textContent=t.s;
+    }
+    var show=true;
+    try{if(OS&&OS.User.PushSubscription.optedIn)show=false}catch(e){}
+    if(!IN&&!('Notification' in window))show=false;
+    b.style.display=show?'inline-flex':'none';
+  }
+  function onClick(){
+    var t=T();
+    if(IN||!OS){alert(t.inapp);return}
+    if(window.Notification&&Notification.permission==='denied'){alert(t.den);return}
+    OS.Notifications.requestPermission().then(function(){
+      try{OS.User.PushSubscription.optIn()}catch(e){}
+      setTimeout(refresh,800);
+    }).catch(function(){refresh()});
+  }
+  window.OneSignalDeferred=window.OneSignalDeferred||[];
+  OneSignalDeferred.push(function(O){
+    OS=O;refresh();
+    try{O.User.PushSubscription.addEventListener('change',refresh)}catch(e){}
+  });
+  refresh();setInterval(refresh,2000);
 })();
 </script>
 </body>
