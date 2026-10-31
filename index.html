@@ -1943,9 +1943,9 @@ window.addEventListener('focus',chkDay);
     return lines.join('\n');
   }
   var SHL={
-    fr:{t:'Partager sur',nat:'📲 Plus d’apps',cp:'📋 Copier le texte',ok:'✅ Texte copié ! Colle-le dans ',x:'Fermer'},
-    es:{t:'Compartir en',nat:'📲 Más apps',cp:'📋 Copiar texto',ok:'✅ ¡Texto copiado! Pégalo en ',x:'Cerrar'},
-    en:{t:'Share on',nat:'📲 More apps',cp:'📋 Copy text',ok:'✅ Text copied! Paste it in ',x:'Close'}
+    fr:{t:'Partager sur',nat:'📲 Plus d’apps',cp:'📋 Copier le texte',ok:'✅ Texte copié ! Colle-le dans ',x:'Fermer',img:'🖼️ Partager l’image du tableau',imgok:'✅ Image enregistrée'},
+    es:{t:'Compartir en',nat:'📲 Más apps',cp:'📋 Copiar texto',ok:'✅ ¡Texto copiado! Pégalo en ',x:'Cerrar',img:'🖼️ Compartir imagen de la tabla',imgok:'✅ Imagen guardada'},
+    en:{t:'Share on',nat:'📲 More apps',cp:'📋 Copy text',ok:'✅ Text copied! Paste it in ',x:'Close',img:'🖼️ Share table image',imgok:'✅ Image saved'}
   };
   function T(){try{return SHL[lang]||SHL.es}catch(e){return SHL.es}}
   function copy(text){
@@ -1957,8 +1957,53 @@ window.addEventListener('focus',chkDay);
     d.style.cssText='position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#000;color:#fff;padding:10px 16px;border-radius:20px;font-size:13px;font-weight:bold;z-index:100000;max-width:90%;text-align:center';
     document.body.appendChild(d);setTimeout(function(){d.remove()},3500);
   }
+
+  function wrapTxt(ctx,t,w){var words=t.split(' '),out=[],cur='';words.forEach(function(wd){var x=cur?cur+' '+wd:wd;if(ctx.measureText(x).width>w&&cur){out.push(cur);cur=wd}else cur=x});if(cur)out.push(cur);return out}
+  function cardImage(card,text){
+    return new Promise(function(res){
+      var logoEl=card.querySelector('img'),logo=new Image(),done=false;
+      function draw(ok){
+        if(done)return;done=true;
+        var W=1080,P=60,lines=text.split('\n'),c=document.createElement('canvas'),x=c.getContext('2d');
+        c.width=W;c.height=3000;
+        x.font='bold 40px Arial,sans-serif';
+        var items=[];
+        lines.forEach(function(l,i){
+          var big=(i===0),f=big?'bold 44px Arial,sans-serif':'bold 38px Arial,sans-serif';
+          x.font=f;
+          wrapTxt(x,l,W-2*P-80).forEach(function(w){items.push({t:w,f:f,big:big})});
+        });
+        var lh=58,top=ok?260:150,H=top+items.length*lh+190;
+        c.height=H;x=c.getContext('2d');
+        x.fillStyle='#1363f8';x.fillRect(0,0,W,H);
+        x.fillStyle='#fff';x.beginPath();
+        if(x.roundRect)x.roundRect(30,30,W-60,H-60,40);else x.rect(30,30,W-60,H-60);x.fill();
+        if(ok){var s=150,r=Math.min(s/logo.width,s/logo.height);var lw=logo.width*r,lhh=logo.height*r;x.drawImage(logo,(W-lw)/2,70,lw,lhh)}
+        x.textAlign='center';var y=top;
+        items.forEach(function(it){x.font=it.f;x.fillStyle=it.big?'#1363f8':'#111';x.fillText(it.t,W/2,y);y+=lh});
+        x.font='bold 36px Arial,sans-serif';x.fillStyle='#1363f8';
+        x.fillText('🍀 FLORIDA MAGIC V7',W/2,H-110);
+        x.font='32px Arial,sans-serif';x.fillStyle='#555';
+        x.fillText('floridamagicv7.com',W/2,H-60);
+        c.toBlob(function(b){res(b)},'image/png');
+      }
+      if(logoEl&&logoEl.src){logo.onload=function(){draw(true)};logo.onerror=function(){draw(false)};logo.src=logoEl.src;setTimeout(function(){draw(false)},2500)}else draw(false);
+    });
+  }
+  function shareImage(card,text){
+    cardImage(card,text).then(function(b){
+      if(!b)return;
+      var f=new File([b],'florida-magic-v7.png',{type:'image/png'});
+      if(navigator.canShare&&navigator.canShare({files:[f]})){
+        navigator.share({files:[f],text:text+'\n\n'+URL_}).catch(function(){});
+      }else{
+        var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='florida-magic-v7.png';
+        document.body.appendChild(a);a.click();a.remove();toast(T().imgok);
+      }
+    });
+  }
   function closeSheet(){var e=document.getElementById('shareSheet');if(e)e.remove()}
-  function doShare(text){
+  function doShare(text,card){
     closeSheet();
     var full=text+'\n\n'+URL_,t=T();
     var ov=document.createElement('div');ov.id='shareSheet';
@@ -1971,19 +2016,7 @@ window.addEventListener('focus',chkDay);
       b.style.cssText='display:block;width:100%;margin-top:8px;padding:12px;border:0;border-radius:12px;font-weight:bold;font-size:15px;color:#fff;background:'+bg;
       b.addEventListener('click',function(){fn();closeSheet()});box.appendChild(b);
     }
-    btn('Facebook','#1877f2',function(){
-      window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(URL_)+'&quote='+encodeURIComponent(text),'_blank','noopener');
-    });
-    btn('WhatsApp','#25d366',function(){
-      window.open('https://wa.me/?text='+encodeURIComponent(full),'_blank','noopener');
-    });
-    btn('Instagram','linear-gradient(45deg,#f09433,#dc2743,#bc1888)',function(){
-      copy(full).then(function(){toast(t.ok+'Instagram');setTimeout(function(){window.open('https://www.instagram.com/','_blank','noopener')},900)});
-    });
-    btn('TikTok','#000',function(){
-      copy(full).then(function(){toast(t.ok+'TikTok');setTimeout(function(){window.open('https://www.tiktok.com/','_blank','noopener')},900)});
-    });
-    if(navigator.share)btn(t.nat,'#1363f8',function(){navigator.share({title:'FLORIDA MAGIC V7',text:text,url:URL_}).catch(function(){})});
+    if(card)btn(t.img,'#e91e63',function(){shareImage(card,text)});
     btn(t.cp,'#555',function(){copy(full).then(function(){toast(t.ok.split('!')[0]+'!')})});
     var x=document.createElement('button');x.type='button';x.textContent=t.x;
     x.style.cssText='display:block;width:100%;margin-top:10px;padding:10px;border:0;background:none;color:#444;font-size:14px';
@@ -1996,7 +2029,7 @@ window.addEventListener('focus',chkDay);
     if(!b){
       b=document.createElement('button');b.type='button';b.className='shareBtn';
       b.innerHTML='<span class="shL"></span>'+ICO;
-      b.addEventListener('click',function(){var t=getText();if(t)doShare(t)});
+      b.addEventListener('click',function(){var t=getText();if(t)doShare(t,card)});
       card.appendChild(b);
     }
     var sp=b.querySelector('.shL'),l=lbl();if(sp&&sp.textContent!==l)sp.textContent=l;
