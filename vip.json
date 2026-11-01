@@ -1,4 +1,5 @@
 [
-  { "date": "27 OCT. 2026", "session": "NOCHE", "numbers": "245" },
-  { "date": "21 OCT. 2026", "session": "NOCHE", "numbers": "008" }
+  { "date": "31 OCT. 2026", "session": "NOCHE", "numbers": "420 30", "color": "default", "highlight": { "text": "30", "color": "red" } },
+  { "date": "27 OCT. 2026", "session": "NOCHE", "numbers": "245", "color": "red" },
+  { "date": "21 OCT. 2026", "session": "NOCHE", "numbers": "008", "color": "red" }
 ]
