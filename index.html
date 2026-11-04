@@ -587,7 +587,20 @@ function renderVipRes(){
   if(!vipRows.length){one(t.vipEmpty);return}
   vipRows.forEach(x=>{
     const tr=document.createElement('tr');tr.className='vr';
-    [x.date,x.session,x.numbers].forEach(v=>{const td=document.createElement('td');td.textContent=v||'';tr.appendChild(td)});
+    [x.date,x.session].forEach(v=>{const td=document.createElement('td');td.textContent=v||'';tr.appendChild(td)});
+    const nt=document.createElement('td'),COL={red:'#d32f2f',green:'#1b8a3a',blue:'#1363f8',orange:'#ef6c00',black:'#000',gold:'#b8860b'};
+    const cc=c=>c&&c!=='default'?(COL[c]||c):'';
+    const txt=String(x.numbers||''),bc=cc(x.color);if(bc)nt.style.color=bc;
+    const hl=x.highlight?(Array.isArray(x.highlight)?x.highlight:[x.highlight]):[];
+    const h=hl.find(q=>q&&q.text&&txt.indexOf(String(q.text))>-1);
+    if(!h)nt.textContent=txt;
+    else{
+      const ht=String(h.text),k=txt.indexOf(ht),sp=document.createElement('span'),hc=cc(h.color);
+      nt.appendChild(document.createTextNode(txt.slice(0,k)));
+      sp.textContent=ht;if(hc)sp.style.color=hc;nt.appendChild(sp);
+      nt.appendChild(document.createTextNode(txt.slice(k+ht.length)));
+    }
+    tr.appendChild(nt);
     tb.appendChild(tr);
   });
 }
