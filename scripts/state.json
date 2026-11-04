@@ -10,6 +10,7 @@
     "fl|2026-11-02|mid",
     "fl|2026-11-03|eve",
     "fl|2026-11-03|mid",
+    "fl|2026-11-04|mid",
     "ga|2026-10-30|eve",
     "ga|2026-10-30|mid",
     "ga|2026-10-30|nig",
@@ -25,6 +26,7 @@
     "ga|2026-11-03|eve",
     "ga|2026-11-03|mid",
     "ga|2026-11-03|nig",
+    "ga|2026-11-04|mid",
     "ny|2026-10-30|eve",
     "ny|2026-10-30|mid",
     "ny|2026-10-31|eve",
@@ -70,8 +72,12 @@
     "sd|2026-11-03|Quiniela Leidsa",
     "sd|2026-11-03|Quiniela Loteka",
     "sd|2026-11-03|Quiniela Real",
+    "sd|2026-11-04|Gana Más",
+    "sd|2026-11-04|La Primera Día",
+    "sd|2026-11-04|Quiniela Real",
     "vip|27 OCT. 2026|NOCHE|245",
     "vip|21 OCT. 2026|NOCHE|008",
-    "vip|31 OCT. 2026|NOCHE|420 30"
+    "vip|31 OCT. 2026|NOCHE|420 30",
+    "vip|03 NOV. 2026|NOCHE|725 01"
   ]
 }
