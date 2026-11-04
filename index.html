@@ -8,6 +8,7 @@ window.__ad=function(u,a){if(window.__vip())return;document.write('<script src="
 </script>
 <script>__ad("https://5gvci.com/act/files/tag.min.js?z=12152948"," data-cfasync=\"false\" async")</script>
 <meta charset="UTF-8">
+<script>if(!window.__vip()){var _g=document.createElement('script');_g.async=true;_g.crossOrigin='anonymous';_g.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7893807516191350';document.head.appendChild(_g)}</script>
 <meta name="google" content="notranslate">
 <meta name="google-site-verification" content="7ll5tNAjLiaoWWbaxfljPvWBGHG599SCldlYa6Rcn2Y" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -316,12 +317,7 @@ table.xt td,table.xt th{white-space:nowrap}
 <script>__ad("https://bauval.org/22/27685c41af061c75c2482f077793c365")</script>
 </div></div>
 
-  <div class="ad adx" id="adExo" data-tab="home" style="text-align:center">
-    <script>__ad("https://a.magsrv.com/ad-provider.js"," async type=\"application/javascript\"")</script>
-    <ins class="eas6a97888e2" data-zoneid="6070570"></ins>
-    <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
-  </div>
-
+  
 
   <div class="card" data-tab="home">
     <h2 data-t="tkT"></h2>
@@ -454,11 +450,7 @@ table.xt td,table.xt th{white-space:nowrap}
     <p style="margin-top:14px"><a id="vipWa" href="#" target="_blank" rel="noopener" data-t="wa" style="font-size:13px;font-weight:bold;padding:7px 14px;margin:0;background:#fff;color:#000;border:2px solid #000;border-radius:999px">💬 Soporte WhatsApp</a></p>
   </div>
 
-  <div class="ad adx" id="adExoVip" data-tab="vip" style="text-align:center;margin-top:14px">
-    <ins class="eas6a97888e2" data-zoneid="6070570"></ins>
-    <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
-  </div>
-
+  
   <section class="card" id="astralBox" data-tab="astral">
     <h2 id="astTitle"></h2>
     <p class="small" id="astDay" style="margin:0 0 6px;font-weight:bold"></p>
@@ -842,25 +834,11 @@ function rainFX(card,ms){ // lluvia continua de bolitas con número + luces, de 
 }
 
 function girar(){
-  if(spinning||waiting)return;
+  if(spinning)return;
   if(esVip()){girarReal();return}
   if(getResult())return;
   if(pair(fechaKey(),getSession(),true).length!==4)return;
-  waiting=true;audioCtx();
-  const btn=document.getElementById('spinBtn'),lim=document.getElementById('limit');
-  btn.disabled=true;lim.textContent='';
-  btn.textContent=L[lang].stNone;
-  // Le décompte est dans la pub elle-même. Quand l'utilisateur revient sur la page après la pub
-  // (page cachée au moins 3 s puis de nouveau visible), l'animation démarre et les numéros apparaissent.
-  let hiddenAt=null,fb=null;
-  const end=()=>{clearTimeout(fb);document.removeEventListener('visibilitychange',vc);waiting=false;lim.textContent='';girarReal()};
-  const vc=()=>{
-    if(document.hidden){hiddenAt=Date.now()}
-    else if(hiddenAt!==null){if(Date.now()-hiddenAt>=3000)end();else hiddenAt=null}
-  };
-  document.addEventListener('visibilitychange',vc);
-  // secours : si aucune pub ne s'ouvre, on ne bloque pas l'utilisateur
-  fb=setTimeout(()=>{if(hiddenAt===null&&!document.hidden)end()},15000);
+  girarReal(); // gira inmediatamente, sin esperar publicidad
 }
 function girarReal(){
   if(spinning)return;
