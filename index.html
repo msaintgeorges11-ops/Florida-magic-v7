@@ -734,7 +734,6 @@ function sprites(){ // mismas bolitas y luces, dibujadas UNA sola vez (mucho má
     const g=c.createRadialGradient(S/2,S/2,0,S/2,S/2,S/2);g.addColorStop(0,'#fff');g.addColorStop(.25,col);g.addColorStop(1,'rgba(255,255,255,0)');c.fillStyle=g;c.fillRect(0,0,S,S);return cv});
   return _spr={balls,lights};
 }
-setTimeout(()=>{try{sprites()}catch(e){}},1200); // se preparan antes del primer giro
 
 function rainFX(card,ms){ // lluvia continua de bolitas con número + luces, de principio a fin
   const SP=sprites();
@@ -790,7 +789,6 @@ function girarReal(){
   const finals=boxes.map((_,i)=>{const v=nums[Math.floor(i/3)];return v!=null?String(v)[i%3]:'?'});
   const card=boxes[0].closest('.card');card.style.position='relative';card.style.overflow='hidden';
   const STOP0=1700,GAP=170,total=STOP0+GAP*boxes.length+300;
-  rainFX(card,total);
   boxes.forEach(b=>b.classList.add('spin'));
   let tk=0;
   const timer=setInterval(()=>{
