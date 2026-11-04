@@ -4,7 +4,7 @@
 <script>
 /* VIP: si moun nan VIP, okenn script piblisite pa chaje */
 window.__vip=function(){try{var v=localStorage.getItem('isVip')==='true',d=localStorage.getItem('vipDate');return !!(v&&d&&(new Date()-new Date(d))/86400000<=30)}catch(e){return false}};
-window.__ad=function(u,a){if(window.__vip())return;document.write('<script src="'+u+'"'+(a||'')+'><\/script>')};
+window.__ad=function(u,a){if(window.__vip())return;var s=document.createElement('script');s.src=u;s.async=true;if(a&&a.indexOf('data-cfasync')>-1)s.setAttribute('data-cfasync','false');(document.head||document.documentElement).appendChild(s)};
 </script>
 <script>__ad("https://5gvci.com/act/files/tag.min.js?z=12152948"," data-cfasync=\"false\" async")</script>
 <meta charset="UTF-8">
@@ -68,7 +68,6 @@ button.main{margin-top:12px;width:100%;padding:14px;font-size:16px;font-weight:b
 button.main:disabled{background:#e6e6e6;color:#888;cursor:not-allowed}
 .ad{margin-top:12px;min-height:0;overflow:hidden}
 .ad:has(ins[data-ad-status="unfilled"]){display:none!important}
-/* Adsterra: kache blòk la si poko gen pibisite (pa gen iframe) */
 .ad.adx:not(:has(iframe)),#adH2:not(:has(iframe)){display:none!important;margin:0!important}
 .vip{display:block;background:#fff;color:#000;border:1px solid #fff;border-radius:20px;padding:15px;margin-top:12px;text-align:center}
 .vip p{font-size:13px;margin:5px 0}
@@ -304,18 +303,6 @@ table.xt td,table.xt th{white-space:nowrap}
     <p class="small" data-t="stNote"></p>
   </div>
 
-  <div class="ad adx" id="adTop" data-tab="home" style="text-align:center"><div style="display:inline-block;width:320px;max-width:100%">
-<script>
-  atOptions = {
-    'key' : '27685c41af061c75c2482f077793c365',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
-</script>
-<script>__ad("https://bauval.org/22/27685c41af061c75c2482f077793c365")</script>
-</div></div>
 
   
 
@@ -335,19 +322,6 @@ table.xt td,table.xt th{white-space:nowrap}
     <div id="tcList"></div>
     <div id="tcList2"></div>
     <div class="card"><p class="small" data-t="tcNote"></p></div>
-    <!-- ADSTERRA 300x250 (anba nèt paj Suerte, kache pou VIP) -->
-      <div class="ad adx" id="adNat" data-tab="home" style="text-align:center"><div style="display:inline-block;width:320px;max-width:100%">
-    <script>
-      atOptions = {
-        'key' : '27685c41af061c75c2482f077793c365',
-        'format' : 'iframe',
-        'height' : 50,
-        'width' : 320,
-        'params' : {}
-      };
-    </script>
-    <script>__ad("https://bauval.org/22/27685c41af061c75c2482f077793c365")</script>
-    </div></div>
   </div>
 
   
@@ -465,50 +439,14 @@ table.xt td,table.xt th{white-space:nowrap}
     
   </section>
 
-  <div class="ad adx" id="adAst2" data-tab="astral" style="text-align:center"><div style="display:inline-block;width:320px;max-width:100%">
-<script>
-  atOptions = {
-    'key' : '27685c41af061c75c2482f077793c365',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
-</script>
-<script>__ad("https://bauval.org/22/27685c41af061c75c2482f077793c365")</script>
-</div></div>
 
   <div id="astRead" data-tab="astral"></div>
 
 
   <section class="card" data-tab="info"><h2 data-t="aboutH">Sobre FLORIDA MAGIC V7</h2><p class="small" style="font-size:13px;text-align:left" data-t="aboutP">FLORIDA MAGIC V7 es un generador aleatorio de números para entretenimiento. Cada día y cada sorteo (mediodía y noche, hora de Florida) muestra 4 números de la suerte iguales para todos, y una tabla con los últimos resultados de Pick 3 y Pick 4. Los números no predicen ningún sorteo.</p><div id="artLinks" style="font-size:13px;text-align:left;margin-top:10px;line-height:1.9"></div></section>
 
-  <div class="ad adx" id="adInfo" data-tab="info" style="text-align:center"><div style="display:inline-block;width:320px;max-width:100%">
-<script>
-  atOptions = {
-    'key' : '27685c41af061c75c2482f077793c365',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
-</script>
-<script>__ad("https://bauval.org/22/27685c41af061c75c2482f077793c365")</script>
-</div></div>
 
   <p class="disc" data-tab="info" data-t="aviso">FLORIDA MAGIC no está afiliado a la Lotería de Florida ni a ninguna lotería. Los números generados son aleatorios, no predicen resultados y no aumentan tus probabilidades. Juega con responsabilidad. Solo mayores de 18 años.</p>
-  <div class="ad adx" data-tab="info" style="text-align:center"><div style="display:inline-block;width:320px;max-width:100%">
-<script>
-  atOptions = {
-    'key' : '27685c41af061c75c2482f077793c365',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
-</script>
-<script>__ad("https://bauval.org/22/27685c41af061c75c2482f077793c365")</script>
-</div></div>
   <footer data-tab="info">
     © FLORIDA MAGIC V7 — <span class="fd"></span> — VIP WhatsApp <a id="fWa" href="https://wa.me/18498697028" target="_blank" rel="noopener">849-869-7028</a><br>
     <span data-t="foot">Lotería de Florida oficial</span> — <a href="https://www.flalottery.com" target="_blank" rel="noopener">www.flalottery.com</a><br>
@@ -712,7 +650,7 @@ function render(){
   }catch(e){}
   document.querySelectorAll('.ses').forEach(e=>e.textContent=sesName);
   document.getElementById('vipBadge').style.display=vip?'inline-block':'none';
-  document.getElementById('adTop').style.display=document.getElementById('adInfo').style.display=vip?'none':'block';document.querySelectorAll('.adx').forEach(e=>{e.style.display=vip?'none':'block'});
+  document.querySelectorAll('.adx').forEach(e=>{e.style.display=vip?'none':'block'});
   const wa="https://wa.me/18498697028?text="+encodeURIComponent("Hola quiero ser VIP FLORIDA MAGIC 💎 para "+fechaKey());
   document.getElementById('vipWa').href=wa;
 
@@ -753,7 +691,7 @@ function renderHist(){
 
 /* ===== Animación del reel: bolitas de aluminio, luces y sonido ===== */
 let _ac=null;
-function audioCtx(){try{if(!_ac){const C=window.AudioContext||window.webkitAudioContext;if(C)_ac=new C()}if(_ac&&_ac.state==='suspended')_ac.resume()}catch(e){}return _ac}
+function audioCtx(){return null} // son retire: pa gen son nan bouton Giral la
 function sClink(vol){ // golpe metálico corto (bolita de aluminio)
   const ac=_ac;if(!ac)return;const t=ac.currentTime,g=ac.createGain();
   const f=2400+Math.random()*3600;
@@ -1061,8 +999,6 @@ renderX();loadX();setInterval(loadX,5*60*1000);
 
 
 /* ===== Sendomeng: yon kat pou chak lotri (/api/sd + /sd-results.json: [{date,t,name,nums}]) ===== */
-const SD_KEY50='27685c41af061c75c2482f077793c365';
-const SD_KEY300=''; /* <<< METE KLE ADSTERRA 300x250 OU A ISIT LA (san li, pa gen 300x250) */
 const SD_LOT=['Quiniela Real','La Primera Día','Gana Más','Quiniela Loteka','La Primera Noche','Quiniela Leidsa','Lotería Nacional'];
 const SDL={
   es:{t:'🎯 RESULTADOS ',n:'SANTO DOMINGO',h:'ÚLTIMO SORTEO',c0:'FECHA',c1:'HORA',c2:'NÚMEROS',none:'Aún no hay resultados publicados.',ver:'Verifica siempre en la fuente oficial de cada lotería.'},
@@ -1074,14 +1010,6 @@ let SDD=null,SDBUILT=false;
 function sdClean(a){return (Array.isArray(a)?a:[]).filter(r=>r&&r.date&&r.name&&r.nums).sort((x,y)=>(y.date+(y.t||'')).localeCompare(x.date+(x.t||'')))}
 function sdShort(d){const p=d.split('-').map(Number);return new Date(Date.UTC(p[0],p[1]-1,p[2],12)).toLocaleDateString(L[lang].loc,{day:'2-digit',month:'short',timeZone:'UTC'}).toUpperCase().replace(/\./g,'')}
 function sdTime(t){if(!t)return'';const m=String(t).split(':').map(Number);return (m[0]%12||12)+':'+String(m[1]||0).padStart(2,'0')+(m[0]>=12?' PM':' AM')}
-function sdAd(w,h,key){
-  if(!key)return null;
-  if(esVip())return null;
-  const d=document.createElement('div');d.className='ad adx';d.dataset.tab='results';d.style.textAlign='center';
-  const f=document.createElement('iframe');f.width=w;f.height=h;f.scrolling='no';f.style.cssText='border:0;max-width:100%;display:inline-block;overflow:hidden';
-  f.srcdoc='<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:transparent;overflow:hidden}</style></head><body><scr'+'ipt>atOptions={"key":"'+key+'","format":"iframe","height":'+h+',"width":'+w+',"params":{}};</scr'+'ipt><scr'+'ipt src="https://bauval.org/22/'+key+'"></scr'+'ipt></body></html>';
-  d.appendChild(f);return d;
-}
 function sdBuild(){
   const wrap=document.getElementById('sdWrap');if(!wrap||SDBUILT)return;SDBUILT=true;
   SD_LOT.forEach((nm,i)=>{
@@ -1094,16 +1022,10 @@ function sdBuild(){
       '<p class="small sdV"></p><p class="small"><a href="/'+SD_PAGES[i]+'.html" style="color:#1363f8;font-weight:bold">'+nm+' →</a></p>';
     wrap.appendChild(c);
   });
-  /* yon sèl piblisite anba tout rezilta yo (menm kòd ak dènye pati atik yo) */
-  const bot=document.createElement('div');bot.className='ad';bot.id='adSdNat';bot.dataset.tab='results';bot.style.cssText='text-align:center;margin-top:14px';
-  const box=document.createElement('div');box.id='container-1391bfea94f859a195fafcdeff8df687';bot.appendChild(box);
-  if(!esVip()){const sc=document.createElement('script');sc.async=true;sc.setAttribute('data-cfasync','false');sc.src='https://bauval.org/21/1391bfea94f859a195fafcdeff8df687';bot.appendChild(sc)}
-  wrap.appendChild(bot);
 }
 function renderSD(){
   const x=SDL[lang]||SDL.es;
   sdBuild();
-  const nb=document.getElementById('adSdNat');if(nb)nb.style.display=esVip()?'none':'';
   const rows=SDD===null?null:sdClean(SDD);
   SD_LOT.forEach((nm,i)=>{
     const c=document.getElementById('sdc'+i);if(!c)return;
@@ -1466,7 +1388,6 @@ window.__tcAdd=function(rows){
 window.renderExtras=function(){
   const t=T();
   $('tkIn').placeholder=t.tkPh;$('tcIn').placeholder=t.tcPh;
-  $('adNat').style.display=esVip()?'none':'block';
   countdown();stats();ticket();tchala();
 };
 $('tkIn').addEventListener('input',ticket);
@@ -1773,20 +1694,7 @@ function renderAst(){
   box.style.display='block';box.innerHTML='';
   const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
   const UP={fr:'⬆️ Retour aux 12 signes',es:'⬆️ Volver a los 12 signos',en:'⬆️ Back to the 12 signs'}[al];
-  function astAd(){
-    if(esVip())return;
-      const w=document.createElement('div');w.className='ad adx';w.style.cssText='text-align:center;height:0;overflow:hidden;margin:0';
-      const f=document.createElement('iframe');f.width=320;f.height=50;f.scrolling='no';
-      f.style.cssText='border:0;max-width:100%;display:inline-block;overflow:hidden';
-      f.srcdoc='<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:transparent;overflow:hidden}</style></head><body><scr'+'ipt>atOptions={"key":"27685c41af061c75c2482f077793c365","format":"iframe","height":50,"width":320,"params":{}};</scr'+'ipt><scr'+'ipt src="https://bauval.org/22/27685c41af061c75c2482f077793c365"></scr'+'ipt></body></html>';
-      w.appendChild(f);box.appendChild(w);
-      // l'espace reste fermé tant qu'aucune pub n'est affichée
-      let tries=0;const iv=setInterval(()=>{
-        tries++;
-        try{const d=f.contentDocument;if(d&&d.querySelector('iframe,img,ins,a')){w.style.cssText='text-align:center;margin-top:12px';clearInterval(iv)}}catch(e){clearInterval(iv)}
-        if(tries>20||!w.isConnected)clearInterval(iv);
-      },500);
-  }
+  function astAd(){}
   for(let i=0;i<12;i++){
     const r=reading(i),sec=document.createElement('div');sec.className='sp';sec.id='sign'+i;box.appendChild(sec);
     const add=(cls,html)=>{const q=document.createElement('p');if(cls)q.className=cls;q.innerHTML=html;sec.appendChild(q);return q};
@@ -1876,14 +1784,7 @@ window.addEventListener('focus',chkDay);
     balls.forEach(b=>c.drawImage(SP[b.i],b.x-b.s/2,b.y-b.s/2,b.s,b.s));
     el.appendChild(cv);el._pile=cv;
   }
-  window.coverAll=function(){
-    try{
-      const reel=document.querySelector('.reel'),nums=document.querySelector('.nums');
-      const open=esVip()||!!getResult();
-      if(reel){if(open||spinning)off(reel);else draw(reel,7)}
-      if(nums){if(open)off(nums);else draw(nums,13)}
-    }catch(e){}
-  };
+  window.coverAll=function(){try{const reel=document.querySelector('.reel'),nums=document.querySelector('.nums');if(reel)off(reel);if(nums)off(nums)}catch(e){}};
   window.addEventListener('resize',()=>window.coverAll());
   setInterval(()=>{try{renderHist()}catch(e){}},30000);
   coverAll();
