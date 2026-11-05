@@ -1,0 +1,233 @@
+{
+ "date": "2026-10-16",
+ "signs": [
+  {
+   "num": 17,
+   "hex": "#e53935",
+   "fr": {
+    "color": "le Rouge",
+    "day": "Ce vendredi apporte une énergie positive. Tu pourrais recevoir un message ou une nouvelle que tu attendais depuis quelque temps.",
+    "love": "Une personne pense beaucoup à toi. Si tu es en couple, un moment tendre pourrait vous rapprocher davantage. Si tu es célibataire, quelqu’un pourrait chercher à te parler ce soir."
+   },
+   "es": {
+    "color": "Rojo",
+    "day": "Este viernes trae una energía positiva. Podrías recibir un mensaje o una noticia que esperabas desde hace algún tiempo.",
+    "love": "Una persona piensa mucho en ti. Si estás en pareja, un momento tierno podría acercarlos aún más. Si estás soltero o soltera, alguien podría querer hablar contigo esta noche."
+   },
+   "en": {
+    "color": "Red",
+    "day": "This Friday brings positive energy. You could receive a message or news you have been waiting for some time.",
+    "love": "Someone is thinking about you a lot. If you are in a relationship, a tender moment could bring you even closer. If you are single, someone might want to talk to you tonight."
+   }
+  },
+  {
+   "num": 24,
+   "hex": "#2e9e4f",
+   "fr": {
+    "color": "le Vert",
+    "day": "Aujourd’hui demande de la patience, mais une belle opportunité pourrait se présenter. Une personne pourrait t’apporter une bonne nouvelle concernant le travail ou l’argent.",
+    "love": "L’amour devient plus doux pour toi. Une petite conversation pourrait changer complètement l’ambiance entre toi et une personne que tu apprécies."
+   },
+   "es": {
+    "color": "Verde",
+    "day": "Hoy requiere paciencia, pero una bonita oportunidad podría presentarse. Alguien podría traerte una buena noticia sobre el trabajo o el dinero.",
+    "love": "El amor se vuelve más dulce para ti. Una pequeña conversación podría cambiar por completo el ambiente entre tú y una persona que aprecias."
+   },
+   "en": {
+    "color": "Green",
+    "day": "Today calls for patience, but a nice opportunity could come up. Someone could bring you good news about work or money.",
+    "love": "Love becomes sweeter for you. A small conversation could completely change the mood between you and someone you care about."
+   }
+  },
+  {
+   "num": 11,
+   "hex": "#f4c20d",
+   "fr": {
+    "color": "le Jaune",
+    "day": "La communication est ta force aujourd’hui. Un appel, un message ou une conversation pourrait t’apporter une surprise positive.",
+    "love": "Une personne qui était silencieuse pourrait enfin reprendre contact avec toi. Si tu es en couple, des paroles tendres feront toute la différence."
+   },
+   "es": {
+    "color": "Amarillo",
+    "day": "La comunicación es tu fuerza hoy. Una llamada, un mensaje o una conversación podría darte una sorpresa positiva.",
+    "love": "Una persona que estaba en silencio podría por fin retomar el contacto contigo. Si estás en pareja, las palabras tiernas marcarán toda la diferencia."
+   },
+   "en": {
+    "color": "Yellow",
+    "day": "Communication is your strength today. A call, a message or a conversation could bring you a positive surprise.",
+    "love": "Someone who had gone quiet could finally get back in touch with you. If you are in a relationship, tender words will make all the difference."
+   }
+  },
+  {
+   "num": 8,
+   "hex": "#f5f5f5",
+   "fr": {
+    "color": "le Blanc",
+    "day": "Ton intuition est très forte aujourd’hui. Fais confiance à ton ressenti, car tu pourrais remarquer quelque chose que les autres ne voient pas.",
+    "love": "Ton cœur pourrait ressentir un soulagement. Une personne pourrait te montrer qu’elle s’intéresse toujours à toi, même sans le dire directement."
+   },
+   "es": {
+    "color": "Blanco",
+    "day": "Tu intuición está muy fuerte hoy. Confía en lo que sientes, porque podrías notar algo que los demás no ven.",
+    "love": "Tu corazón podría sentir alivio. Una persona podría mostrarte que todavía se interesa por ti, aunque no lo diga directamente."
+   },
+   "en": {
+    "color": "White",
+    "day": "Your intuition is very strong today. Trust your feelings, because you might notice something others do not see.",
+    "love": "Your heart could feel relief. Someone could show you they are still interested in you, even without saying it directly."
+   }
+  },
+  {
+   "num": 29,
+   "hex": "#f57c00",
+   "fr": {
+    "color": "l’Orange",
+    "day": "Tu recevras plus d’attention que d’habitude. Quelqu’un pourrait remarquer tes efforts et te féliciter pour ton travail.",
+    "love": "Un beau moment pourrait arriver sans que tu l’aies prévu. Si tu es célibataire, quelqu’un pourrait te faire un signe très facile à comprendre."
+   },
+   "es": {
+    "color": "Naranja",
+    "day": "Recibirás más atención de lo habitual. Alguien podría notar tus esfuerzos y felicitarte por tu trabajo.",
+    "love": "Un momento bonito podría llegar sin que lo hayas previsto. Si estás soltero o soltera, alguien podría hacerte una señal muy fácil de entender."
+   },
+   "en": {
+    "color": "Orange",
+    "day": "You will get more attention than usual. Someone could notice your efforts and congratulate you on your work.",
+    "love": "A lovely moment could arrive when you least expect it. If you are single, someone might give you a sign that is very easy to understand."
+   }
+  },
+  {
+   "num": 16,
+   "hex": "#1e66f5",
+   "fr": {
+    "color": "le Bleu",
+    "day": "Une chose que tu pensais longue à réaliser pourrait enfin commencer à avancer. Ne te décourage pas si tout ne se passe pas exactement comme prévu.",
+    "love": "Un petit détail pourrait te faire comprendre les sentiments d’une personne. Si tu es en couple, une belle surprise pourrait t’attendre."
+   },
+   "es": {
+    "color": "Azul",
+    "day": "Algo que creías que tardaría mucho podría por fin empezar a avanzar. No te desanimes si todo no sale exactamente como lo planeaste.",
+    "love": "Un pequeño detalle podría hacerte entender los sentimientos de una persona. Si estás en pareja, una bonita sorpresa podría estar esperándote."
+   },
+   "en": {
+    "color": "Blue",
+    "day": "Something you thought would take a long time could finally start moving forward. Do not get discouraged if everything does not go exactly as planned.",
+    "love": "A small detail could help you understand someone's feelings. If you are in a relationship, a nice surprise could be waiting for you."
+   }
+  },
+  {
+   "num": 33,
+   "hex": "#e53935",
+   "fr": {
+    "color": "le Rouge",
+    "day": "Le vendredi est une journée d’amour pour toi, Vénus brille sur ton chemin. Tu pourrais recevoir une bonne nouvelle au travail aujourd’hui.",
+    "love": "Une petite dispute pourrait se terminer par un gros baiser. Si tu es célibataire, quelqu’un pourrait t’écrire ce soir."
+   },
+   "es": {
+    "color": "Rojo",
+    "day": "El viernes es un día de amor para ti, Venus brilla en tu camino. Hoy podrías recibir una buena noticia en el trabajo.",
+    "love": "Una pequeña discusión podría terminar con un gran beso. Si estás soltero o soltera, alguien podría escribirte esta noche."
+   },
+   "en": {
+    "color": "Red",
+    "day": "Friday is a day of love for you, Venus shines on your path. You could receive good news at work today.",
+    "love": "A small argument could end with a big kiss. If you are single, someone could write to you tonight."
+   }
+  },
+  {
+   "num": 13,
+   "hex": "#111111",
+   "fr": {
+    "color": "le Noir",
+    "day": "Aujourd’hui apporte une énergie de changement. Une décision que tu prendras pourrait ouvrir une nouvelle porte pour toi.",
+    "love": "Une personne pourrait te faire une confession ou te montrer un sentiment qu’elle cachait. Ne te précipite pas, prends le temps de comprendre la situation."
+   },
+   "es": {
+    "color": "Negro",
+    "day": "Hoy trae una energía de cambio. Una decisión que tomes podría abrirte una nueva puerta.",
+    "love": "Una persona podría hacerte una confesión o mostrarte un sentimiento que escondía. No te apresures, tómate el tiempo de entender la situación."
+   },
+   "en": {
+    "color": "Black",
+    "day": "Today brings an energy of change. A decision you make could open a new door for you.",
+    "love": "Someone could make a confession or show you a feeling they were hiding. Do not rush, take the time to understand the situation."
+   }
+  },
+  {
+   "num": 21,
+   "hex": "#8e44ad",
+   "fr": {
+    "color": "le Violet",
+    "day": "Une bonne énergie et du mouvement t’accompagnent aujourd’hui. Une nouvelle pourrait te donner envie de commencer un nouveau projet ou de changer quelque chose dans ta vie.",
+    "love": "Quelqu’un pourrait te faire rire aujourd’hui. Si tu es célibataire, une nouvelle rencontre pourrait devenir très intéressante."
+   },
+   "es": {
+    "color": "Morado",
+    "day": "Una buena energía y movimiento te acompañan hoy. Una noticia podría darte ganas de empezar un nuevo proyecto o de cambiar algo en tu vida.",
+    "love": "Alguien podría hacerte reír hoy. Si estás soltero o soltera, un nuevo encuentro podría volverse muy interesante."
+   },
+   "en": {
+    "color": "Purple",
+    "day": "Good energy and movement are with you today. A piece of news could make you want to start a new project or change something in your life.",
+    "love": "Someone could make you laugh today. If you are single, a new meeting could become very interesting."
+   }
+  },
+  {
+   "num": 6,
+   "hex": "#888888",
+   "fr": {
+    "color": "le Gris",
+    "day": "Ton travail et tes efforts commencent à porter leurs fruits. Une personne pourrait reconnaître ta valeur ou t’offrir une opportunité.",
+    "love": "Ne laisse pas le silence te tromper. Une personne pourrait avoir des sentiments pour toi sans être encore prête à les exprimer."
+   },
+   "es": {
+    "color": "Gris",
+    "day": "Tu trabajo y tus esfuerzos empiezan a dar frutos. Una persona podría reconocer tu valor u ofrecerte una oportunidad.",
+    "love": "No dejes que el silencio te engañe. Una persona podría tener sentimientos por ti sin estar todavía lista para expresarlos."
+   },
+   "en": {
+    "color": "Gray",
+    "day": "Your work and efforts are starting to bear fruit. Someone could recognize your value or offer you an opportunity.",
+    "love": "Do not let silence fool you. Someone could have feelings for you without being ready to express them yet."
+   }
+  },
+  {
+   "num": 32,
+   "hex": "#6ec1ff",
+   "fr": {
+    "color": "le Bleu clair",
+    "day": "Une idée que tu as aujourd’hui pourrait devenir très utile plus tard. Ne néglige pas une opportunité qui se présente soudainement.",
+    "love": "Un message inattendu pourrait te faire plaisir. Si tu es en couple, une petite sortie ensemble pourrait vous rapprocher."
+   },
+   "es": {
+    "color": "Azul claro",
+    "day": "Una idea que tengas hoy podría resultar muy útil más adelante. No descuides una oportunidad que se presente de repente.",
+    "love": "Un mensaje inesperado podría alegrarte. Si estás en pareja, una pequeña salida juntos podría acercarlos."
+   },
+   "en": {
+    "color": "Light blue",
+    "day": "An idea you have today could become very useful later. Do not neglect an opportunity that suddenly shows up.",
+    "love": "An unexpected message could make you happy. If you are in a relationship, a little outing together could bring you closer."
+   }
+  },
+  {
+   "num": 9,
+   "hex": "#ec6fa5",
+   "fr": {
+    "color": "le Rose",
+    "day": "Ce vendredi apporte une énergie positive pour toi. Une nouvelle inattendue pourrait te rendre plus calme et plus confiant.",
+    "love": "Ton cœur pourrait recevoir une belle surprise. Une personne éloignée pourrait chercher à se rapprocher de nouveau. Si tu es célibataire, la soirée pourrait apporter une nouvelle conversation intéressante."
+   },
+   "es": {
+    "color": "Rosado",
+    "day": "Este viernes trae una energía positiva para ti. Una noticia inesperada podría hacerte sentir más tranquilo o tranquila y con más confianza.",
+    "love": "Tu corazón podría recibir una bonita sorpresa. Una persona lejana podría querer acercarse de nuevo. Si estás soltero o soltera, la noche podría traer una conversación interesante."
+   },
+   "en": {
+    "color": "Pink",
+    "day": "This Friday brings positive energy for you. An unexpected piece of news could make you calmer and more confident.",
+    "love": "Your heart could receive a lovely surprise. Someone far away could try to come closer again. If you are single, the evening could bring an interesting new conversation."
+   }
+  }
+ ]
+}
