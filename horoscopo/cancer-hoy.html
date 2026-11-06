@@ -433,18 +433,81 @@ th{color:#1363f8}
         setLang(t.getAttribute('data-l'), true);
       }, true);
     }
-    /* bouton odyo: li atik la nan bon lang */
+    /* bouton odyo: li atik la nan lang ki aktif la (ES / FR / EN) */
+    var LBL = { es: '🔊 Escuchar el artículo', en: UI.en.listen, fr: UI.fr.listen };
+    var STOP = { es: '⏹ Detener', en: '⏹ Stop', fr: '⏹ Arrêter' };
+    var NOVOICE = {
+      es: 'Tu navegador no tiene voz para este idioma. Prueba en Chrome.',
+      en: 'Your browser has no voice for this language. Try Chrome.',
+      fr: 'Votre navigateur n’a pas de voix pour cette langue. Essayez Chrome.'
+    };
+    var LANGTAG = { es: 'es-ES', en: 'en-US', fr: 'fr-FR' };
+    var playing = false, msg = null;
+    function setBtn(txt) { if (btn && btn.innerHTML !== txt) btn.innerHTML = txt; }
+    function showMsg(t) {
+      if (!btn) return;
+      if (!msg) { msg = document.createElement('p'); msg.style.cssText = 'font-size:13px;color:#b00020;margin:6px 0'; btn.parentNode.appendChild(msg); }
+      msg.textContent = t || '';
+    }
+    function stopAudio() {
+      playing = false;
+      try { window.speechSynthesis.cancel(); } catch (e) {}
+      setBtn(LBL[cur]);
+    }
+    function chunksOf(text) {
+      var parts = text.replace(/\s+/g, ' ').match(/[^.!?]+[.!?]*/g) || [text], out = [], c = '';
+      for (var k = 0; k < parts.length; k++) {
+        if ((c + parts[k]).length > 170 && c) { out.push(c); c = ''; }
+        c += parts[k];
+      }
+      if (c) out.push(c);
+      return out;
+    }
+    function getVoices(cb) {
+      var ss = window.speechSynthesis, v = ss.getVoices();
+      if (v && v.length) return cb(v);
+      var done = false;
+      function fin() { if (done) return; done = true; cb(ss.getVoices() || []); }
+      ss.addEventListener && ss.addEventListener('voiceschanged', fin);
+      setTimeout(fin, 1500);
+    }
+    function startAudio() {
+      var ss = window.speechSynthesis, lang = cur, tag = LANGTAG[lang];
+      showMsg('');
+      if (!ss || typeof SpeechSynthesisUtterance === 'undefined') { showMsg(NOVOICE[lang]); return; }
+      ss.cancel();
+      getVoices(function (vs) {
+        var voice = null, pre = tag.slice(0, 2);
+        for (var k = 0; k < vs.length; k++) {
+          var vl = (vs[k].lang || '').replace('_', '-').toLowerCase();
+          if (vl === tag.toLowerCase()) { voice = vs[k]; break; }
+          if (!voice && vl.indexOf(pre) === 0) voice = vs[k];
+        }
+        if (vs.length && !voice) { showMsg(NOVOICE[lang]); return; }
+        var list = chunksOf((art.innerText || art.textContent || '')), idx = 0;
+        playing = true; setBtn(STOP[lang]);
+        (function next() {
+          if (!playing || idx >= list.length || cur !== lang) { stopAudio(); return; }
+          var u = new SpeechSynthesisUtterance(list[idx++]);
+          u.lang = tag; if (voice) u.voice = voice;
+          u.onend = next;
+          u.onerror = function (ev) { if (ev && ev.error === 'not-allowed') showMsg(NOVOICE[lang]); stopAudio(); };
+          ss.speak(u);
+        })();
+      });
+    }
     if (btn) {
       btn.addEventListener('click', function (e) {
-        if (cur === 'es' || !window.speechSynthesis) return;
-        e.stopImmediatePropagation();
-        var ss = window.speechSynthesis;
-        if (ss.speaking) { ss.cancel(); return; }
-        var u = new SpeechSynthesisUtterance(art.innerText);
-        u.lang = cur === 'fr' ? 'fr-FR' : 'en-US';
-        ss.speak(u);
+        e.stopImmediatePropagation(); e.preventDefault();
+        if (playing) stopAudio(); else startAudio();
       }, true);
+      if (window.MutationObserver) {
+        new MutationObserver(function () { if (!playing) setBtn(LBL[cur]); })
+          .observe(btn, { childList: true, characterData: true, subtree: true });
+      }
     }
+    var oldSet = setLang;
+    setLang = function (l, sv) { if (playing) stopAudio(); oldSet(l, sv); setBtn(LBL[l] || LBL.es); showMsg(''); };
     var saved = 'es';
     try { saved = localStorage.getItem(KEY) || 'es'; } catch (e) {}
     setLang(saved, false);
