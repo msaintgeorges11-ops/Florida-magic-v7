@@ -1702,16 +1702,16 @@ function renderAst(){
     const add=(cls,html)=>{const q=document.createElement('p');if(cls)q.className=cls;q.innerHTML=html;sec.appendChild(q);return q};
     add('big',esc(SIGNS[i].s+' '+r.name.toUpperCase()));
     add('',esc(r.yours));
-    add('','🍀 <b>'+esc(T.lucky)+'</b> <span class="nm">'+r.num+'</span>');
-    add('','🎨 <b>'+esc(T.color)+'</b> <span class="sw" style="background:'+r.hex+'"></span>'+esc(r.color));
-    add('','📅 <b>'+esc(T.day)+':</b> '+esc(r.dayTxt));
-    add('','❤️ <b>'+esc(T.love)+':</b> '+esc(r.loveTxt));
-    add('','✨ <b>'+esc(r.bye)+'</b>');
     if(hasTTS){
       const x=document.createElement('button');x.type='button';x.className='abtn';x.textContent=T.mine;
       x.onclick=()=>speak(x,[SW[al].mineIntro(greet(),r.name),r.yours,T.lucky+' '+r.num+'.',T.color+' '+r.color+'.',T.day+'. '+r.dayTxt,T.love+'. '+r.loveTxt,r.bye,SW[al].mineOutro].join(' '));
       sec.appendChild(x);
     }
+    add('','🍀 <b>'+esc(T.lucky)+'</b> <span class="nm">'+r.num+'</span>');
+    add('','🎨 <b>'+esc(T.color)+'</b> <span class="sw" style="background:'+r.hex+'"></span>'+esc(r.color));
+    add('','📅 <b>'+esc(T.day)+':</b> '+esc(r.dayTxt));
+    add('','❤️ <b>'+esc(T.love)+':</b> '+esc(r.loveTxt));
+    add('','✨ <b>'+esc(r.bye)+'</b>');
     if(i%3===2&&i<11)astAd();
   }
   const fin=document.createElement('div');fin.className='sp';fin.id='signEnd';box.appendChild(fin);
