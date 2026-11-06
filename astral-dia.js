@@ -61,7 +61,7 @@ function speak(btn,text,l,label){
   if(activeBtn===btn){stopAudio();return}
   stopAudio();
   var parts=clean(text).match(/[^.!?:]+[.!?:]*/g)||[];if(!parts.length)return;
-  var v=voice(l);btn._label=label;btn.textContent=D[lang].T.stop;activeBtn=btn;
+  var v=voice(l);btn._label=label;btn.textContent=E.D[lang].T.stop;activeBtn=btn;
   setTimeout(function(){
     parts.forEach(function(s,idx){
       var u=new SpeechSynthesisUtterance(s.trim());
