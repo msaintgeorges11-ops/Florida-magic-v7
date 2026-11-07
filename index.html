@@ -60,8 +60,7 @@ header p{font-size:13px;margin-top:6px}
 .row{display:flex;gap:6px;justify-content:center;margin:8px 0}
 .reel{display:grid;grid-template-columns:1fr 1fr;gap:10px 8px;margin:8px 0}
 .reel .row{margin:0;gap:5px}
-.reel .box{width:40px;height:50px;font-size:26px;border-radius:12px}
-.box{width:44px;height:52px;background:#fff;border:1px solid var(--b);border-radius:14px;font-size:28px;font-weight:bold;color:#000;display:flex;align-items:center;justify-content:center}
+.reel .box{width:40px;height:50px;font-size:26px;border-radius:12px}.box{width:44px;height:52px;background:#fff;border:1px solid var(--b);border-radius:14px;font-size:28px;font-weight:bold;color:#000;display:flex;align-items:center;justify-content:center}
 button.main{margin-top:12px;width:100%;padding:14px;font-size:16px;font-weight:bold;border:none;border-radius:999px;background:var(--b);color:#fff;cursor:pointer}
 .reel .box.spin{background:linear-gradient(180deg,#e9f1ff,#fff 50%,#e9f1ff);color:#1363f8;animation:rollv .12s linear infinite;box-shadow:0 0 10px rgba(19,99,248,.5)}
 @keyframes rollv{0%{transform:translateY(-5px)}50%{transform:translateY(5px)}100%{transform:translateY(-5px)}}
@@ -515,11 +514,25 @@ function luckyFrom(r){
   const m=+r.mid3.slice(-2),e=+r.eve3.slice(-2),som=m+e,dev=Math.floor(som/10)%10;
   return [13,16,64,72].map(k=>String(dev*100+(som+k)%100).padStart(3,'0'));
 }
-// cur=true: último día completo hasta hoy; cur=false: último día completo ANTES de esa fecha
+// NOUVO: 4 nimewo fiks pou chak jou nan mwa a (baze sou 5 mwa: jen -> oktòb). Chanje a 12:00 AM (lè Florida).
+const DAILY={
+  1:["97","92","40","91"],2:["53","91","10","24"],3:["23","50","83","38"],4:["78","72","02","11"],
+  5:["52","41","14","17"],6:["87","95","10","56"],7:["05","25","39","30"],8:["15","19","31","59"],
+  9:["91","99","97","11"],10:["52","53","04","35"],11:["75","61","16","29"],12:["18","08","11","24"],
+  13:["14","80","04","08"],14:["00","07","53","89"],15:["59","68","03","28"],16:["14","81","00","42"],
+  17:["22","80","43","05"],18:["88","17","67","74"],19:["85","14","24","68"],20:["17","18","88","54"],
+  21:["08","69","50","54"],22:["28","79","02","82"],23:["60","55","65","05"],24:["46","88","02","18"],
+  25:["30","28","55","17"],26:["98","29","19","45"],27:["75","37","97","18"],28:["03","21","28","35"],
+  29:["19","68","71","37"],30:["06","74","04","75"],31:["30","03","83","33"]
+};
+// Menm 4 nimewo pou tout jou a (pa gen diferans midi/swa). fk = "ane-mwa-jou"
+// Premye chif (devan): total tout chif 4 nimewo yo, pran dènye chif la (modulo 10). Menm chif devan pou 4 nimewo yo.
+function frontDigit(arr){let s=0;arr.forEach(n=>{String(n).split('').forEach(c=>s+=+c)});return s%10}
 function pair(fk,ses,cur){
-  const q=String(fk).split('-').map(Number),k=q[0]*10000+q[1]*100+q[2];
-  const r=luckyBase(cur?k:k-1);
-  return r?luckyFrom(r):[];
+  const q=String(fk).split('-').map(Number),a=DAILY[q[2]];
+  if(!a)return [];
+  const f=frontDigit(a);
+  return a.map(n=>String(f)+n);
 }
 
 // VIP
@@ -629,7 +642,7 @@ function getResult(){const r=load('spin_'+getSessionKey());try{return r?JSON.par
 function setBoxes(arr){
   for(let r=1;r<=4;r++){
     const bs=document.querySelectorAll('#row'+r+' .box'),v=arr&&arr[r-1];
-    for(let i=0;i<3;i++)bs[i].textContent=v?String(v)[i]:'?';
+    for(let i=0;i<3;i++)bs[i].textContent=v?(String(v)[i]||''):'?';
   }
 }
 
@@ -670,11 +683,10 @@ function render(){
     else{btn.disabled=false;btn.textContent=t.girar;lim.textContent='';box.style.display='block'}
   }
   try{
-    const o2=etNow(),base=luckyBase(o2.year*10000+o2.month*100+o2.day),bs=document.getElementById('basis');
+    const bs=document.getElementById('basis');
     if(bs){
-      if(!base||!(vip||res))bs.textContent='';
-      else{const p=String(base.date).split('-').map(Number),d=fmt(p[0],p[1],p[2]),m=base.mid3.slice(-2),e=base.eve3.slice(-2);
-        bs.textContent={es:`Base: resultado del ${d} (mediodía ${m} · noche ${e})`,fr:`Base : résultat du ${d} (midi ${m} · soir ${e})`,en:`Based on: ${d} result (midday ${m} · evening ${e})`}[lang]}
+      if(!(vip||res))bs.textContent='';
+      else bs.textContent={es:'Base: los últimos 5 meses de resultados (mismo día del mes). Cambia a las 12:00 AM.',fr:'Base : les 5 derniers mois de résultats (même jour du mois). Change à 00h00.',en:'Based on: the last 5 months of results (same day of the month). Changes at 12:00 AM.'}[lang]
     }
   }catch(e){}
   renderHist();renderVipRes();
@@ -790,7 +802,7 @@ function girarReal(){
   spinning=true;audioCtx();if(window.coverAll)coverAll();
   const btn=document.getElementById('spinBtn');btn.disabled=true;btn.textContent=L[lang].girando;
   const boxes=[...document.querySelectorAll('.reel .box')];
-  const finals=boxes.map((_,i)=>{const v=nums[Math.floor(i/3)];return v!=null?String(v)[i%3]:'?'});
+  const finals=boxes.map((_,i)=>{const v=nums[Math.floor(i/3)];return v!=null?(String(v)[i%3]||''):'?'});
   const card=boxes[0].closest('.card');card.style.position='relative';card.style.overflow='hidden';
   const STOP0=1700,GAP=170,total=STOP0+GAP*boxes.length+300;
   boxes.forEach(b=>b.classList.add('spin'));
@@ -1925,6 +1937,10 @@ window.addEventListener('focus',chkDay);
   try{var _r=render;render=function(){var v=_r.apply(this,arguments);try{addShare()}catch(e){}return v}}catch(e){}
   addShare();setInterval(addShare,1500);
 })();
+</script>
+<script>
+/* Chanje otomatik a 12:00 AM (lè Florida): si paj la rete ouvri, nouvo 4 nimewo yo parèt */
+(function(){var k=fechaKey();setInterval(function(){var n=fechaKey();if(n!==k){k=n;try{render()}catch(e){}}},15000)})();
 </script>
 </body>
 </html>
