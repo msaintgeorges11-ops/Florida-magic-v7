@@ -1,9 +1,5 @@
 {
   "sent": [
-    "ga|2026-11-02|nig",
-    "ga|2026-11-03|eve",
-    "ga|2026-11-03|mid",
-    "ga|2026-11-03|nig",
     "ga|2026-11-04|eve",
     "ga|2026-11-04|mid",
     "ga|2026-11-04|nig",
@@ -13,6 +9,7 @@
     "ga|2026-11-06|eve",
     "ga|2026-11-06|mid",
     "ga|2026-11-06|nig",
+    "ga|2026-11-07|mid",
     "ny|2026-10-30|eve",
     "ny|2026-10-30|mid",
     "ny|2026-10-31|eve",
@@ -80,6 +77,9 @@
     "sd|2026-11-06|Quiniela Leidsa",
     "sd|2026-11-06|Quiniela Loteka",
     "sd|2026-11-06|Quiniela Real",
+    "sd|2026-11-07|Gana Más",
+    "sd|2026-11-07|La Primera Día",
+    "sd|2026-11-07|Quiniela Real",
     "vip|27 OCT. 2026|NOCHE|245",
     "vip|21 OCT. 2026|NOCHE|008",
     "vip|31 OCT. 2026|NOCHE|420 30",
