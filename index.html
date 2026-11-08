@@ -441,7 +441,7 @@ table.xt td,table.xt th{white-space:nowrap}
   <footer>
     © FLORIDA MAGIC V7 — <span class="fd"></span> — VIP WhatsApp <a id="fWa" href="https://wa.me/18498697028" target="_blank" rel="noopener">849-869-7028</a><br>
     <span data-t="foot">Lotería de Florida oficial</span> — <a href="https://www.flalottery.com" target="_blank" rel="noopener">www.flalottery.com</a><br>
-    <a id="fP3" href="/pick3.html">Pick 3</a> · <a id="fP4" href="/pick4.html">Pick 4</a> · <a href="/about.html">Acerca de / About</a> · <a href="/contact.html">Contacto / Contact</a> · <a href="/privacy.html">Privacidad / Privacy</a>
+    <a id="fP3" href="/pick3.html">Pick 3</a> · <a id="fP4" href="/pick4.html">Pick 4</a> · <a href="/about.html">Acerca de / About</a> · <a href="/contact.html">Contacto / Contact</a> · <a href="/privacy.html">Privacidad / Privacy</a> · <a href="/tasas/">Tasa de cambio / Exchange</a>
   </footer>
 </div>
 
@@ -663,6 +663,8 @@ function render(){
     }[lang];
     const box=document.getElementById('artLinks');
     if(box)box.innerHTML=slug.map((u,i)=>'📖 <a href="/'+u+'.html" style="color:#1363f8;font-weight:bold">'+ttl[i]+'</a>').join('<br>');
+    const fxl=[['Tasa de cambio del dólar hoy','/tasas/'],['Dollar Exchange Rate Today','/tasas/index-en.html'],['Taux de change du dollar aujourd’hui','/tasas/index-fr.html'],['To chanj dola a jodi a','/tasas/index-ht.html']];
+    if(box)box.innerHTML+='<br>'+fxl.map(x=>'💱 <a href="'+x[1]+'" style="color:#1363f8;font-weight:bold">'+x[0]+'</a>').join('<br>');
     const f3=document.getElementById('fP3'),f4=document.getElementById('fP4');
     if(f3)f3.href='/pick3'+sx+'.html';if(f4)f4.href='/pick4'+sx+'.html';
   }catch(e){}
