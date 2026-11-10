@@ -859,7 +859,7 @@ function renderStamp(){
   }
   if(!pick){st.hidden=true;return}
   const q=String(pick.d).split('-').map(Number),t=L[lang];
-  document.getElementById('stD').textContent=fmt(q[0],q[1],q[2])+' • '+t[pick.s];
+  document.getElementById('stD').textContent=fmt(q[0],q[1],q[2])+' • '+t[pick.s]+' '+drawTime('fl',pick.s==='sm'?'mid':'eve');
   document.getElementById('stP3').textContent=pick.a;
   document.getElementById('stP4').textContent=pick.b;
   document.getElementById('stF').textContent=t.fuente+': '+realSrc+' · flalottery.com';
@@ -903,6 +903,8 @@ function renderReal(){
 }
 
 const RES=[[13,'268','808','9504','4248'],[12,'508','598','1184','2441'],[11,'516','648','5329','7797'],[10,'744','152','3547','3753'],[9,'174','097','2033','1197'],[8,'489','515','1963','2884'],[7,'046','330','0560','9397'],[6,'238','595','8722','7117'],[5,'654','898','1465','9517'],[4,'124','902','7811','7283']];
+const DRAWT={fl:{mid:'1:30 PM',eve:'9:45 PM'},ga:{mid:'12:29 PM',eve:'6:59 PM',nig:'11:34 PM'},ny:{mid:'2:30 PM',eve:'10:30 PM'}};
+function drawTime(st,k){return (DRAWT[st]&&DRAWT[st][k])||''}
 let realRows=null,realSrc='lotteryusa.com',realDiag='';
 function fmxGet(k){try{var c=JSON.parse(localStorage.getItem('fmx_'+k)||'null');if(c&&Array.isArray(c.rows)&&c.rows.length&&Date.now()-c.t<7*864e5)return c.rows}catch(e){}return null}
 function fmxSet(k,rows){try{if(rows&&rows.length)localStorage.setItem('fmx_'+k,JSON.stringify({t:Date.now(),rows:rows}))}catch(e){}}
@@ -1038,7 +1040,7 @@ function renderX(){
     const list=rows.filter(r=>{const q=String(r.date).split('-').map(Number);return q.length===3&&q[0]*10000+q[1]*100+q[2]<=tn}).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,6);
     let pick=null;
     for(const r of list){for(let i=c.keys.length-1;i>=0;i--){const k=c.keys[i];if(xok(r[k+'3'],3)&&xok(r[k+'4'],4)){pick={d:r.date,k:k,a:r[k+'3'],b:r[k+'4']};break}}if(pick)break}
-    if(pick){const q=pick.d.split('-').map(Number);set('xd-'+st,fmt(q[0],q[1],q[2])+' • '+xlab(st,pick.k));set('x3-'+st,pick.a);set('x4-'+st,pick.b);set('xf-'+st,'lotteryusa.com · '+c.off);sb.hidden=false}else sb.hidden=true;
+    if(pick){const q=pick.d.split('-').map(Number);set('xd-'+st,fmt(q[0],q[1],q[2])+' • '+xlab(st,pick.k)+' '+drawTime(st,pick.k));set('x3-'+st,pick.a);set('x4-'+st,pick.b);set('xf-'+st,'lotteryusa.com · '+c.off);sb.hidden=false}else sb.hidden=true;
     tb.innerHTML='';
     list.forEach(r=>{const p=r.date.split('-').map(Number),tr=document.createElement('tr');
       [new Date(Date.UTC(p[0],p[1]-1,p[2],12)).toLocaleDateString(L[lang].loc,{day:'2-digit',month:'short',timeZone:'UTC'}).toUpperCase().replace(/\./g,'')].concat(c.keys.map(k=>((r[k+'3']||'')+' '+(r[k+'4']||'')).trim()||'---')).forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});
@@ -1067,13 +1069,13 @@ renderX();loadX();setInterval(loadX,5*60*1000);
 
 
 /* ===== Sendomeng: yon kat pou chak lotri (/api/sd + /sd-results.json: [{date,t,name,nums}]) ===== */
-const SD_LOT=['Quiniela Real','La Primera Día','Gana Más','Quiniela Loteka','La Primera Noche','Quiniela Leidsa','Lotería Nacional'];
+const SD_LOT=['La Primera Día','Quiniela Real','Gana Más','Quiniela Loteka','La Primera Noche','Quiniela Leidsa','Lotería Nacional'];
 const SDL={
   es:{t:'🎯 RESULTADOS ',n:'SANTO DOMINGO',h:'ÚLTIMO SORTEO',c0:'FECHA',c1:'HORA',c2:'NÚMEROS',none:'Aún no hay resultados publicados.',ver:'Verifica siempre en la fuente oficial de cada lotería.'},
   fr:{t:'🎯 RÉSULTATS ',n:'ST-DOMINGUE',h:'DERNIER TIRAGE',c0:'DATE',c1:'HEURE',c2:'NUMÉROS',none:'Aucun résultat publié pour le moment.',ver:'Vérifie toujours la source officielle de chaque loterie.'},
   en:{t:'🎯 RESULTS ',n:'SANTO DOMINGO',h:'LATEST DRAW',c0:'DATE',c1:'TIME',c2:'NUMBERS',none:'No results published yet.',ver:'Always verify with each lottery’s official source.'}
 };
-const SD_PAGES=["resultado-quiniela-real", "resultado-la-primera-dia", "resultado-gana-mas", "resultado-quiniela-loteka", "resultado-la-primera-noche", "resultado-quiniela-leidsa", "resultado-loteria-nacional"];
+const SD_PAGES=["resultado-la-primera-dia", "resultado-quiniela-real", "resultado-gana-mas", "resultado-quiniela-loteka", "resultado-la-primera-noche", "resultado-quiniela-leidsa", "resultado-loteria-nacional"];
 let SDD=null,SDBUILT=false;
 function sdClean(a){return (Array.isArray(a)?a:[]).filter(r=>r&&r.date&&r.name&&r.nums).sort((x,y)=>(y.date+(y.t||'')).localeCompare(x.date+(x.t||'')))}
 function sdShort(d){const p=d.split('-').map(Number);return new Date(Date.UTC(p[0],p[1]-1,p[2],12)).toLocaleDateString(L[lang].loc,{day:'2-digit',month:'short',timeZone:'UTC'}).toUpperCase().replace(/\./g,'')}
