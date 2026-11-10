@@ -530,18 +530,11 @@ const DAILY={
 function frontDigit(arr){let s=0;arr.forEach(n=>{String(n).split('').forEach(c=>s+=+c)});return s%10}
 // 1 sèl chif devan pou jou a (menm chif pou 4 nimewo yo):
 // (total tout chif 4 nimewo yo + nimewo mwa a) modulo 10  -> dènye chif rezilta a
-function frontDigit1(fk){
-  const q=String(fk).split('-').map(Number),a=DAILY[q[2]];
-  if(!a)return 0;
-  let t=q[1];
-  a.forEach(n=>String(n).split('').forEach(c=>t+=+c));
-  return t%10;
-}
+// Chak nimewo gen pwòp chif devan li: (chif 1 + chif 2 nimewo a + jou + mwa) modulo 10 -> dènye chif la
 function pair(fk,ses,cur){
   const q=String(fk).split('-').map(Number),a=DAILY[q[2]];
   if(!a)return [];
-  const f=frontDigit1(fk);
-  return a.map(n=>String(f)+n);
+  return a.map(n=>String((+n[0]+ +n[1]+q[2]+q[1])%10)+n);
 }
 
 // VIP
