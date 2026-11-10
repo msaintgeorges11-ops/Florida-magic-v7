@@ -921,7 +921,8 @@ async function loadResults(){
       if(Array.isArray(d)&&d.length){rows=d;realSrc='results.json'}
     }catch(e){}
   }
-  if(rows&&realSrc!=='cache')fmxSet('fl',rows);
+  const fromCache=!rows;
+  if(rows)fmxSet('fl',rows);
   if(!rows){const c=fmxGet('fl');if(c){rows=c;realSrc='cache'}}
   realRows=rows;
   renderReal10();
@@ -953,6 +954,54 @@ let lastKey=getSessionKey();
 setInterval(()=>{const k=getSessionKey();if(k!==lastKey){lastKey=k;render();actualizarFloridaReal()}},30000);
 setInterval(actualizarFloridaReal,5*60*1000);
 setInterval(()=>{if(!document.hidden)loadVip()},30*60*1000);setInterval(loadResults,5*60*1000);
+
+// Rezilta rapid apre tiraj: depi lè yon tiraj rive (lè ET) epi rezilta a poko la, sèvè a chèche l chak 15 segonn
+// jiskaske li jwenn li (oswa 3 èdtan pase). Lè tiraj la jwenn, li tounen sou chak 5 minit.
+// Santo Domingo (lè Repiblik Dominikèn, America/Santo_Domingo). Modifye lè yo isit la si yo chanje.
+const SD_DRAWS=[
+  {n:'La Primera Día',h:12},{n:'Quiniela Real',h:13},{n:'Gana Más',h:14.5},
+  {n:'Quiniela Loteka',h:19.9},{n:'La Primera Noche',h:20},{n:'Quiniela Leidsa',h:20.9},
+  {n:'Lotería Nacional',h:20.9,days:[3,6]},{n:'Lotería Nacional',h:17,days:[0]}
+];
+function sdMissing(){
+  try{
+    const p={};
+    new Intl.DateTimeFormat('en-US',{timeZone:'America/Santo_Domingo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false,weekday:'short'}).formatToParts(new Date()).forEach(x=>p[x.type]=x.value);
+    const h=(+p.hour%24)+(+p.minute)/60,tk=p.year+'-'+p.month+'-'+p.day,wd=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday);
+    return SD_DRAWS.some(d=>{
+      if(d.days&&d.days.indexOf(wd)<0)return false;
+      if(h<d.h||h>=d.h+3)return false;
+      return !(SDD||[]).some(r=>r&&r.name===d.n&&r.date===tk);
+    });
+  }catch(e){return false}
+}
+const DRAWS=[
+  {st:'fl',k:'mid',h:13.5},{st:'fl',k:'eve',h:21.75},
+  {st:'ga',k:'mid',h:12.5},{st:'ga',k:'eve',h:19},{st:'ga',k:'nig',h:23.6},
+  {st:'ny',k:'mid',h:14.5},{st:'ny',k:'eve',h:22.5}
+];
+function drawMissing(){
+  try{
+    const o=etNow(),h=o.hour+o.minute/60,tk=o.year+'-'+String(o.month).padStart(2,'0')+'-'+String(o.day).padStart(2,'0');
+    const out={fl:false,x:false};
+    DRAWS.forEach(d=>{
+      if(h<d.h||h>=d.h+3)return;
+      const rows=d.st==='fl'?realRows:XD[d.st];
+      const r=(rows||[]).find(x=>x.date===tk);
+      if(!(r&&/^\d{3}$/.test(r[d.k+'3']||''))){if(d.st==='fl')out.fl=true;else out.x=true}
+    });
+    return out;
+  }catch(e){return {fl:false,x:false}}
+}
+setInterval(()=>{
+  if(document.hidden)return;
+  const m=drawMissing();
+  if(m.fl)loadResults();
+  if(m.x){try{loadX()}catch(e){}}
+  if(sdMissing()){try{loadSD()}catch(e){}}
+},15*1000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){loadResults();try{loadX()}catch(e){}try{loadSD()}catch(e){}}});
+window.addEventListener('focus',()=>{loadResults()});
 
 render();
 loadVip();loadResults();
