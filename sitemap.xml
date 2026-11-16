@@ -2,9 +2,96 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url><loc>https://www.floridamagicv7.com/</loc><lastmod>2026-10-30</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
   <url><loc>https://www.floridamagicv7.com/loteria-hoy.html</loc><lastmod>2026-10-30</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.floridamagicv7.com/resultado-florida.html</loc><lastmod>2026-10-30</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.floridamagicv7.com/resultado-georgia.html</loc><lastmod>2026-10-30</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.floridamagicv7.com/resultado-newyork.html</loc><lastmod>2026-10-30</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://www.floridamagicv7.com/resultado-florida.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.floridamagicv7.com/resultado-florida.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.floridamagicv7.com/infos/resultado-florida-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.floridamagicv7.com/infos/resultado-florida-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.floridamagicv7.com/resultado-florida.html"/>
+  </url>
+  <url>
+    <loc>https://www.floridamagicv7.com/infos/resultado-florida-fr.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.floridamagicv7.com/resultado-florida.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.floridamagicv7.com/infos/resultado-florida-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.floridamagicv7.com/infos/resultado-florida-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.floridamagicv7.com/resultado-florida.html"/>
+  </url>
+  <url>
+    <loc>https://www.floridamagicv7.com/infos/resultado-florida-en.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.floridamagicv7.com/resultado-florida.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.floridamagicv7.com/infos/resultado-florida-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.floridamagicv7.com/infos/resultado-florida-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.floridamagicv7.com/resultado-florida.html"/>
+  </url>
+  <url>
+    <loc>https://www.floridamagicv7.com/resultado-georgia.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.floridamagicv7.com/resultado-georgia.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.floridamagicv7.com/infos/resultado-georgia-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.floridamagicv7.com/infos/resultado-georgia-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.floridamagicv7.com/resultado-georgia.html"/>
+  </url>
+  <url>
+    <loc>https://www.floridamagicv7.com/infos/resultado-georgia-fr.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.floridamagicv7.com/resultado-georgia.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.floridamagicv7.com/infos/resultado-georgia-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.floridamagicv7.com/infos/resultado-georgia-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.floridamagicv7.com/resultado-georgia.html"/>
+  </url>
+  <url>
+    <loc>https://www.floridamagicv7.com/infos/resultado-georgia-en.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.floridamagicv7.com/resultado-georgia.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.floridamagicv7.com/infos/resultado-georgia-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.floridamagicv7.com/infos/resultado-georgia-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.floridamagicv7.com/resultado-georgia.html"/>
+  </url>
+  <url>
+    <loc>https://www.floridamagicv7.com/resultado-newyork.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.floridamagicv7.com/resultado-newyork.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.floridamagicv7.com/infos/resultado-newyork-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.floridamagicv7.com/infos/resultado-newyork-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.floridamagicv7.com/resultado-newyork.html"/>
+  </url>
+  <url>
+    <loc>https://www.floridamagicv7.com/infos/resultado-newyork-fr.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.floridamagicv7.com/resultado-newyork.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.floridamagicv7.com/infos/resultado-newyork-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.floridamagicv7.com/infos/resultado-newyork-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.floridamagicv7.com/resultado-newyork.html"/>
+  </url>
+  <url>
+    <loc>https://www.floridamagicv7.com/infos/resultado-newyork-en.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.floridamagicv7.com/resultado-newyork.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.floridamagicv7.com/infos/resultado-newyork-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.floridamagicv7.com/infos/resultado-newyork-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.floridamagicv7.com/resultado-newyork.html"/>
+  </url>
   <url><loc>https://www.floridamagicv7.com/resultado-quiniela-real.html</loc><lastmod>2026-10-30</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.floridamagicv7.com/resultado-la-primera-dia.html</loc><lastmod>2026-10-30</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.floridamagicv7.com/resultado-gana-mas.html</loc><lastmod>2026-10-30</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
