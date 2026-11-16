@@ -6,6 +6,11 @@
 <title>Política de Privacidad – FLORIDA MAGIC V7</title>
 <meta name="description" content="Política de privacidad de FLORIDA MAGIC V7: qué datos se usan, cookies, publicidad de Google AdSense, servicios de terceros y cómo contactarnos.">
 <link rel="canonical" href="https://www.floridamagicv7.com/privacy.html">
+<link rel="alternate" hreflang="fr" href="https://www.floridamagicv7.com/privacy-fr.html">
+<link rel="alternate" hreflang="es" href="https://www.floridamagicv7.com/privacy.html">
+<link rel="alternate" hreflang="en" href="https://www.floridamagicv7.com/privacy-en.html">
+<link rel="alternate" hreflang="x-default" href="https://www.floridamagicv7.com/privacy.html">
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#1363f8;font-family:Arial,Helvetica,sans-serif;color:#000;display:flex;justify-content:center}
@@ -20,12 +25,14 @@ a{color:#1363f8;font-weight:bold}
 nav{text-align:center;margin:14px 0;font-size:13px}
 nav a{color:#fff;margin:0 8px}
 .date{font-size:13px;color:#555;margin-bottom:10px}
+.langsel{position:relative;width:fit-content;margin:0 0 6px auto}.langgo{display:flex;align-items:center;gap:3px;border:1px solid #d9d9d9;border-radius:14px;background:#fff;padding:4px 8px;cursor:pointer;line-height:1}.lg-i{font-size:12px}.lg-t{font-size:11px;font-weight:bold;color:#000}.langmenu{display:none;position:absolute;top:30px;right:0;background:#fff;border:1px solid #d9d9d9;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.25);padding:4px;min-width:120px;z-index:20}.langsel.open .langmenu{display:block}.langmenu a{display:block;padding:9px 10px;border-radius:7px;color:#000;font-size:14px;font-weight:bold;text-decoration:none}.langmenu a.on{background:#1363f8;color:#fff}
 </style>
 </head>
 <body>
 <div class="wrap">
 <nav><a href="/">Inicio</a><a href="/about.html">Acerca de</a><a href="/contact.html">Contacto</a><a href="/privacy.html">Privacidad</a></nav>
 <div class="card">
+<div class="langsel" id="ls"><div class="langgo" onclick="event.stopPropagation();document.getElementById('ls').classList.toggle('open')"><span class="lg-i">🌐</span><span class="lg-t">ES</span></div><div class="langmenu"><a href="/privacy-fr.html" hreflang="fr">Français</a><a href="/privacy.html" hreflang="es" class="on">Español</a><a href="/privacy-en.html" hreflang="en">English</a></div></div>
 <h1>Política de Privacidad</h1>
 <p class="date">Última actualización: 18 de octubre de 2026</p>
 <p>En FLORIDA MAGIC V7 respetamos tu privacidad. Esta política explica qué información se usa cuando visitas el sitio <b>floridamagicv7.com</b> y cómo se maneja.</p>
@@ -78,5 +85,6 @@ nav a{color:#fff;margin:0 8px}
 <p>Si tienes preguntas sobre esta política, escríbenos a <a href="mailto:floridamagicv7@gmail.com">floridamagicv7@gmail.com</a>, por WhatsApp al <a href="https://wa.me/18498697028" target="_blank" rel="noopener">849-869-7028</a>, o visita la página de <a href="/contact.html">Contacto</a>.</p>
 </div>
 </div>
+<script>document.addEventListener("click",function(){document.getElementById("ls").classList.remove("open")})</script>
 </body>
 </html>
