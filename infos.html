@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Todos los infos — FLORIDA MAGIC V7</title>
+<meta name="robots" content="index,follow">
+<style>
+:root{color-scheme:light;--b:#1363f8;--line:#d9d9d9}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--b)}
+body{font-family:Arial,Helvetica,sans-serif;color:#000;display:flex;justify-content:center}
+.wrap{width:100%;max-width:500px;padding:10px 10px 40px}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.back{background:#fff;color:#000;text-decoration:none;font-weight:bold;font-size:14px;padding:9px 14px;border-radius:20px}
+.langsel{position:relative}
+.langgo{display:flex;flex-direction:column;align-items:center;gap:1px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:3px 6px;cursor:pointer;line-height:1}
+.lg-i{font-size:14px}.lg-t{font-size:9px;font-weight:bold;color:#000}
+.langmenu{display:none;position:absolute;top:38px;right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.25);padding:4px;min-width:130px;z-index:20}
+.langsel.open .langmenu{display:block}
+.langmenu button{display:block;width:100%;text-align:left;padding:9px 10px;border:0;border-radius:7px;background:#fff;color:#000;font-size:14px;font-weight:bold;cursor:pointer}
+.langmenu button.on{background:var(--b);color:#fff}
+.card{background:#fff;border-radius:20px;padding:16px}
+h1{font-size:19px;text-align:center;margin-bottom:12px}
+#list{font-size:15px;line-height:2;text-align:left}
+#list a{color:var(--b);font-weight:bold}
+footer{margin-top:16px;font-size:14px;color:#fff;text-align:center;line-height:2}
+footer a{color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="/">← FLORIDA MAGIC V7</a>
+    <div class="langsel" id="langSel">
+      <button type="button" class="langgo" onclick="event.stopPropagation();document.getElementById('langSel').classList.toggle('open')"><span class="lg-i">🌐</span><span class="lg-t" id="langLbl">Idioma</span></button>
+      <div class="langmenu">
+        <button id="b-fr" onclick="setLang('fr')">Français</button>
+        <button id="b-es" onclick="setLang('es')">Español</button>
+        <button id="b-en" onclick="setLang('en')">English</button>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h1 id="h">📚 Todos los infos</h1>
+    <div id="list"></div>
+  </div>
+  <footer id="foot"></footer>
+</div>
+<script>
+/* =====================================================================
+   LISTA DE TODOS LOS INFOS / ATIK YO
+   Pou ajoute yon atik: kopye yon liy, mete li nan FIN lis la
+   (anvan "];"), ak [lyen, tit ES, tit FR, tit EN].
+   Pa gen bezwen manyen index.html.
+   ===================================================================== */
+const ARTICLES=[
+  ['/pick3.html',"¿Cómo funciona Pick 3?","Comment fonctionne Pick 3 ?","How does Pick 3 work?"],
+  ['/pick4.html',"¿Cómo funciona Pick 4?","Comment fonctionne Pick 4 ?","How does Pick 4 work?"],
+  ['/straight-box.html',"Straight o Box: diferencias","Straight ou Box : différences","Straight vs Box: differences"],
+  ['/probabilidades.html',"Las probabilidades reales","Les probabilités réelles","The real odds"],
+  ['/resultados.html',"Cómo leer los resultados","Comment lire les résultats","How to read the results"],
+  ['/mitos.html',"Mitos sobre la lotería","Les mythes sur la loterie","Lottery myths"],
+  ['/juego-responsable.html',"Juego responsable","Jeu responsable","Responsible play"],
+  ['/signos-zodiaco.html',"Los 12 signos del zodiaco","Les 12 signes du zodiaque","The 12 zodiac signs"],
+  ['/numeros-suerte.html',"Números de la suerte","Numéros chance","Lucky numbers"],
+  ['/horoscopo-diario.html',"Cómo leer tu horóscopo diario","Comment lire votre horoscope","How to read your daily horoscope"],
+  ['/signos-astrales.html',"Los 12 signos astrales","Les 12 signes astraux","The 12 astral signs"],
+  ['/digitos-salidos.html',"Dígitos más y menos salidos","Chiffres les plus et moins sortis","Most and least drawn digits"],
+  ['/suenos-tchala.html',"Tchala: significado de los sueños","Tchala : le sens des rêves","Tchala: dream meanings"],
+  ['/loteria-hoy.html',"Números lotería suerte y calientes del día","Numéros de loterie chance et chauds du jour","Lucky and hot lottery numbers of the day"],
+  ['/resultado-florida.html',"Resultado Lotería Florida hoy","Résultat Loterie Floride aujourd’hui","Florida Lottery Results Today"],
+  ['/resultado-georgia.html',"Resultado Lotería Georgia hoy","Résultat Loterie Géorgie aujourd’hui","Georgia Lottery Results Today"],
+  ['/resultado-newyork.html',"Resultado Lotería New York hoy","Résultat Loterie New York aujourd’hui","New York Lottery Results Today"],
+  ['/resultado-quiniela-real.html',"Resultado Lotería Quiniela Real hoy","Résultat Loterie Quiniela Real aujourd’hui","Quiniela Real Lottery Results Today"],
+  ['/resultado-la-primera-dia.html',"Resultado Lotería La Primera Día hoy","Résultat Loterie La Primera Día aujourd’hui","La Primera Día Lottery Results Today"],
+  ['/resultado-gana-mas.html',"Resultado Lotería Gana Más hoy","Résultat Loterie Gana Más aujourd’hui","Gana Más Lottery Results Today"],
+  ['/resultado-quiniela-loteka.html',"Resultado Lotería Quiniela Loteka hoy","Résultat Loterie Quiniela Loteka aujourd’hui","Quiniela Loteka Lottery Results Today"],
+  ['/resultado-la-primera-noche.html',"Resultado Lotería La Primera Noche hoy","Résultat Loterie La Primera Noche aujourd’hui","La Primera Noche Lottery Results Today"],
+  ['/resultado-quiniela-leidsa.html',"Resultado Lotería Quiniela Leidsa hoy","Résultat Loterie Quiniela Leidsa aujourd’hui","Quiniela Leidsa Lottery Results Today"],
+  ['/resultado-loteria-nacional.html',"Resultado Lotería Nacional hoy","Résultat Lotería Nacional aujourd’hui","Lotería Nacional Results Today"],
+  ['/horoscopo/aries-hoy.html',"Aries, tu signo astrológico hoy","Bélier, ton signe astrologique aujourd’hui","Aries, your zodiac sign today"],
+  ['/horoscopo/tauro-hoy.html',"Tauro, tu signo astrológico hoy","Taureau, ton signe astrologique aujourd’hui","Taurus, your zodiac sign today"],
+  ['/horoscopo/geminis-hoy.html',"Géminis, tu signo astrológico hoy","Gémeaux, ton signe astrologique aujourd’hui","Gemini, your zodiac sign today"],
+  ['/horoscopo/cancer-hoy.html',"Cáncer, tu signo astrológico hoy","Cancer, ton signe astrologique aujourd’hui","Cancer, your zodiac sign today"],
+  ['/horoscopo/leo-hoy.html',"Leo, tu signo astrológico hoy","Lion, ton signe astrologique aujourd’hui","Leo, your zodiac sign today"],
+  ['/horoscopo/virgo-hoy.html',"Virgo, tu signo astrológico hoy","Vierge, ton signe astrologique aujourd’hui","Virgo, your zodiac sign today"],
+  ['/horoscopo/libra-hoy.html',"Libra, tu signo astrológico hoy","Balance, ton signe astrologique aujourd’hui","Libra, your zodiac sign today"],
+  ['/horoscopo/escorpio-hoy.html',"Escorpio, tu signo astrológico hoy","Scorpion, ton signe astrologique aujourd’hui","Scorpio, your zodiac sign today"],
+  ['/horoscopo/sagitario-hoy.html',"Sagitario, tu signo astrológico hoy","Sagittaire, ton signe astrologique aujourd’hui","Sagittarius, your zodiac sign today"],
+  ['/horoscopo/capricornio-hoy.html',"Capricornio, tu signo astrológico hoy","Capricorne, ton signe astrologique aujourd’hui","Capricorn, your zodiac sign today"],
+  ['/horoscopo/acuario-hoy.html',"Acuario, tu signo astrológico hoy","Verseau, ton signe astrologique aujourd’hui","Aquarius, your zodiac sign today"],
+  ['/horoscopo/piscis-hoy.html',"Piscis, tu signo astrológico hoy","Poissons, ton signe astrologique aujourd’hui","Pisces, your zodiac sign today"],
+  ['/tasas/','Tasa de cambio del dólar hoy','Taux de change du dollar aujourd’hui','Dollar Exchange Rate Today'],
+  ['/tasas/index-en.html','Dollar Exchange Rate Today','Dollar Exchange Rate Today','Dollar Exchange Rate Today'],
+  ['/tasas/index-fr.html','Taux de change du dollar aujourd’hui','Taux de change du dollar aujourd’hui','Taux de change du dollar aujourd’hui'],
+  ['/tasas/index-ht.html','To chanj dola a jodi a','To chanj dola a jodi a','To chanj dola a jodi a']
+  /* NOUVEAUX ARTICLES: mete yon viriy apre liy ki anwo a, epi liy ou a isit */
+];
+const HEAD={es:'📚 Todos los infos',fr:'📚 Tous les infos',en:'📚 All infos'};
+const LBL={es:'Idioma',fr:'Langue',en:'Language'};
+const IDX={es:1,fr:2,en:3};
+const FOOT={
+  es:[['/pick3.html','Pick 3'],['/pick4.html','Pick 4'],['/about.html','Acerca de'],['/contact.html','Contacto'],['/privacy.html','Política de privacidad'],['/tasas/','Tasa de cambio']],
+  fr:[['/pick3.html','Pick 3'],['/pick4.html','Pick 4'],['/about.html','À propos'],['/contact.html','Contact'],['/privacy.html','Politique de confidentialité'],['/tasas/','Taux de change']],
+  en:[['/pick3.html','Pick 3'],['/pick4.html','Pick 4'],['/about.html','About'],['/contact.html','Contact'],['/privacy.html','Privacy Policy'],['/tasas/','Exchange Rate']]
+};
+let lang='es';
+try{const v=localStorage.getItem('lang');if(v&&IDX[v])lang=v}catch(e){}
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function setLang(l){lang=l;try{localStorage.setItem('lang',l)}catch(e){}document.getElementById('langSel').classList.remove('open');render()}
+function render(){
+  document.documentElement.lang=lang;
+  document.getElementById('h').textContent=HEAD[lang];
+  document.getElementById('langLbl').textContent=LBL[lang];
+  ['fr','es','en'].forEach(l=>document.getElementById('b-'+l).classList.toggle('on',l===lang));
+  document.getElementById('foot').innerHTML='© FLORIDA MAGIC V7<br>'+FOOT[lang].map(x=>'<a href="'+x[0]+'">'+x[1]+'</a>').join(' · ');
+  document.getElementById('list').innerHTML=ARTICLES.map(a=>'📖 <a href="'+a[0]+'">'+esc(a[IDX[lang]]||a[1])+'</a>').join('<br>');
+}
+document.addEventListener('click',()=>document.getElementById('langSel').classList.remove('open'));
+render();
+</script>
+</body>
+</html>
