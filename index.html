@@ -37,6 +37,14 @@ window.__ad=function(u,a){if(window.__vip())return;var s=document.createElement(
 html,body{background:var(--b)}
 body{color:#000;font-family:Arial,Helvetica,sans-serif;display:flex;justify-content:center}
 .wrap{width:100%;max-width:500px;padding:10px 10px 100px}
+.langsel{position:absolute;top:8px;right:8px;z-index:20}
+.langgo{display:flex;flex-direction:column;align-items:center;gap:1px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:3px 6px;cursor:pointer;line-height:1}
+.lg-i{font-size:14px}
+.lg-t{font-size:9px;font-weight:bold;color:#000}
+.langmenu{display:none;position:absolute;top:38px;right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.25);padding:4px;min-width:130px}
+.langsel.open .langmenu{display:block}
+.langmenu button{display:block;width:100%;text-align:left;padding:9px 10px;border:0;border-radius:7px;background:#fff;color:#000;font-size:14px;font-weight:bold;cursor:pointer}
+.langmenu button.on{background:var(--b);color:#fff}
 .lang{display:flex;gap:6px;margin-bottom:10px}
 .lang a,.lang button{flex:1;display:block;text-align:center;text-decoration:none;padding:10px 4px;border:1px solid var(--line);border-radius:8px;background:#fff;color:#000;font-weight:bold;font-size:13px;cursor:pointer}
 .lang a.on,.lang button.on{border-color:#fff;background:var(--b);color:#fff}
@@ -262,13 +270,15 @@ table.xt td,table.xt th{white-space:nowrap}
 </head>
 <body>
 <div class="wrap">
-  <div class="lang">
-    <button id="b-fr" onclick="setLang('fr')">🇫🇷 FR</button>
-    <button id="b-es" onclick="setLang('es')">🇪🇸 ES</button>
-    <button id="b-en" onclick="setLang('en')">🇺🇸 EN</button>
-  </div>
-
-  <header>
+  <header style="position:relative">
+    <div class="langsel" id="langSel">
+      <button type="button" class="langgo" id="langGo" aria-label="Language" onclick="event.stopPropagation();document.getElementById('langSel').classList.toggle('open')"><span class="lg-i">🌐</span><span class="lg-t" id="langLbl">Idioma</span></button>
+      <div class="langmenu">
+        <button id="b-fr" onclick="setLang('fr');document.getElementById('langSel').classList.remove('open')">Français</button>
+        <button id="b-es" onclick="setLang('es');document.getElementById('langSel').classList.remove('open')">Español</button>
+        <button id="b-en" onclick="setLang('en');document.getElementById('langSel').classList.remove('open')">English</button>
+      </div>
+    </div>
     <h1>FLORIDA MAGIC V7 🔮</h1>
     <p>📅 <span data-t="hoy">HOY</span>: <b class="fd"></b></p>
     <span class="badge" data-t="badge">🎲 Generador aleatorio de entretenimiento</span><span class="vipb" id="vipBadge" data-t="vipBadge">💎 VIP</span>
@@ -654,6 +664,7 @@ function render(){
   document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t[e.dataset.t]);
   document.querySelectorAll('[data-ph]').forEach(e=>e.placeholder=t[e.dataset.ph]);
   ['fr','es','en'].forEach(l=>document.getElementById('b-'+l).classList.toggle('on',l===lang));
+  {const ll=document.getElementById('langLbl');if(ll)ll.textContent={es:'Idioma',fr:'Langue',en:'Language'}[lang]}
   document.querySelectorAll('.fd').forEach(e=>e.textContent=fechaDisplay());
   try{
     const sx='';
@@ -667,6 +678,7 @@ function render(){
     if(box)box.innerHTML=slug.map((u,i)=>'📖 <a href="/'+u+'.html" style="color:#1363f8;font-weight:bold">'+ttl[i]+'</a>').join('<br>');
     const fxl=[['Tasa de cambio del dólar hoy','/tasas/'],['Dollar Exchange Rate Today','/tasas/index-en.html'],['Taux de change du dollar aujourd’hui','/tasas/index-fr.html'],['To chanj dola a jodi a','/tasas/index-ht.html']];
     if(box)box.innerHTML+='<br>'+fxl.map(x=>'💱 <a href="'+x[1]+'" style="color:#1363f8;font-weight:bold">'+x[0]+'</a>').join('<br>');
+    if(box){const ti={es:'Todos los infos',fr:'Tous les infos',en:'All infos'}[lang];box.innerHTML+='<br><a href="/infos.html" style="display:inline-block;margin-top:8px;background:#1363f8;color:#fff;text-decoration:none;font-weight:bold;padding:9px 16px;border-radius:20px">📚 '+ti+' ›</a>'}
     const f3=document.getElementById('fP3'),f4=document.getElementById('fP4');
     if(f3)f3.href='/pick3'+sx+'.html';if(f4)f4.href='/pick4'+sx+'.html';
   }catch(e){}
@@ -950,6 +962,7 @@ function setTab(t){
   window.scrollTo(0,0);pushAds();if(window.coverAll)coverAll();
 }
 document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.go)));
+document.addEventListener('click',()=>{const e=document.getElementById('langSel');if(e)e.classList.remove('open')});
 function setLang(l){lang=l;store('lang',l);render();if(window.astSync)astSync()}
 
 let lastKey=getSessionKey();
