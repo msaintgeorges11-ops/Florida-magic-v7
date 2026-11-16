@@ -94,7 +94,11 @@ const ARTICLES=[
   ['/tasas/','Tasa de cambio del dólar hoy','Taux de change du dollar aujourd’hui','Dollar Exchange Rate Today'],
   ['/tasas/index-en.html','Dollar Exchange Rate Today','Dollar Exchange Rate Today','Dollar Exchange Rate Today'],
   ['/tasas/index-fr.html','Taux de change du dollar aujourd’hui','Taux de change du dollar aujourd’hui','Taux de change du dollar aujourd’hui'],
-  ['/tasas/index-ht.html','To chanj dola a jodi a','To chanj dola a jodi a','To chanj dola a jodi a']
+  ['/tasas/index-ht.html','To chanj dola a jodi a','To chanj dola a jodi a','To chanj dola a jodi a'],
+  ['/infos/horarios-sorteos.html',"Horarios de los sorteos de la Lotería de Florida","Horaires des tirages de la Loterie de Floride","Florida Lottery Drawing Times","/infos/horaires-tirages.html","/infos/drawing-times.html"],
+  ['/infos/como-jugar-fantasy-5.html',"Cómo jugar Fantasy 5 de Florida: Reglas y probabilidades de ganar","Comment jouer au Fantasy 5 de Floride : Règles et probabilités","How to Play Florida Fantasy 5: Rules, Odds, and Payouts","/infos/comment-jouer-fantasy-5.html","/infos/how-to-play-fantasy-5.html"],
+  ['/infos/guia-cash-pop.html',"Guía completa de Cash Pop Florida: Cómo jugar y ganar","Guide complet du Cash Pop Floride : Comment ça marche ?","Florida Cash Pop Guide: How to Play and Win","/infos/guide-cash-pop.html","/infos/cash-pop-guide.html"],
+  ['/infos/diferencias-powerball-mega-millions.html',"Diferencias entre Powerball y Mega Millions: ¿Cuál es mejor jugar?","Différences entre Powerball et Mega Millions : Lequel choisir ?","Powerball vs. Mega Millions: Rules, Odds, and Key Differences","/infos/difference-powerball-mega-millions.html","/infos/powerball-vs-mega-millions.html"]
   /* NOUVEAUX ARTICLES: mete yon viriy apre liy ki anwo a, epi liy ou a isit */
 ];
 const HEAD={es:'📚 Todos los infos',fr:'📚 Tous les infos',en:'📚 All infos'};
@@ -115,7 +119,7 @@ function render(){
   document.getElementById('langLbl').textContent=LBL[lang];
   ['fr','es','en'].forEach(l=>document.getElementById('b-'+l).classList.toggle('on',l===lang));
   document.getElementById('foot').innerHTML='© FLORIDA MAGIC V7<br>'+FOOT[lang].map(x=>'<a href="'+x[0]+'">'+x[1]+'</a>').join(' · ');
-  document.getElementById('list').innerHTML=ARTICLES.map(a=>'📖 <a href="'+a[0]+'">'+esc(a[IDX[lang]]||a[1])+'</a>').join('<br>');
+  document.getElementById('list').innerHTML=ARTICLES.map(a=>'📖 <a href="'+(lang==='fr'?(a[4]||a[0]):lang==='en'?(a[5]||a[0]):a[0])+'">'+esc(a[IDX[lang]]||a[1])+'</a>').join('<br>');
 }
 document.addEventListener('click',()=>document.getElementById('langSel').classList.remove('open'));
 render();
